@@ -3,40 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SkillBridge – Home</title>
+  <title>SkillBridge – Master Essential Real-World Skills</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body { background-color: #f4f7fa; color: #111827; }
 
-    /* Navigation Bar */
+    /* Top Dark Navigation Bar */
     nav {
-      background-color: #0b162c; color: #ffffff; display: flex;
-      justify-content: space-between; align-items: center; padding: 0 5%;
-      height: 64px; position: sticky; top: 0; z-index: 1000;
+      background-color: #0b162c;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5%;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
-    .nav-brand { font-weight: 800; font-size: 1.35rem; color: #ffffff; text-decoration: none; }
-    .nav-links { display: flex; align-items: center; gap: 10px; height: 100%; }
+    .nav-brand { font-weight: 800; font-size: 1.35rem; letter-spacing: -0.5px; color: #ffffff; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 16px; height: 100%; }
     .nav-links a {
       color: #d1d5db; text-decoration: none; font-size: 0.95rem; font-weight: 500;
-      height: 100%; display: flex; align-items: center; padding: 0 18px;
-      transition: background-color 0.2s, color 0.2s;
+      height: 100%; display: flex; align-items: center; padding: 0 16px; transition: 0.2s;
     }
     .nav-links a.active, .nav-links a:hover { background-color: #0066cc; color: #ffffff; }
     .btn-login {
       background-color: #0066cc; color: #ffffff; border: none; padding: 8px 20px;
-      border-radius: 20px; font-weight: 600; font-size: 0.9rem; cursor: pointer;
-      text-decoration: none;
+      border-radius: 20px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: 0.2s;
     }
     .btn-login:hover { background-color: #0052a3; }
 
     /* Hero Section */
-    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 540px; background-color: #0066cc; }
-    .hero-left {
-      padding: 70px 8% 70px 10%; display: flex; flex-direction: column;
-      justify-content: center; color: #ffffff;
-    }
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; background-color: #0066cc; }
+    .hero-left { padding: 70px 8% 70px 10%; display: flex; flex-direction: column; justify-content: center; color: #ffffff; }
     .hero-cursive-title {
       font-family: 'Pacifico', cursive; font-size: 4.5rem; font-weight: 400;
       margin-bottom: 18px; line-height: 1.1; text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -46,58 +48,59 @@
     .btn-hero {
       background-color: #ffffff; color: #0066cc; padding: 14px 32px; border-radius: 30px;
       font-size: 1.05rem; font-weight: 700; width: fit-content; text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); transition: transform 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); transition: 0.2s;
     }
-    .btn-hero:hover { transform: translateY(-2px); }
+    .btn-hero:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22); }
     .hero-right {
       background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80');
       background-size: cover; background-position: center; min-height: 400px;
     }
 
-    /* Main Content */
-    .container { max-width: 1100px; margin: 0 auto; padding: 70px 24px; }
+    /* Main Container */
+    .container { max-width: 1100px; margin: 0 auto; padding: 75px 24px; }
     .lessons-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 36px; }
     .lessons-header h2 { font-size: 2.2rem; font-weight: 800; color: #0f172a; }
     .btn-start-small {
       background-color: #0066cc; color: #ffffff; padding: 12px 26px; border-radius: 25px;
-      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: 0.2s;
     }
     .btn-start-small:hover { background-color: #0052a3; }
 
+    /* 6-Topic Grid */
     .lessons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 50px; }
     .topic-card {
       background-color: #ffffff; border-radius: 18px; padding: 28px 32px;
       display: flex; justify-content: space-between; align-items: center;
       box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06); border: 1px solid #e2e8f0;
-      text-decoration: none; transition: transform 0.2s, border-color 0.2s;
+      text-decoration: none; color: inherit; transition: 0.2s;
     }
-    .topic-card:hover { transform: translateY(-4px); border-color: #0066cc; }
+    .topic-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0, 102, 204, 0.14); border-color: #0066cc; }
     .topic-title { font-size: 1.35rem; font-weight: 700; color: #1e293b; line-height: 1.35; max-width: 72%; }
     .topic-icon {
       font-size: 2.8rem; background: #f0f7ff; width: 72px; height: 72px;
       display: flex; align-items: center; justify-content: center; border-radius: 16px;
     }
 
+    /* Take a Quiz CTA */
     .quiz-cta-wrapper { text-align: center; margin: 20px 0 65px 0; }
     .btn-take-quiz {
-      display: inline-block; background-color: #0066cc; color: #ff9900;
-      border: 4px solid #ff7b00; padding: 16px 48px; border-radius: 50px;
-      font-size: 1.65rem; font-weight: 800; text-decoration: none;
-      box-shadow: 0 8px 24px rgba(0, 102, 204, 0.25); transition: transform 0.2s;
+      display: inline-block; background-color: #0066cc; color: #ff9900; border: 4px solid #ff7b00;
+      padding: 16px 48px; border-radius: 50px; font-size: 1.65rem; font-weight: 800;
+      text-decoration: none; box-shadow: 0 8px 24px rgba(0, 102, 204, 0.25); transition: 0.2s;
     }
-    .btn-take-quiz:hover { transform: scale(1.04); }
+    .btn-take-quiz:hover { transform: scale(1.04); background-color: #0052a3; }
 
+    /* Bottom Two-Column Showcase */
     .showcase-card {
-      background-color: #ffffff; border-radius: 24px; display: grid;
-      grid-template-columns: 1fr 1.15fr; overflow: hidden;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); border: 1px solid #e2e8f0;
+      background-color: #ffffff; border-radius: 24px; display: grid; grid-template-columns: 1fr 1.15fr;
+      overflow: hidden; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); border: 1px solid #e2e8f0;
     }
     .showcase-left { padding: 52px 48px; display: flex; flex-direction: column; justify-content: center; }
     .showcase-left h3 { font-size: 2.2rem; font-weight: 800; color: #0f172a; line-height: 1.2; margin-bottom: 16px; }
     .showcase-left p { font-size: 1.1rem; color: #475569; line-height: 1.6; margin-bottom: 30px; }
     .btn-start-quiz {
       background-color: #0066cc; color: #ffffff; padding: 14px 32px; border-radius: 30px;
-      font-weight: 700; font-size: 1rem; text-decoration: none; width: fit-content;
+      font-weight: 700; font-size: 1rem; text-decoration: none; width: fit-content; transition: 0.2s;
     }
     .btn-start-quiz:hover { background-color: #0052a3; }
     .showcase-right {
@@ -106,6 +109,7 @@
     }
 
     footer { background-color: #0b162c; color: #94a3b8; text-align: center; padding: 28px; font-size: 0.9rem; }
+
     @media (max-width: 850px) {
       .hero, .lessons-grid, .showcase-card { grid-template-columns: 1fr; }
       .hero-cursive-title { font-size: 3.5rem; }
@@ -122,7 +126,7 @@
       <a href="quizzes.html">Quizzes &amp; Examples</a>
       <a href="about.html">About Us</a>
     </div>
-    <a href="about.html" class="btn-login">Plans &amp; Login</a>
+    <a href="about.html#plans" class="btn-login">Plans &amp; Access</a>
   </nav>
 
   <section class="hero">
@@ -130,7 +134,7 @@
       <h1 class="hero-cursive-title">SkillBridge</h1>
       <p class="hero-subtitle">Level up your life with essential real-world skills.</p>
       <p class="hero-description">
-        From personal finance and taxes to practical daily operations, master the crucial life skills they don't teach you in the classroom through structured multi-month courses and real-world scenarios[cite: 1].
+        From personal finance and taxes to practical daily operations, master the crucial life skills they don't teach you in the classroom through structured multi-month courses and real-world scenarios.
       </p>
       <a href="lessons.html" class="btn-hero">Start Learning</a>
     </div>
@@ -140,7 +144,7 @@
   <main class="container">
     <div class="lessons-header">
       <h2>Explore Lessons</h2>
-      <a href="lessons.html" class="btn-start-small">Start Learning</a>
+      <a href="lessons.html" class="btn-start-small">View All 6 Tracks</a>
     </div>
 
     <div class="lessons-grid">
@@ -177,10 +181,10 @@
     <section class="showcase-card">
       <div class="showcase-left">
         <h3>Quizzes &amp;<br>Examples</h3>
-        <p>Explore real-world case studies and test your decision-making with practical, scenario-based challenges.</p>
-        <a href="quizzes.html" class="btn-start-quiz">Start Quiz</a>
+        <p>Test your knowledge and practice with realistic everyday scenarios and progressive challenges.</p>
+        <a href="quizzes.html" class="btn-start-quiz">Explore Quizzes &amp; Examples</a>
       </div>
-      <div class="showcase-right" role="img" aria-label="Student practicing quizzes on a laptop"></div>
+      <div class="showcase-right" role="img" aria-label="Student practicing on laptop"></div>
     </section>
   </main>
 
