@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillBridge – Lessons</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background-color: #f4f7fa; color: #111827; }
+
+    nav {
+      background-color: #0b162c; color: #ffffff; display: flex;
+      justify-content: space-between; align-items: center; padding: 0 5%;
+      height: 64px; position: sticky; top: 0; z-index: 1000;
+    }
+    .nav-brand { font-weight: 800; font-size: 1.35rem; color: #ffffff; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 10px; height: 100%; }
+    .nav-links a {
+      color: #d1d5db; text-decoration: none; font-size: 0.95rem; font-weight: 500;
+      height: 100%; display: flex; align-items: center; padding: 0 18px;
+    }
+    .nav-links a.active, .nav-links a:hover { background-color: #0066cc; color: #ffffff; }
+    .btn-login {
+      background-color: #0066cc; color: #ffffff; padding: 8px 20px;
+      border-radius: 20px; font-weight: 600; font-size: 0.9rem; text-decoration: none;
+    }
+
+    .container { max-width: 1050px; margin: 0 auto; padding: 50px 24px; }
+    .page-header { text-align: center; margin-bottom: 42px; }
+    .page-header h1 { font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+    .page-header p { font-size: 1.1rem; color: #475569; max-width: 650px; margin: 0 auto; }
+
+    /* 6-Topic Selection Grid */
+    .topic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .topic-card {
+      background: #ffffff; border-radius: 18px; padding: 28px; border: 2px solid #e2e8f0;
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+    .topic-card:hover { border-color: #0066cc; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,102,204,0.12); }
+    .topic-info h3 { font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
+    .topic-info span { font-size: 0.9rem; color: #0066cc; font-weight: 600; }
+    .topic-icon {
+      font-size: 2.6rem; background: #f0f7ff; width: 68px; height: 68px;
+      border-radius: 16px; display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Sequential Lesson Reader View */
+    #lesson-reader { display: none; }
+    .btn-back {
+      background: #e2e8f0; color: #1e293b; border: none; padding: 10px 20px;
+      border-radius: 20px; font-weight: 600; cursor: pointer; margin-bottom: 24px;
+    }
+    .btn-back:hover { background: #cbd5e1; }
+
+    .roadmap-bar {
+      background: #0b162c; color: #ffffff; padding: 18px 24px; border-radius: 14px;
+      margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .roadmap-badge { background: #0066cc; padding: 5px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+
+    .lesson-box {
+      background: #ffffff; border-radius: 20px; padding: 44px; border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+    .step-tag { color: #0066cc; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+    .lesson-box h2 { font-size: 2rem; font-weight: 800; color: #0f172a; margin-bottom: 20px; }
+    .lesson-body { font-size: 1.12rem; line-height: 1.75; color: #334155; margin-bottom: 28px; }
+    .key-takeaway {
+      background: #f0f7ff; border-left: 5px solid #0066cc; padding: 18px 22px;
+      border-radius: 8px; margin-bottom: 32px; color: #1e3a8a; font-weight: 500;
+    }
+
+    .lesson-controls { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e2e8f0; padding-top: 24px; }
+    .btn-nav {
+      background: #0066cc; color: #ffffff; border: none; padding: 14px 30px;
+      border-radius: 30px; font-weight: 700; font-size: 1rem; cursor: pointer;
+    }
+    .btn-nav:disabled { background: #94a3b8; cursor: not-allowed; }
+    .btn-nav:hover:not(:disabled) { background: #0052a3; }
+
+    .curriculum-preview {
+      margin-top: 32px; background: #ffffff; border-radius: 16px; padding: 28px;
+      border: 1px solid #e2e8f0;
+    }
+    .curriculum-preview h4 { font-size: 1.15rem; margin-bottom: 14px; color: #0f172a; }
+    .month-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .month-item { padding: 12px 16px; border-radius: 10px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 0.9rem; }
+    .month-item.active { border-color: #0066cc; background: #eff6ff; font-weight: 600; color: #0066cc; }
+
+    footer { background-color: #0b162c; color: #94a3b8; text-align: center; padding: 28px; margin-top: 60px; font-size: 0.9rem; }
+    @media (max-width: 768px) { .topic-grid, .month-list { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-brand">SkillBridge</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="lessons.html" class="active">Lessons</a>
+      <a href="quizzes.html">Quizzes &amp; Examples</a>
+      <a href="about.html">About Us</a>
+    </div>
+    <a href="about.html" class="btn-login">Plans &amp; Login</a>
+  </nav>
+
+  <main class="container">
+    <!-- View 1: Choose 1 of the 6 Core Categories -->
+    <div id="category-selector">
+      <div class="page-header">
+        <h1>Choose Your Learning Track</h1>
+        <p>Select one of the six core life-skill curricula below. Each track guides you step-by-step from foundational concepts to real-world mastery.</p>
+      </div>
+
+      <div class="topic-grid">
+        <div class="topic-card" onclick="openCourse('finance')">
+          <div class="topic-info">
+            <h3>Personal Finance and Taxes</h3>
+            <span>6-Month Guided Track • Start Chapter 1 →</span>
+          </div>
+          <div class="topic-icon">👛</div>
+        </div>
+
+        <div class="topic-card" onclick="openCourse('time')">
+          <div class="topic-info">
+            <h3>Time and Energy Management</h3>
+            <span>6-Month Guided Track • Start Chapter 1 →</span>
+          </div>
+          <div class="topic-icon">🕒</div>
+        </div>
+
+        <div class="topic-card" onclick="openCourse('household')">
+          <div class="topic-info">
+            <h3>Practical Household Operations</h3>
+            <span>6-Month Guided Track • Start Chapter 1 →</span>
+          </div>
+          <div class="topic-icon">🏠</div>
+        </div>
+
+        <div class="topic-card" onclick="openCourse('media')">
+          <div class="topic-info">
+            <h3>Media Literacy</h3>
+            <span>6-Month Guided Track • Start Chapter 1 →</span>
+          </div>
+          <div class="topic-icon">📰</div>
+        </div>
+
+        <div class="topic-card" onclick="openCourse('mental')">
+          <div class="topic-info">
+            <h3>Mental Health, Stress &amp; Confidence</h3>
+            <span>6-Month Guided Track • Start Chapter 1 →</span>
+          </div>
+          <div class="topic-icon">🧠</div>
+        </div>
+
+        <div class="topic-card" onclick="openCourse('skillcraft')">
+          <div class="topic-info">
+            <h3>SkillCraft (Art &amp; Culture)</h3>
+            <span>6-Month Guided

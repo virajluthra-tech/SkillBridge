@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillBridge – Real-Life Examples &amp; Interactive Quizzes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background-color: #f4f7fa; color: #111827; }
+
+    nav {
+      background-color: #0b162c; color: #ffffff; display: flex; justify-content: space-between;
+      align-items: center; padding: 0 5%; height: 64px; position: sticky; top: 0; z-index: 1000;
+    }
+    .nav-brand { font-weight: 800; font-size: 1.35rem; color: #ffffff; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 16px; height: 100%; }
+    .nav-links a {
+      color: #d1d5db; text-decoration: none; font-size: 0.95rem; font-weight: 500;
+      height: 100%; display: flex; align-items: center; padding: 0 16px; transition: 0.2s;
+    }
+    .nav-links a.active, .nav-links a:hover { background-color: #0066cc; color: #ffffff; }
+    .btn-login {
+      background-color: #0066cc; color: #ffffff; padding: 8px 20px; border-radius: 20px;
+      font-weight: 600; font-size: 0.9rem; text-decoration: none;
+    }
+
+    .page-banner {
+      background: linear-gradient(135deg, #0066cc, #004c99); color: #ffffff;
+      padding: 50px 5%; text-align: center;
+    }
+    .page-banner h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; }
+    .page-banner p { font-size: 1.08rem; color: #e0f2fe; max-width: 660px; margin: 0 auto; }
+
+    .container { max-width: 1120px; margin: 0 auto; padding: 50px 24px 80px; }
+
+    /* Two Main Sections: Examples vs Quizzes */
+    .dual-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+    .section-column {
+      background: #ffffff; border-radius: 22px; padding: 32px;
+      border: 1px solid #e2e8f0; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    }
+    .section-header {
+      padding-bottom: 18px; margin-bottom: 22px; border-bottom: 2px solid #f1f5f9;
+    }
+    .section-tag {
+      display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.6px; padding: 4px 12px; border-radius: 14px; margin-bottom: 8px;
+    }
+    .tag-blue { background: #e0f2fe; color: #0066cc; }
+    .tag-orange { background: #ffedd5; color: #ea580c; }
+    .section-header h2 { font-size: 1.65rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+    .section-header p { font-size: 0.95rem; color: #64748b; }
+
+    .topic-list { display: flex; flex-direction: column; gap: 14px; }
+    .list-item-btn {
+      width: 100%; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px;
+      padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; text-align: left; transition: 0.2s;
+    }
+    .list-item-btn:hover { background: #f0f7ff; border-color: #0066cc; transform: translateX(4px); }
+    .list-item-left { display: flex; align-items: center; gap: 14px; }
+    .list-item-icon { font-size: 1.6rem; }
+    .list-item-title { font-size: 1.05rem; font-weight: 700; color: #1e293b; }
+    .list-item-arrow { font-weight: 700; color: #0066cc; font-size: 0.95rem; }
+
+    /* Interactive Reader / Quiz Box */
+    #interactive-panel { display: none; max-width: 820px; margin: 0 auto; }
+    .back-btn {
+      background: none; border: none; color: #0066cc; font-weight: 700; font-size: 0.95rem;
+      cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .back-btn:hover { text-decoration: underline; }
+
+    .panel-card {
+      background: #ffffff; border-radius: 22px; padding: 40px; border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Example Styling */
+    .scenario-box {
+      background: #f8fafc; border-left: 4px solid #0066cc; padding: 20px;
+      border-radius: 0 12px 12px 0; margin: 20px 0;
+    }
+    .scenario-box h4 { color: #0f172a; margin-bottom: 8px; font-size: 1.05rem; }
+    .scenario-box p { color: #334155; line-height: 1.65; }
+    .takeaway-box {
+      background: #ecfdf5; border: 1px solid #a7f3d0; padding: 18px 20px;
+      border-radius: 12px; color: #065f46; line-height: 1.6;
+    }
+
+    /* Quiz Styling */
+    .quiz-progress { font-size: 0.9rem; font-weight: 700; color: #0066cc; margin-bottom: 10px; }
+    .quiz-question { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 24px; line-height: 1.35; }
+    .options-grid { display: flex; flex-direction: column; gap: 12px; }
+    .option-btn {
+      padding: 16px 20px; border-radius: 14px; border: 2px solid #e2e8f0; background: #ffffff;
+      text-align: left; font-size: 1rem; font-weight: 600; color: #1e293b; cursor: pointer; transition: 0.15s;
+    }
+    .option-btn:hover:not(:disabled) { border-color: #0066cc; background: #f0f7ff; }
+    .option-btn.correct { border-color: #10b981; background: #ecfdf5; color: #065f46; }
+    .option-btn.wrong { border-color: #ef4444; background: #fef2f2; color: #991b1b; }
+
+    .feedback-banner {
+      margin-top: 20px; padding: 16px 20px; border-radius: 12px; font-size: 0.98rem;
+      line-height: 1.55; display: none;
+    }
+    .feedback-banner.show { display: block; }
+    .feedback-correct { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .feedback-wrong { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+    .btn-primary {
+      background: #0066cc; color: #ffffff; border: none; padding: 13px 30px;
+      border-radius: 28px; font-weight: 700; font-size: 0.98rem; cursor: pointer; margin-top: 22px;
+    }
+    .btn-primary:hover { background: #0052a3; }
+
+    footer { background-color: #0b162c; color: #94a3b8; text-align: center; padding: 28px; font-size: 0.9rem; }
+
+    @media (max-width: 850px) {
+      .dual-sections { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-brand">SkillBridge</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="lessons.html">Lessons</a>
+      <a href="quizzes.html" class="active">Quizzes &amp; Examples</a>
+      <a href="about.html">About Us</a>
+    </div>
+    <a href="about.html#plans" class="btn-login">Plans &amp; Access</a>
+  </nav>
+
+  <div class="page-banner">
+    <h1>Real-Life Examples &amp; Quizzes</h1>
+    <p>Explore practical real-world case studies or challenge yourself with progressive scenario quizzes across all 6 core topics.</p>
+  </div>
+
+  <main class="container">
+    <!-- Dual Hub: Examples (6 Topics) + Quizzes (6 Topics) -->
+    <div id="hub-view" class="dual-sections">
+      <!-- Column 1: Examples -->
+      <div class="section-column">
+        <div class="section-header">
+          <span class="section-tag tag-blue">Part 1 • Case Studies</span>
+          <h2>Real-Life Examples</h2>
+          <p>Select a topic below to study how these skills work in everyday real-world situations.</p>
+        </div>
+        <div class="topic-list" id="examples-list"></div>
+      </div>
+
+      <!-- Column 2: Quizzes -->
+      <div class="section-column">
+        <div class="section-header">
+          <span class="section-tag tag-orange">Part 2 • Practice</span>
+          <h2>Topic Quizzes</h2>
+          <p>Choose any topic below to test your decision-making with 5 progressive questions.</p>
+        </div>
+        <div class="topic-list" id="quizzes-list"></div>
+      </div>
+    </div>
+
+    <!-- Interactive Panel for Viewing an Example or Taking a Quiz -->
+    <div id="interactive-panel">
+      <button class="back-btn" onclick="resetHub()">← Back to All Examples &amp; Quizzes</button>
+      <div class="panel-card" id="panel-content"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 SkillBridge — Bridging the gap between classroom education and real-world readiness.</p>
+  </footer>
+
+  <script>
+    const topicsData = {
+      finance: {
+        title: "Personal Finance and Taxes",
+        icon: "👛",
+        example: {
+          heading: "Case Study: Budgeting a ₹2,000 Monthly Allowance & Avoiding a Fake Deal",
+          situation: "Aarav receives ₹2,000 at the start of the month and wants a ₹3,600 pair of wireless headphones. He sees an ad on an unknown social media link offering the exact headphones at 80% off (₹720) if he enters his card details within 5 minutes.",
+          solution: "Instead of falling for the high-pressure scam link, Aarav checks verified retailers and applies the 50/30/20 rule: he saves ₹600 per month from his allowance, reaching ₹3,600 safely in 6 months without borrowing money or risking fraud."
+        },
+        questions: [
+          {
+            q: "1. You receive ₹1,000 as monthly pocket money. What is the smartest way to manage it?",
+            options: ["Spend all ₹1,000 immediately on snacks and games.", "Divide it systematically between savings, essential needs, and planned spending.", "Buy whatever your friends are buying so you fit in.", "Spend it fast and keep asking for more."],
+            answer: 1,
+            explanation: "Dividing money into savings, needs, and wants builds lifelong budgeting discipline."
+          },
+          {
+            q: "2. You want to buy quality headphones, but they exceed your current cash. What is the best financial move?",
+            options: ["Borrow money from friends without a repayment plan.", "Buy the cheapest unbranded pair immediately.", "Compare prices across trusted stores and save toward them gradually.", "Use a random 'buy now' link from a popup ad."],
+            answer: 2,
+            explanation: "Comparing prices and saving prevents debt and ensures you get reliable quality."
+          },
+          {
+            q: "3. Which of the following is a genuine NEED rather than a WANT?",
+            options: ["A new gaming console.", "Basic groceries and drinking water.", "Limited-edition designer sneakers.", "Upgrading to the latest flagship phone."],
+            answer: 1,
+            explanation: "Needs are essentials required for health, safety, and daily functioning."
+          },
+          {
+            q: "4. You see a smartphone advertised at 80% off on an unfamiliar website with a countdown timer. What should you do?",
+            options: ["Enter your payment details immediately before the timer runs out.", "Verify whether the seller is legitimate, check reviews, and look for HTTPS security.", "Forward the link to all your WhatsApp groups.", "Share your OTP to lock in the discount."],
+            answer: 1,
+            explanation: "Artificial urgency and steep discounts on unknown sites are classic signs of online payment scams."
+          },
+          {
+            q: "5. If you save ₹150 every week consistently, how much will you have saved after 8 weeks?",
+            options: ["₹900", "₹1,050", "₹1,200", "₹1,500"],
+            answer: 2,
+            explanation: "₹150 × 8 weeks = ₹1,200 saved through steady weekly consistency."
+          }
+        ]
+      },
+      household: {
+        title: "Practical Household Operations",
+        icon: "🏠",
+        example: {
+          heading: "Case Study: Handling a Kitchen Spill, Leaking Tap & High AC Bill",
+          situation: "While helping prepare dinner at home, water spills near the kitchen counter, a bathroom tap starts dripping steadily, and the family's summer electricity bill jumps by 30%.",
+          solution: "First, wipe up the floor spill immediately to prevent dangerous slips. Second, notify an adult or plumber about the leaking tap rather than forcing the handle with pliers (which can break the pipe). Third, keep windows closed while the AC runs at 24°C and switch off idle appliances."
+        },
+        questions: [
+          {
+            q: "1. You notice a tap at home is dripping steadily. What is the smartest response?",
+            options: ["Ignore it until the bathroom floods.", "Inform an adult/household member promptly and help get the washer repaired.", "Leave it running full force.", "Try dismantling the main pipe yourself without shutting off the water."],
+            answer: 1,
+            explanation: "Reporting leaks early saves hundreds of liters of water and prevents pipe damage."
+          },
+          {
+            q: "2. You have 15 minutes to tidy a cluttered room before guests arrive. What is the most effective strategy?",
+            options: ["Shove everything messy under the bed.", "Start with high-visibility surfaces and essential walkways first.", "Give up because 15 minutes isn't enough.", "Dump everything into another room."],
+            answer: 1,
+            explanation: "Prioritizing main surfaces and floors quickly restores order and safety."
+          },
+          {
+            q: "3. You are helping prepare dinner in the kitchen. What is the safest approach?",
+            options: ["Use unfamiliar sharp appliances without asking.", "Follow instructions carefully, keep handles turned inward, and ask for help when unsure.", "Rush through chopping to finish faster.", "Leave food cooking unattended on an open flame."],
+            answer: 1,
+            explanation: "Attention and proper guidance prevent kitchen burns, cuts, and grease fires."
+          },
+          {
+            q: "4. Your family wants to lower monthly electricity bills. Which daily habit makes the biggest difference?",
+            options: ["Leaving lights and fans on in empty rooms.", "Keeping chargers and TVs on standby all night.", "Switching off lights, fans, and appliances whenever you leave a room.", "Leaving windows open while the air conditioner is running."],
+            answer: 2,
+            explanation: "Eliminating idle appliance usage and keeping cooled rooms sealed directly reduces power consumption."
+          },
+          {
+            q: "5. You accidentally spill water on a tiled floor. What should you do right away?",
+            options: ["Walk away and hope it evaporates.", "Cover it with a single sheet of paper and leave it.", "Wipe it dry immediately so nobody slips and gets injured.", "Wait for someone else to notice it."],
+            answer: 2,
+            explanation: "Wet tiled floors are a major household fall hazard and should be dried immediately."
+          }
+        ]
+      },
+      time: {
+        title: "Time and Energy Management",
+        icon: "🕒",
+        example: {
+          heading: "Case Study: Balancing Homework, Sports Practice & a Big Project",
+          situation: "Riya has a history assignment due tomorrow, evening sports practice, and a science project due next week that she keeps putting off.",
+          solution: "She prioritizes the urgent history assignment right after a short 15-minute post-practice rest, avoids phone notifications during a 45-minute focus block, and breaks the next week's science project into a tiny 10-minute outline step."
+        },
+        questions: [
+          {
+            q: "1. You have homework, sports practice, and a hobby to fit into one evening. What should you do?",
+            options: ["Leave everything until 11 PM.", "Create a realistic schedule that prioritizes deadlines and includes short breaks.", "Skip sleep to do everything.", "Spend two hours scrolling social media first."],
+            answer: 1,
+            explanation: "Structured time blocks with realistic breaks help you finish obligations without burnout."
+          },
+          {
+            q: "2. You have been studying intensely for an hour and your focus is fading. What is the best move?",
+            options: ["Take a 5–10 minute screen-free break to stretch and hydrate.", "Force yourself to stare at the book for 3 more hours.", "Open five different social apps at once.", "Quit studying for the rest of the week."],
+            answer: 0,
+            explanation: "Short mental recovery breaks restore focus and improve memory retention."
+          },
+          {
+            q: "3. Which task should you prioritize first at 5:00 PM?",
+            options: ["Watching a newly uploaded video.", "An assignment that is due tomorrow morning.", "Color-coding your bookshelf.", "Checking every group chat notification."],
+            answer: 1,
+            explanation: "Urgent, high-impact deadlines always come before low-priority busywork."
+          },
+          {
+            q: "4. You keep postponing a large school project because it feels overwhelming. What helps most?",
+            options: ["Waiting around for sudden inspiration.", "Breaking the project into small, 10-minute starter tasks.", "Avoiding thinking about it until the night before.", "Trying to complete the entire project in one sitting."],
+            answer: 1,
+            explanation: "Small, actionable steps remove mental friction and build momentum."
+          },
+          {
+            q: "5. What does 'managing your energy' truly mean?",
+            options: ["Staying busy every single waking minute.", "Ignoring exhaustion and pushing through.", "Balancing focused work, physical movement, and quality rest.", "Avoiding any task that requires effort."],
+            answer: 2,
+            explanation: "Sustainable productivity depends on matching demanding work with proper rest."
+          }
+        ]
+      },
+      media: {
+        title: "Media Literacy",
+        icon: "📰",
+        example: {
+          heading: "Case Study: Viral Health Rumors & Undisclosed Influencer Ads",
+          situation: "A viral reel claims a miracle drink cures exam stress overnight, while a popular creator praises a skincare serum without mentioning they were paid ₹50,000 to promote it.",
+          solution: "Instead of sharing the viral claim or buying the serum blindly, you cross-check reputable medical sources via lateral reading and spot the creator's affiliate discount code—recognizing paid marketing from objective facts."
+        },
+        questions: [
+          {
+            q: "1. You see shocking breaking news circulating on Instagram with thousands of likes. What should you do?",
+            options: ["Share it immediately to your story.", "Cross-check reliable, established news sources before believing or sharing.", "Assume it is true solely because it has high likes.", "Forward it to every family group."],
+            answer: 1,
+            explanation: "Viral engagement does not equal truth; always verify claims with credible outlets."
+          },
+          {
+            q: "2. An influencer praises a product passionately without mentioning a sponsorship. What should you consider?",
+            options: ["Every creator recommendation is 100% unpaid.", "It may still be sponsored or affiliate content—look for promo codes and independent reviews.", "Famous creators never advertise products.", "Buy it immediately before it sells out."],
+            answer: 1,
+            explanation: "Many online endorsements involve paid partnerships or commissions."
+          },
+          {
+            q: "3. You see a dramatic, suspicious photograph attached to a heated online post. What is the best step?",
+            options: ["Assume the caption tells the whole story.", "Check the image's original source, date, and context using reverse search.", "Repost it as proof.", "Argue in the comments immediately."],
+            answer: 1,
+            explanation: "Old or edited images are frequently taken out of context to mislead viewers."
+          },
+          {
+            q: "4. Two websites give completely different explanations of the same event. How should you evaluate them?",
+            options: ["Believe whichever headline sounds more dramatic.", "Compare their primary evidence, cited experts, and source credibility.", "Trust whichever one popped up first.", "Ignore all news forever."],
+            answer: 1,
+            explanation: "Evaluating evidence and credible citations helps separate reporting from bias."
+          },
+          {
+            q: "5. An online account asks for your home address and phone number to enter a 'free giveaway.' What should you do?",
+            options: ["Send your full address right away.", "Post your details in the public comments.", "Keep personal information private and avoid unverified giveaways.", "Share your friend's address instead."],
+            answer: 2,
+            explanation: "Protecting personal data prevents identity theft, spam, and physical safety risks."
+          }
+        ]
+      },
+      mental: {
+        title: "Mental Health, Stress & Confidence",
+        icon: "🧠",
+        example: {
+          heading: "Case Study: Recovering From a Mistake During a Live Presentation",
+          situation: "During a competition pitch, Kabir forgets his opening statistic, feels his heart racing, and receives blunt feedback from a mentor afterward.",
+          solution: "Kabir takes one slow breath, calmly corrects his point without apologizing excessively, and finishes strong. Afterward, he writes down the mentor's specific suggestions to improve the slide deck rather than taking the critique personally."
+        },
+        questions: [
+          {
+            q: "1. You have to speak in front of your class and feel nervous. What is the most effective way to build confidence?",
+            options: ["Make an excuse to skip class.", "Practice your key points out loud beforehand and take slow, steady breaths.", "Compare yourself negatively to top speakers.", "Read off the floor without looking up."],
+            answer: 1,
+            explanation: "Preparation and controlled breathing channel nervous energy into calm delivery."
+          },
+          {
+            q: "2. A teacher or teammate gives constructive feedback on your project. What is the best response?",
+            options: ["Ignore everything they said.", "Take it as a personal insult.", "Extract the actionable points to improve your work.", "Quit the project entirely."],
+            answer: 2,
+            explanation: "Viewing feedback objectively turns critique into rapid skill growth."
+          },
+          {
+            q: "3. You feel overwhelmed by five different responsibilities at once. What helps regain control?",
+            options: ["List them out and break them into small, one-at-a-time steps.", "Panic and try doing all five simultaneously.", "Ignore all deadlines.", "Take on three more tasks."],
+            answer: 0,
+            explanation: "Externalizing tasks onto paper and tackling one small step reduces mental overwhelm."
+          },
+          {
+            q: "4. You stumble over a sentence during a presentation. What should you do?",
+            options: ["Freeze and walk off stage.", "Blame the slides or your partner.", "Pause, correct yourself calmly, and continue smoothly.", "Assume the entire presentation is ruined."],
+            answer: 2,
+            explanation: "Audiences rarely mind small stumbles when you recover with composure."
+          },
+          {
+            q: "5. What does authentic self-confidence actually mean?",
+            options: ["Never feeling afraid or making mistakes.", "Always being the loudest person in the room.", "Believing in your ability to try, learn, and improve through effort.", "Acting superior to everyone else."],
+            answer: 2,
+            explanation: "True confidence is rooted in resilience and willingness to learn, not perfection."
+          }
+        ]
+      },
+      skillcraft: {
+        title: "SkillCraft (Art & Culture Appreciation)",
+        icon: "🎨",
+        example: {
+          heading: "Case Study: Analyzing Composition & Storytelling in Art and Cinema",
+          situation: "Two viewers look at a classic painting and a movie scene: one glances for 2 seconds and says 'nice colors,' while the other notices how warm golden light highlights the central figure against dark shadows.",
+          solution: "By observing lighting contrast, framing (Rule of Thirds), and architectural symmetry, you uncover the deeper emotion and cultural history the creator intentionally built into the work."
+        },
+        questions: [
+          {
+            q: "1. When viewing a painting or photograph, how do artists use warm colors (reds, oranges) vs. cool colors (blues, greens)?",
+            options: ["Colors are chosen completely at random.", "Warm colors draw attention and energy forward, while cool colors create depth or calm.", "Cool colors are only used for mistakes.", "Warm colors make every painting invisible."],
+            answer: 1,
+            explanation: "Color temperature is a primary tool artists use to guide focus and evoke emotion."
+          },
+          {
+            q: "2. What does the 'Rule of Thirds' help achieve in photography, film, and painting?",
+            options: ["It forces every subject into the exact dead center.", "It places key subjects off-center along grid intersections for natural balance and movement.", "It limits a painting to only three colors.", "It removes all background details."],
+            answer: 1,
+            explanation: "Off-center placement creates dynamic visual flow and stronger storytelling."
+          },
+          {
+            q: "3. In architecture, what does the classic principle 'Form follows Function' mean?",
+            options: ["Buildings should look pretty even if nobody can walk inside.", "A structure's design should be shaped primarily by its practical purpose and climate.", "All buildings must be painted the same color.", "Engineering doesn't matter in architecture."],
+            answer: 1,
+            explanation: "Great architecture harmonizes visual beauty with real-world usability and environment."
+          },
+          {
+            q: "4. Why might a film director shoot a character from a 'low angle' (camera looking upward)?",
+            options: ["Because the tripod broke.", "To make the character appear powerful, heroic, or imposing.", "To hide the character's face completely.", "To make the character look tiny and helpless."],
+            answer: 1,
+            explanation: "Camera angles subtly shape how the audience perceives a character's power or vulnerability."
+          },
+          {
+            q: "5. What is the best approach when visiting a museum, heritage monument, or art gallery?",
+            options: ["Rush through taking selfies without looking at the works.", "Slow down with 3–4 pieces, observe brushwork/materials, and read the historical context.", "Touch the sculptures to test what they are made of.", "Assume older art has no connection to modern life."],
+            answer: 1,
+            explanation: "Slow observation and cultural context transform art viewing into a meaningful experience."
+          }
+        ]
+      }
+    };
+
+    let activeQuizKey = null;
+    let qIndex = 0;
+    let score = 0;
+
+    function buildHubLists() {
+      const exList = document.getElementById("examples-list");
+      const qzList = document.getElementById("quizzes-list");
+      exList.innerHTML = "";
+      qzList.innerHTML = "";
+
+      Object.keys(topicsData).forEach(key => {
+        const item = topicsData[key];
+
+        // Example Button
+        const exBtn = document.createElement("button");
+        exBtn.className = "list-item-btn";
+        exBtn.onclick = () => openExample(key);
+        exBtn.innerHTML = `
+          <div class="list-item-left">
+            <span class="list-item-icon">${item.icon}</span>
+            <span class="list-item-title">${item.title}</span>
+          </div>
+          <span class="list-item-arrow">Read Example →</span>
+        `;
+        exList.appendChild(exBtn);
+
+        // Quiz Button
+        const qzBtn = document.createElement("button");
+        qzBtn.className = "list-item-btn";
+        qzBtn.onclick = () => startQuiz(key);
+        qzBtn.innerHTML = `
+          <div class="list-item-left">
+            <span class="list-item-icon">${item.icon}</span>
+            <span class="list-item-title">${item.title}</span>
+          </div>
+          <span class="list-item-arrow">Start Quiz →</span>
+        `;
+        qzList.appendChild(qzBtn);
+      });
+    }
+
+    function openExample(key) {
+      const data = topicsData[key];
+      document.getElementById("hub-view").style.display = "none";
+      document.getElementById("interactive-panel").style.display = "block";
+
+      document.getElementById("panel-content").innerHTML = `
+        <span class="section-tag tag-blue">${data.icon} ${data.title} • Real-Life Example</span>
+        <h2 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin: 10px 0 18px;">${data.example.heading}</h2>
+        <div class="scenario-box">
+          <h4>📌 Real-World Situation</h4>
+          <p>${data.example.situation}</p>
+        </div>
+        <div class="takeaway-box">
+          <strong>✅ Smart SkillBridge Action:</strong><br/>
+          ${data.example.solution}
+        </div>
+        <button class="btn-primary" onclick="startQuiz('${key}')">Practice This Topic's Quiz →</button>
+      `;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function startQuiz(key) {
+      activeQuizKey = key;
+      qIndex = 0;
+      score = 0;
+      document.getElementById("hub-view").style.display = "none";
+      document.getElementById("interactive-panel").style.display = "block";
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderQuestion() {
+      const data = topicsData[activeQuizKey];
+      const qObj = data.questions[qIndex];
+      const total = data.questions.length;
+
+      let optionsHTML = qObj.options.map((opt, idx) => `
+        <button class="option-btn" id="opt-${idx}" onclick="selectOption(${idx})">${opt}</button>
+      `).join("");
+
+      document.getElementById("panel-content").innerHTML = `
+        <div class="quiz-progress">${data.icon} ${data.title} • Question ${qIndex + 1} of ${total}</div>
+        <h2 class="quiz-question">${qObj.q}</h2>
+        <div class="options-grid">${optionsHTML}</div>
+        <div class="feedback-banner" id="feedback-box"></div>
+        <button class="btn-primary" id="next-q-btn" style="display:none;" onclick="nextQuestion()">
+          ${qIndex === total - 1 ? "See Final Score →" : "Next Question →"}
+        </button>
+      `;
+    }
+
+    function selectOption(selectedIdx) {
+      const qObj = topicsData[activeQuizKey].questions[qIndex];
+      const buttons = document.querySelectorAll(".option-btn");
+      buttons.forEach(btn => btn.disabled = true);
+
+      const feedback = document.getElementById("feedback-box");
+      if (selectedIdx === qObj.answer) {
+        score++;
+        document.getElementById(`opt-${selectedIdx}`).classList.add("correct");
+        feedback.className = "feedback-banner show feedback-correct";
+        feedback.innerHTML = `<strong>Correct!</strong> ${qObj.explanation}`;
+      } else {
+        document.getElementById(`opt-${selectedIdx}`).classList.add("wrong");
+        document.getElementById(`opt-${qObj.answer}`).classList.add("correct");
+        feedback.className = "feedback-banner show feedback-wrong";
+        feedback.innerHTML = `<strong>Not quite.</strong> ${qObj.explanation}`;
+      }
+
+      document.getElementById("next-q-btn").style.display = "inline-block";
+    }
+
+    function nextQuestion() {
+      const total = topicsData[activeQuizKey].questions.length;
+      qIndex++;
+      if (qIndex < total) {
+        renderQuestion();
+      } else {
+        const data = topicsData[activeQuizKey];
+        document.getElementById("panel-content").innerHTML = `
+          <span class="section-tag tag-orange">Quiz Completed!</span>
+          <h2 style="font-size: 2rem; font-weight: 800; color: #0f172a; margin: 12px 0;">
+            You scored ${score} out of ${total} in ${data.title}!
+          </h2>
+          <p style="font-size: 1.08rem; color: #475569; line-height: 1.6; margin-bottom: 24px;">
+            ${score >= 4 ? "Outstanding mastery! You're ready to apply these real-world decisions confidently." : "Great effort! Review the real-life example or lesson chapter to sharpen your score."}
+          </p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <button class="btn-primary" onclick="startQuiz('${activeQuizKey}')">Retake Quiz</button>
+            <button class="btn-primary" style="background:#0b162c;" onclick="resetHub()">Try Another Topic</button>
+          </div>
+        `;
+      }
+    }
+
+    function resetHub() {
+      document.getElementById("interactive-panel").style.display = "none";
+      document.getElementById("hub-view").style.display = "grid";
+      window.history.replaceState({}, document.title, "quizzes.html");
+    }
+
+    buildHubLists();
+    const params = new URLSearchParams(window.location.search);
+    const quizParam = params.get("quiz");
+    if (quizParam && topicsData[quizParam]) {
+      startQuiz(quizParam);
+    }
+  </script>
+</body>
+</html>
