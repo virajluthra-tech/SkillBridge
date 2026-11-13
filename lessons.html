@@ -3,95 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SkillBridge – Lessons</title>
+  <title>SkillBridge – 6-Month Mastery Curriculum</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body { background-color: #f4f7fa; color: #111827; }
 
     nav {
-      background-color: #0b162c; color: #ffffff; display: flex;
-      justify-content: space-between; align-items: center; padding: 0 5%;
-      height: 64px; position: sticky; top: 0; z-index: 1000;
+      background-color: #0b162c; color: #ffffff; display: flex; justify-content: space-between;
+      align-items: center; padding: 0 5%; height: 64px; position: sticky; top: 0; z-index: 1000;
     }
     .nav-brand { font-weight: 800; font-size: 1.35rem; color: #ffffff; text-decoration: none; }
-    .nav-links { display: flex; align-items: center; gap: 10px; height: 100%; }
+    .nav-links { display: flex; align-items: center; gap: 16px; height: 100%; }
     .nav-links a {
       color: #d1d5db; text-decoration: none; font-size: 0.95rem; font-weight: 500;
-      height: 100%; display: flex; align-items: center; padding: 0 18px;
+      height: 100%; display: flex; align-items: center; padding: 0 16px; transition: 0.2s;
     }
     .nav-links a.active, .nav-links a:hover { background-color: #0066cc; color: #ffffff; }
     .btn-login {
-      background-color: #0066cc; color: #ffffff; padding: 8px 20px;
-      border-radius: 20px; font-weight: 600; font-size: 0.9rem; text-decoration: none;
+      background-color: #0066cc; color: #ffffff; padding: 8px 20px; border-radius: 20px;
+      font-weight: 600; font-size: 0.9rem; text-decoration: none;
     }
 
-    .container { max-width: 1050px; margin: 0 auto; padding: 50px 24px; }
-    .page-header { text-align: center; margin-bottom: 42px; }
-    .page-header h1 { font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
-    .page-header p { font-size: 1.1rem; color: #475569; max-width: 650px; margin: 0 auto; }
+    .page-banner {
+      background: linear-gradient(135deg, #0066cc, #004c99); color: #ffffff;
+      padding: 55px 5%; text-align: center;
+    }
+    .page-banner h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 12px; }
+    .page-banner p { font-size: 1.1rem; color: #e0f2fe; max-width: 680px; margin: 0 auto; }
 
-    /* 6-Topic Selection Grid */
-    .topic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-    .topic-card {
-      background: #ffffff; border-radius: 18px; padding: 28px; border: 2px solid #e2e8f0;
-      display: flex; justify-content: space-between; align-items: center;
-      cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    .container { max-width: 1100px; margin: 0 auto; padding: 50px 24px 80px; }
+
+    /* Topic Selection Grid */
+    .topics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .topic-select-card {
+      background: #ffffff; border-radius: 18px; padding: 28px; border: 1px solid #e2e8f0;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05); cursor: pointer; transition: 0.2s;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
-    .topic-card:hover { border-color: #0066cc; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,102,204,0.12); }
-    .topic-info h3 { font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
-    .topic-info span { font-size: 0.9rem; color: #0066cc; font-weight: 600; }
-    .topic-icon {
-      font-size: 2.6rem; background: #f0f7ff; width: 68px; height: 68px;
-      border-radius: 16px; display: flex; align-items: center; justify-content: center;
+    .topic-select-card:hover { transform: translateY(-4px); border-color: #0066cc; box-shadow: 0 12px 26px rgba(0, 102, 204, 0.14); }
+    .card-top { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .card-top h3 { font-size: 1.35rem; font-weight: 700; color: #0f172a; line-height: 1.3; }
+    .card-icon {
+      font-size: 2.2rem; background: #f0f7ff; width: 64px; height: 64px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; border-radius: 14px;
     }
+    .guided-pill {
+      display: inline-block; background: #e0f2fe; color: #0066cc; font-size: 0.78rem;
+      font-weight: 700; padding: 4px 12px; border-radius: 12px; margin-bottom: 10px; width: fit-content;
+    }
+    .card-desc { font-size: 0.95rem; color: #475569; line-height: 1.55; margin-bottom: 20px; }
+    .card-meta {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      padding-top: 16px; border-top: 1px solid #f1f5f9;
+    }
+    .track-info { font-size: 0.85rem; font-weight: 600; color: #64748b; }
+    .btn-chapter-start {
+      background: #0066cc; color: #ffffff; border: none; padding: 9px 18px;
+      border-radius: 20px; font-size: 0.88rem; font-weight: 700; cursor: pointer;
+      white-space: nowrap; transition: 0.2s;
+    }
+    .topic-select-card:hover .btn-chapter-start { background: #0052a3; }
 
     /* Sequential Lesson Reader View */
-    #lesson-reader { display: none; }
-    .btn-back {
-      background: #e2e8f0; color: #1e293b; border: none; padding: 10px 20px;
-      border-radius: 20px; font-weight: 600; cursor: pointer; margin-bottom: 24px;
+    #lesson-reader { display: none; max-width: 880px; margin: 0 auto; }
+    .back-btn {
+      background: none; border: none; color: #0066cc; font-weight: 700; font-size: 0.95rem;
+      cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 6px;
     }
-    .btn-back:hover { background: #cbd5e1; }
+    .back-btn:hover { text-decoration: underline; }
 
-    .roadmap-bar {
-      background: #0b162c; color: #ffffff; padding: 18px 24px; border-radius: 14px;
-      margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
+    /* Interactive 6-Month Switcher Bar */
+    .roadmap-box {
+      background: #ffffff; border-radius: 16px; padding: 20px 24px; margin-bottom: 24px;
+      border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     }
-    .roadmap-badge { background: #0066cc; padding: 5px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+    .roadmap-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.5px; margin-bottom: 12px; }
+    .months-track { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+    .month-pill {
+      padding: 10px 6px; border-radius: 10px; text-align: center; font-size: 0.78rem; font-weight: 700;
+      background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; cursor: pointer; transition: 0.2s;
+    }
+    .month-pill:hover { border-color: #0066cc; color: #0066cc; }
+    .month-pill.active { background: #0066cc; color: #ffffff; border-color: #0066cc; }
 
-    .lesson-box {
-      background: #ffffff; border-radius: 20px; padding: 44px; border: 1px solid #e2e8f0;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    /* Active Lesson / Concept-Check Card */
+    .slide-card {
+      background: #ffffff; border-radius: 22px; padding: 44px; border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
     }
-    .step-tag { color: #0066cc; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-    .lesson-box h2 { font-size: 2rem; font-weight: 800; color: #0f172a; margin-bottom: 20px; }
-    .lesson-body { font-size: 1.12rem; line-height: 1.75; color: #334155; margin-bottom: 28px; }
-    .key-takeaway {
-      background: #f0f7ff; border-left: 5px solid #0066cc; padding: 18px 22px;
-      border-radius: 8px; margin-bottom: 32px; color: #1e3a8a; font-weight: 500;
+    .slide-badge {
+      display: inline-block; background: #e0f2fe; color: #0066cc; font-weight: 700;
+      font-size: 0.85rem; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;
     }
+    .slide-badge.quiz-type { background: #ffedd5; color: #ea580c; }
+    .slide-card h2 { font-size: 1.95rem; font-weight: 800; color: #0f172a; margin-bottom: 20px; line-height: 1.25; }
+    .slide-body p { font-size: 1.08rem; color: #334155; line-height: 1.8; margin-bottom: 18px; }
+    .key-box {
+      background: #f8fafc; border-left: 4px solid #0066cc; padding: 20px 24px;
+      border-radius: 0 12px 12px 0; margin: 24px 0;
+    }
+    .key-box h4 { font-size: 0.98rem; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+    .key-box p { font-size: 1rem; margin-bottom: 0; color: #475569; line-height: 1.65; }
 
-    .lesson-controls { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e2e8f0; padding-top: 24px; }
+    /* Inline Concept Check Quiz Options */
+    .inline-options { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+    .inline-opt-btn {
+      padding: 16px 20px; border-radius: 14px; border: 2px solid #e2e8f0; background: #ffffff;
+      text-align: left; font-size: 1rem; font-weight: 600; color: #1e293b; cursor: pointer; transition: 0.15s;
+    }
+    .inline-opt-btn:hover:not(:disabled) { border-color: #0066cc; background: #f0f7ff; }
+    .inline-opt-btn.correct { border-color: #10b981; background: #ecfdf5; color: #065f46; }
+    .inline-opt-btn.wrong { border-color: #ef4444; background: #fef2f2; color: #991b1b; }
+
+    .inline-feedback {
+      padding: 16px 20px; border-radius: 12px; font-size: 0.98rem; line-height: 1.6;
+      margin-top: 14px; display: none;
+    }
+    .inline-feedback.show { display: block; }
+    .inline-feedback.ok { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .inline-feedback.bad { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+    .slide-controls {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 36px; padding-top: 24px; border-top: 1px solid #e2e8f0;
+    }
     .btn-nav {
-      background: #0066cc; color: #ffffff; border: none; padding: 14px 30px;
-      border-radius: 30px; font-weight: 700; font-size: 1rem; cursor: pointer;
+      padding: 13px 28px; border-radius: 28px; font-weight: 700; font-size: 0.95rem;
+      cursor: pointer; border: none; transition: 0.2s;
     }
-    .btn-nav:disabled { background: #94a3b8; cursor: not-allowed; }
-    .btn-nav:hover:not(:disabled) { background: #0052a3; }
+    .btn-prev { background: #e2e8f0; color: #334155; }
+    .btn-prev:hover:not(:disabled) { background: #cbd5e1; }
+    .btn-prev:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-next { background: #0066cc; color: #ffffff; }
+    .btn-next:hover { background: #0052a3; }
 
-    .curriculum-preview {
-      margin-top: 32px; background: #ffffff; border-radius: 16px; padding: 28px;
-      border: 1px solid #e2e8f0;
+    footer { background-color: #0b162c; color: #94a3b8; text-align: center; padding: 28px; font-size: 0.9rem; }
+
+    @media (max-width: 800px) {
+      .topics-grid { grid-template-columns: 1fr; }
+      .months-track { grid-template-columns: repeat(3, 1fr); }
+      .slide-card { padding: 28px; }
     }
-    .curriculum-preview h4 { font-size: 1.15rem; margin-bottom: 14px; color: #0f172a; }
-    .month-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .month-item { padding: 12px 16px; border-radius: 10px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 0.9rem; }
-    .month-item.active { border-color: #0066cc; background: #eff6ff; font-weight: 600; color: #0066cc; }
-
-    footer { background-color: #0b162c; color: #94a3b8; text-align: center; padding: 28px; margin-top: 60px; font-size: 0.9rem; }
-    @media (max-width: 768px) { .topic-grid, .month-list { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -104,59 +157,1003 @@
       <a href="quizzes.html">Quizzes &amp; Examples</a>
       <a href="about.html">About Us</a>
     </div>
-    <a href="about.html" class="btn-login">Plans &amp; Login</a>
+    <a href="about.html#plans" class="btn-login">Plans &amp; Access</a>
   </nav>
 
+  <div class="page-banner">
+    <h1>6-Month Mastery Course</h1>
+    <p>Select any core subject below. Read deep, step-by-step explanations and complete interactive concept checks as you advance across all 6 months.</p>
+  </div>
+
   <main class="container">
-    <!-- View 1: Choose 1 of the 6 Core Categories -->
-    <div id="category-selector">
-      <div class="page-header">
-        <h1>Choose Your Learning Track</h1>
-        <p>Select one of the six core life-skill curricula below. Each track guides you step-by-step from foundational concepts to real-world mastery.</p>
+    <!-- 6 Category Hub -->
+    <div id="topic-hub" class="topics-grid"></div>
+
+    <!-- Step-by-Step Sequential Reader -->
+    <div id="lesson-reader">
+      <button class="back-btn" onclick="showHub()">← Back to All 6 Courses</button>
+
+      <div class="roadmap-box">
+        <div class="roadmap-title" id="roadmap-header">6-Month Course • Click Any Month to Jump</div>
+        <div class="months-track" id="months-track"></div>
       </div>
 
-      <div class="topic-grid">
-        <div class="topic-card" onclick="openCourse('finance')">
-          <div class="topic-info">
-            <h3>Personal Finance and Taxes</h3>
-            <span>6-Month Guided Track • Start Chapter 1 →</span>
-          </div>
-          <div class="topic-icon">👛</div>
-        </div>
+      <div class="slide-card">
+        <span class="slide-badge" id="slide-step-badge">Month 1 • Lesson 1</span>
+        <h2 id="slide-title">Lesson Title</h2>
+        <div class="slide-body" id="slide-body"></div>
 
-        <div class="topic-card" onclick="openCourse('time')">
-          <div class="topic-info">
-            <h3>Time and Energy Management</h3>
-            <span>6-Month Guided Track • Start Chapter 1 →</span>
-          </div>
-          <div class="topic-icon">🕒</div>
+        <div class="slide-controls">
+          <button class="btn-nav btn-prev" id="btn-prev" onclick="changeSlide(-1)">← Previous</button>
+          <span id="slide-counter" style="font-weight: 600; color: #64748b; font-size: 0.9rem;">Step 1</span>
+          <button class="btn-nav btn-next" id="btn-next" onclick="changeSlide(1)">Next →</button>
         </div>
+      </div>
+    </div>
+  </main>
 
-        <div class="topic-card" onclick="openCourse('household')">
-          <div class="topic-info">
-            <h3>Practical Household Operations</h3>
-            <span>6-Month Guided Track • Start Chapter 1 →</span>
+  <footer>
+    <p>&copy; 2026 SkillBridge — Bridging the gap between classroom education and real-world readiness.</p>
+  </footer>
+
+  <script>
+    const courses = {
+      finance: {
+        title: "Personal Finance and Taxes",
+        icon: "💰",
+        desc: "A comprehensive 6-month course starting with Financial Management foundations, followed by Taxes, Banking, Scam Protection, Smart Credit, and Wealth Building.",
+        months: [
+          {
+            label: "Month 1: Financial Mgmt",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 1: Financial Management • Lesson 1",
+                title: "What is Financial Management?",
+                paragraphs: [
+                  "Financial management is the structured practice of planning, organizing, tracking, and controlling every rupee that enters and leaves your life. Rather than letting money disappear on impulse buys and wondering at the end of the month where your cash went, financial management puts you in the driver's seat before you spend a single rupee.",
+                  "At its core, financial management rests on four pillars: Earning (how money comes in through allowances, stipends, or salaries), Budgeting (assigning every rupee a clear job), Saving (setting aside money for emergencies and future goals), and Protecting (avoiding fraud, predatory loans, and wasteful fees).",
+                  "Even if you currently manage a small monthly allowance or part-time income, the habits you build with ₹1,000 are the exact same habits that govern ₹1,00,000 later in adulthood."
+                ],
+                highlightTitle: "Core Definition",
+                highlightText: "Financial management is not about restricting your life—it is about ensuring your money goes toward things that genuinely matter to you."
+              },
+              {
+                type: "lesson",
+                badge: "Month 1: Financial Management • Lesson 2",
+                title: "Why Financial Management Is Essential & When You Use It in Real Life",
+                paragraphs: [
+                  "Traditional schools teach advanced algebra and calculus, yet most students graduate without knowing how to split a monthly paycheck, compare interest rates, or build an emergency fund. Without financial management, even high earners fall into debt traps, live paycheck-to-paycheck, and experience constant money anxiety.",
+                  "In real life, you use financial management almost every single day: when deciding whether to buy lunch out or pack food from home, when comparing two mobile data plans, when saving up over four months for a laptop instead of borrowing money, and when splitting rent and electricity bills with roommates in college.",
+                  "Learning this early gives you freedom. When you have savings set aside, an unexpected expense—like a broken phone screen or a sudden medical visit—becomes a minor inconvenience instead of a family crisis."
+                ],
+                highlightTitle: "Real-Life Example: The 50 / 30 / 20 Allocation",
+                highlightText: "Suppose you receive ₹6,000 for the month. Using financial management, you immediately allocate 50% (₹3,000) to Needs like transport and school supplies, 30% (₹1,800) to Wants like outings and hobbies, and 20% (₹1,200) directly into Savings before spending anything."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Financial Management • Concept Check 1",
+                title: "Quick Check: Applying Financial Management",
+                question: "Rohan receives ₹4,000 at the start of the month. He wants new sneakers costing ₹3,200, but also needs ₹1,500 for bus fare and lunch. Using the 50/30/20 financial management rule, what should Rohan do first?",
+                options: [
+                  "Buy the ₹3,200 sneakers right away and figure out bus fare later.",
+                  "Cover his ₹1,500 essential needs first, lock 20% (₹800) into savings, and save across 2–3 months for the sneakers.",
+                  "Borrow ₹1,000 from a friend so he can buy the sneakers this week.",
+                  "Spend the entire ₹4,000 on smaller wants so he doesn't feel tempted."
+                ],
+                answer: 1,
+                explanation: "Financial management always prioritizes essential needs and savings first, turning big purchases into planned, debt-free goals."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Financial Management • Concept Check 2",
+                title: "Quick Check: Needs vs. Wants in Everyday Life",
+                question: "Which scenario best demonstrates real-life financial management during a normal week?",
+                options: [
+                  "Buying a ₹450 branded coffee every morning because all your friends do.",
+                  "Tracking your weekly expenses in a notebook/app and noticing you spent ₹900 on unused subscriptions, then canceling them.",
+                  "Ignoring your bank balance until your card gets declined.",
+                  "Buying an item purely because an online banner says '50% OFF Today Only.'"
+                ],
+                answer: 1,
+                explanation: "Tracking cash flow reveals hidden money leaks (like unused subscriptions) so you can redirect that cash toward real priorities."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Financial Management • Concept Check 3",
+                title: "Quick Check: Emergency Buffer Thinking",
+                question: "Why is building an emergency fund considered a core pillar of financial management?",
+                options: [
+                  "So you can buy concert tickets whenever they go on sale.",
+                  "So unexpected real-life shocks (medical bills, urgent repairs) don't force you into high-interest debt.",
+                  "Because banks require everyone to keep cash locked forever.",
+                  "It is only useful for retired millionaires."
+                ],
+                answer: 1,
+                explanation: "An emergency fund acts as a financial shock absorber, protecting you from borrowing money during sudden crises."
+              }
+            ]
+          },
+          {
+            label: "Month 2: Taxes",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 2: Taxes • Lesson 1",
+                title: "What Are Taxes & Why Do Governments Collect Them?",
+                paragraphs: [
+                  "A tax is a mandatory financial contribution collected by local, state, and national governments from individuals and businesses. While many people view taxes simply as money deducted from their income or added to a shopping bill, taxes are actually the pooled funding that keeps an entire country functioning.",
+                  "Think about everything you use before 9:00 AM: paved roads, streetlights, public transit, municipal water pipelines, government hospitals, public schools, and national defense. None of these operate for free—they are built, maintained, and staffed using tax revenue.",
+                  "Understanding taxes is critical because every adult interacts with the tax system both as a consumer (every time you buy goods or services) and as an earner (when filing annual income tax returns)."
+                ],
+                highlightTitle: "Key Principle",
+                highlightText: "Taxes are the shared price we pay for public infrastructure, healthcare, education, and national security."
+              },
+              {
+                type: "lesson",
+                badge: "Month 2: Taxes • Lesson 2",
+                title: "Direct Taxes vs. Indirect Taxes (Income Tax & GST)",
+                paragraphs: [
+                  "In India and most modern economies, taxes fall into two major categories: Direct Taxes and Indirect Taxes. Knowing the difference helps you read salary slips and shopping receipts with total clarity.",
+                  "1. Direct Taxes (Income Tax): Paid directly by an individual or company to the government based on how much money they earn. India uses a progressive tax slab system—meaning people who earn below the basic exemption limit pay ₹0 income tax, while higher income brackets pay a gradually higher percentage.",
+                  "2. Indirect Taxes (GST — Goods and Services Tax): Collected on everyday purchases rather than your salary. When you buy a restaurant meal, a smartphone, or movie tickets, the shopkeeper adds GST (such as 5%, 12%, 18%, or 28% depending on the item) to your bill and passes it to the government."
+                ],
+                highlightTitle: "Real-Life Example: Reading a Restaurant Receipt & Pay Stub",
+                highlightText: "If a meal costs ₹1,000 plus 5% GST, you pay ₹1,050 total (₹50 goes to tax). Similarly, on a job pay stub, 'Gross Salary' is your total pay before tax, while 'Net Take-Home Salary' is what actually lands in your bank account after TDS (Tax Deducted at Source)."
+              },
+              {
+                type: "check",
+                badge: "Month 2: Taxes • Concept Check 1",
+                title: "Quick Check: Direct vs. Indirect Tax",
+                question: "Ananya buys a pair of headphones online and notices an 18% GST charge added at checkout. What type of tax is GST?",
+                options: [
+                  "A direct property tax paid once every ten years.",
+                  "An indirect tax on goods and services collected by the seller at the time of purchase.",
+                  "A voluntary tip given to the delivery driver.",
+                  "An income tax deducted only from company CEOs."
+                ],
+                answer: 1,
+                explanation: "GST is an indirect consumption tax included in the price of goods and services."
+              },
+              {
+                type: "check",
+                badge: "Month 2: Taxes • Concept Check 2",
+                title: "Quick Check: Gross Pay vs. Net Pay",
+                question: "Vikram signs an internship/job offer for ₹40,000 per month (Gross Pay), but receives ₹37,500 in his bank account after TDS and deductions. What is the ₹37,500 figure called?",
+                options: [
+                  "Tax Refund",
+                  "Net Take-Home Pay",
+                  "GST Surcharge",
+                  "Annual Bonus"
+                ],
+                answer: 1,
+                explanation: "Net Take-Home Pay is your actual spendable income after taxes (TDS) and statutory deductions are subtracted from Gross Pay."
+              }
+            ]
+          },
+          {
+            label: "Month 3: Banking & UPI",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 3: Banking & Digital Safety • Lesson 1",
+                title: "Savings Accounts, Interest & Digital Payment Safety",
+                paragraphs: [
+                  "Keeping cash under a mattress earns nothing and risks theft. A bank savings account keeps your money secure while paying you annual interest (typically 3% to 6% in India) simply for storing your funds with the bank.",
+                  "With modern UPI apps and debit cards, transferring money takes two seconds—which also makes digital vigilance essential. Never share your 4- or 6-digit UPI PIN, never enter your PIN to 'receive' money (a PIN is ONLY required when money leaves your account), and never share bank OTPs over phone calls."
+                ],
+                highlightTitle: "Golden Digital Rule",
+                highlightText: "You NEVER need to enter a UPI PIN or OTP to receive money into your account."
+              },
+              {
+                type: "check",
+                badge: "Month 3: Banking & Digital Safety • Concept Check",
+                title: "Quick Check: Spotting a UPI Scam",
+                question: "A buyer on an online marketplace says they are sending you ₹2,000 for your old bicycle and asks you to enter your UPI PIN on a 'Collect Request' to receive the payment. What should you do?",
+                options: [
+                  "Enter your UPI PIN quickly so the money arrives.",
+                  "Decline immediately—entering a UPI PIN ALWAYS sends money out of your account, never brings money in.",
+                  "Share your debit card CVV instead.",
+                  "Send them ₹10 first to test the link."
+                ],
+                answer: 1,
+                explanation: "Scammers send fake 'Collect Requests' disguised as incoming payments. Entering your PIN deducts money from your own bank account."
+              }
+            ]
+          },
+          {
+            label: "Month 4: Scam Defense",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 4: Consumer Protection • Lesson 1",
+                title: "Anatomy of Phishing, Fake Discounts & Predatory Traps",
+                paragraphs: [
+                  "Online fraud relies on emotional triggers: fear ('Your bank account will be blocked in 2 hours!') or greed ('Win an iPhone or get 85% off on an unknown site!').",
+                  "Before entering payment details on any website, inspect three things: verify the exact domain spelling (e.g., 'amaz0n-deals.in' is fake), check independent customer reviews outside the site, and confirm secure HTTPS encryption."
+                ],
+                highlightTitle: "Consumer Shield",
+                highlightText: "Urgency is a scammer's favorite weapon. Legitimate banks and retailers never threaten immediate account deletion via SMS links."
+              }
+            ]
+          },
+          {
+            label: "Month 5: Smart Credit",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 5: Credit & Compounding • Lesson 1",
+                title: "How Compound Interest Works For You—Or Against You",
+                paragraphs: [
+                  "Compound interest is interest calculated on both your initial money and the accumulated interest from previous periods. When you save and invest early, compounding multiplies your wealth steadily over decades.",
+                  "Conversely, credit cards and 'Buy Now, Pay Later' loans charge 24% to 42% annual compound interest on unpaid balances—turning a small ₹5,000 gadget into a ₹12,000 debt trap if you only pay the minimum due."
+                ],
+                highlightTitle: "Wealth Rule",
+                highlightText: "Earn compound interest through disciplined saving; never pay compound interest on depreciating impulse buys."
+              }
+            ]
+          },
+          {
+            label: "Month 6: Mastery",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 6: Financial Independence • Capstone",
+                title: "Putting All 6 Months Together: Your Personal Financial Blueprint",
+                paragraphs: [
+                  "Over six months, you have moved from understanding basic financial management and the 50/30/20 rule to reading tax deductions, protecting digital accounts, and harnessing compound growth.",
+                  "Your ongoing habit takes just 15 minutes every Sunday: review your week's spending, verify your savings transfer, check upcoming bills, and plan the week ahead with zero financial guesswork."
+                ],
+                highlightTitle: "Course Milestone Unlocked",
+                highlightText: "You are ready to test your complete knowledge in the Personal Finance & Taxes Mastery Quiz!"
+              }
+            ]
+          }
+        ]
+      },
+      household: {
+        title: "Practical Household Operations",
+        icon: "🏠",
+        desc: "A 6-month course covering Home Independence, Kitchen & Cooking Safety, Plumbing & Electrical Basics, Energy Conservation, and Tenant Readiness.",
+        months: [
+          {
+            label: "Month 1: Home Basics",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 1: Home Foundations • Lesson 1",
+                title: "What Are Practical Household Operations & Why Do They Matter?",
+                paragraphs: [
+                  "Practical household operations encompass all the everyday systems required to keep a living space safe, hygienic, efficient, and financially manageable—from cooking nutritious meals to managing utility bills and preventing minor leaks from becoming costly structural repairs.",
+                  "Many young adults move away for college or their first job completely unprepared for basic home maintenance, wasting thousands of rupees on takeout food, inflated electricity bills, and preventable emergencies.",
+                  "Mastering these skills early builds genuine self-reliance: wherever you live, you know how to keep yourself fed, safe, and organized."
+                ],
+                highlightTitle: "Independence Rule",
+                highlightText: "A well-run home isn't built on luck—it's built on simple, repeatable daily routines."
+              },
+              {
+                type: "lesson",
+                badge: "Month 1: Kitchen & Cooking • Lesson 2",
+                title: "Why Basic Cooking & Kitchen Safety Come First",
+                paragraphs: [
+                  "Learning to cook basic, balanced meals is one of the highest-return life skills you will ever acquire. Home-cooked meals cost up to 70% less than restaurant delivery and give you full control over nutrition, hygiene, and oil/salt levels.",
+                  "Before turning on a stove, master non-negotiable kitchen safety: never leave active burners unattended, turn pot handles inward so they cannot be knocked over, keep dish towels away from open flames, and NEVER pour water onto a grease/oil fire (cover it with a metal lid or baking soda instead)."
+                ],
+                highlightTitle: "Real-Life Action",
+                highlightText: "Start by mastering safe knife grip (curling your fingertips inward) and three staple dishes you can cook from scratch in 20 minutes."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Home Foundations • Concept Check",
+                title: "Quick Check: Kitchen Fire Safety",
+                question: "While heating oil in a pan to cook dinner, the oil suddenly catches fire. What is the safest immediate action?",
+                options: [
+                  "Throw a jug of cold water directly onto the burning oil.",
+                  "Turn off the stove burner and slide a flat metal lid over the pan to smother the oxygen.",
+                  "Carry the flaming pan across the kitchen to the sink.",
+                  "Blow air onto the flames."
+                ],
+                answer: 1,
+                explanation: "Water causes burning oil to splatter explosively. Turning off the heat and covering the pan with a metal lid safely starves the fire of oxygen."
+              }
+            ]
+          },
+          {
+            label: "Month 2: Maintenance",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 2: Preventive Maintenance • Lesson 1",
+                title: "Handling Leaks, Floor Spills & Emergency Shut-Off Valves",
+                paragraphs: [
+                  "Small household issues escalate rapidly when ignored. A single dripping tap wastes over 1,000 liters of water a month, while water spilled on smooth tile floors is the leading cause of serious home slip-and-fall injuries.",
+                  "Every resident should know two critical locations on day one: the main water shut-off valve (to stop flooding if a pipe bursts) and the electrical MCB (Miniature Circuit Breaker) box (to safely cut power if an appliance sparks)."
+                ],
+                highlightTitle: "Smart Habit",
+                highlightText: "Wipe liquid spills dry immediately and report worn tap washers early rather than cranking handles with excessive force."
+              }
+            ]
+          },
+          {
+            label: "Month 3: Utilities",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 3: Energy & Utilities • Lesson 1",
+                title: "Slashing Electricity Waste & Reading Utility Bills",
+                paragraphs: [
+                  "Air conditioners, water heaters (geysers), and refrigerators account for over 70% of a household's monthly electricity bill. Leaving windows slightly open while the AC runs forces the compressor to work nonstop, spiking energy usage.",
+                  "Setting your AC to 24°C instead of 18°C saves roughly 24% on cooling electricity while keeping rooms comfortable."
+                ],
+                highlightTitle: "Utility Rule",
+                highlightText: "Every 1°C increase in AC temperature setting reduces electricity consumption by approximately 6%."
+              }
+            ]
+          },
+          {
+            label: "Month 4: Organization",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 4: Cleaning & Laundry • Lesson 1",
+                title: "Laundry Care, Stain Prevention & 15-Minute Room Resets",
+                paragraphs: [
+                  "Sorting dark clothes from whites and checking garment care tags prevents ruined wardrobes and color bleeding. Similarly, a daily 15-minute reset—clearing surfaces, putting laundry in the hamper, and sweeping high-traffic floors—keeps clutter from becoming overwhelming."
+                ],
+                highlightTitle: "Daily System",
+                highlightText: "Clean as you go in the kitchen and bedroom so weekend chores take 20 minutes instead of 3 hours."
+              }
+            ]
+          },
+          {
+            label: "Month 5: Toolkits",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 5: Basic Home Toolkit • Lesson 1",
+                title: "5 Essential Tools Every Home Needs",
+                paragraphs: [
+                  "A basic home toolkit—containing a multi-bit screwdriver, pliers, measuring tape, flashlight, and electrical insulation tape—lets you tighten loose cabinet hinges, assemble furniture, and measure spaces accurately without waiting days for help."
+                ],
+                highlightTitle: "Safety First",
+                highlightText: "Always switch off power at the main breaker before replacing any bulb fixture or inspecting wall outlets."
+              }
+            ]
+          },
+          {
+            label: "Month 6: Lease & Living",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 6: Independent Living • Capstone",
+                title: "Understanding Rental Agreements & Security Deposits",
+                paragraphs: [
+                  "Before renting your first apartment or PG accommodation, always read the lease agreement carefully: check the lock-in period, notice period, maintenance charges, and take timestamped photos of the room on move-in day so your security deposit is protected."
+                ],
+                highlightTitle: "Course Milestone Unlocked",
+                highlightText: "You are ready to test your Practical Household Operations mastery in the quiz section!"
+              }
+            ]
+          }
+        ]
+      },
+      time: {
+        title: "Time and Energy Management",
+        icon: "⏰",
+        desc: "A 6-month course on Prioritization, Focus Cycles, Beating Procrastination, Energy Pacing, and Long-Term Goal Execution.",
+        months: [
+          {
+            label: "Month 1: Foundations",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 1: Time & Energy • Lesson 1",
+                title: "What is Time & Energy Management & Why Is Clock-Watching Not Enough?",
+                paragraphs: [
+                  "Everyone has 1,440 minutes in a day, yet some students complete homework, attend sports practice, and still get 8 hours of sleep while others stay up until 2:00 AM feeling constantly behind. The difference lies in managing both your schedule and your mental energy.",
+                  "Studying for three hours while exhausted and checking phone notifications every two minutes produces less learning than 50 minutes of uninterrupted, high-energy focus."
+                ],
+                highlightTitle: "Core Principle",
+                highlightText: "Protect your highest-energy hours for your hardest, most important work—not passive scrolling."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Time & Energy • Concept Check",
+                title: "Quick Check: Prioritizing an Evening Schedule",
+                question: "At 5:30 PM, you have an assignment due tomorrow morning, a clean desk you want to reorganize, and new videos in your feed. Which task should come first?",
+                options: [
+                  "Watch videos for 45 minutes to 'warm up.'",
+                  "Reorganize every pen on your desk.",
+                  "Complete the assignment due tomorrow while your afternoon energy is still strong.",
+                  "Wait until midnight when urgency forces you to rush."
+                ],
+                answer: 2,
+                explanation: "High-urgency, high-importance deadlines always take top priority over low-impact busywork."
+              }
+            ]
+          },
+          {
+            label: "Month 2: Anti-Procrastination",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 2: Overcoming Procrastination • Lesson 1",
+                title: "Shrinking the Starting Line With the 5-Minute Micro-Step",
+                paragraphs: [
+                  "Procrastination is rarely laziness—it is emotional avoidance triggered when a task feels too big or vague. Breaking a massive project into a tiny, 5-minute starter action removes mental resistance and triggers momentum."
+                ],
+                highlightTitle: "Action Formula",
+                highlightText: "Replace 'Write 10-page report' with 'Open document and write 3 section headings in 5 minutes.'"
+              }
+            ]
+          },
+          {
+            label: "Month 3: Focus Blocks",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 3: Deep Focus • Lesson 1",
+                title: "45/10 Focus Cycles & Eliminating Context Switching",
+                paragraphs: [
+                  "Every time you glance at a phone notification, your brain takes up to 15 minutes to regain deep concentration. Putting your phone in another room for 45-minute focus blocks followed by 10-minute movement breaks doubles output."
+                ],
+                highlightTitle: "Focus Habit",
+                highlightText: "Single-tasking beats multitasking every single time."
+              }
+            ]
+          },
+          {
+            label: "Month 4: Energy Pacing",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 4: Biological Energy • Lesson 1",
+                title: "Sleep, Hydration & Rest as Performance Multipliers",
+                paragraphs: [
+                  "Sacrificing sleep to cram destroys memory consolidation. Consistent sleep schedules, hydration, and outdoor movement keep cognitive energy steady across the entire week."
+                ],
+                highlightTitle: "Energy Rule",
+                highlightText: "Rest is not the opposite of productivity—it is the fuel that makes focus possible."
+              }
+            ]
+          },
+          {
+            label: "Month 5: Weekly Planning",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 5: Time-Blocking • Lesson 1",
+                title: "Sunday Weekly Reviews & Realistic Time-Blocking",
+                paragraphs: [
+                  "Leaving unscheduled buffer blocks in your calendar absorbs unexpected delays so one late bus or extra homework sheet never ruins your entire week."
+                ],
+                highlightTitle: "Planning Habit",
+                highlightText: "Plan 80% of your schedule and leave 20% open as a safety buffer."
+              }
+            ]
+          },
+          {
+            label: "Month 6: Mastery",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 6: Sustainable Mastery • Capstone",
+                title: "Designing Your Long-Term Routine Without Burnout",
+                paragraphs: [
+                  "Combining clear daily priorities, micro-step execution, and disciplined recovery breaks lets you pursue ambitious academic and personal goals sustainably."
+                ],
+                highlightTitle: "Course Milestone Unlocked",
+                highlightText: "Test your Time & Energy Management skills in the quiz section!"
+              }
+            ]
+          }
+        ]
+      },
+      media: {
+        title: "Media Literacy",
+        icon: "📰",
+        desc: "A 6-month course on Lateral Reading, Spotting Undisclosed Ads, Reverse Image Verification, Algorithmic Awareness, and Digital Privacy.",
+        months: [
+          {
+            label: "Month 1: Fact-Checking",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 1: Information Verification • Lesson 1",
+                title: "What is Media Literacy & Why Do Viral Claims Mislead Millions?",
+                paragraphs: [
+                  "Social media platforms are engineered to maximize watch time, not accuracy. Content that triggers anger, shock, or fear gets shared 6x faster than calm, verified reporting.",
+                  "Media literacy equips you with 'Lateral Reading'—leaving a suspicious post immediately to check whether independent, reputable news organizations and primary experts confirm the claim."
+                ],
+                highlightTitle: "Golden Verification Rule",
+                highlightText: "High likes, views, or forwards from relatives never prove that a post is factual."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Information Verification • Concept Check",
+                title: "Quick Check: Handling Viral Breaking News",
+                question: "A forwarded message claims schools across your city are closed tomorrow due to an emergency, citing no official government circular. What is the smartest action?",
+                options: [
+                  "Forward it immediately to all classmates.",
+                  "Check official education department portals and established local news outlets before acting or sharing.",
+                  "Assume it is true because the message uses urgent red emojis.",
+                  "Stay home without verifying."
+                ],
+                answer: 1,
+                explanation: "Always verify urgent announcements directly against official portals or credible news outlets before forwarding."
+              }
+            ]
+          },
+          {
+            label: "Month 2: Hidden Ads",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 2: Persuasion & Sponsorships • Lesson 1",
+                title: "Decoding Influencer Marketing & Undisclosed Promotions",
+                paragraphs: [
+                  "Creators frequently embed paid promotions inside casual lifestyle videos. Look for affiliate discount codes, pinned links, and one-sided praise lacking any objective comparison."
+                ],
+                highlightTitle: "Critical Lens",
+                highlightText: "Distinguish genuine independent product testing from paid brand endorsements."
+              }
+            ]
+          },
+          {
+            label: "Month 3: Visual Forensics",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 3: Image & Video Verification • Lesson 1",
+                title: "Reverse Image Search & Spotting Out-of-Context Media",
+                paragraphs: [
+                  "Photos from years ago or different countries are routinely paired with fake captions during breaking events. Reverse-image searching reveals the original upload date and real location."
+                ],
+                highlightTitle: "Visual Check",
+                highlightText: "Always verify when and where a dramatic photo was actually taken."
+              }
+            ]
+          },
+          {
+            label: "Month 4: Algorithms",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 4: Echo Chambers • Lesson 1",
+                title: "How Recommendation Algorithms Shape Your Worldview",
+                paragraphs: [
+                  "Algorithms show you more of whatever you pause on, creating filter bubbles that make one viewpoint seem unanimous. Deliberately reading diverse, evidence-backed perspectives keeps your thinking balanced."
+                ],
+                highlightTitle: "Awareness Habit",
+                highlightText: "Compare evidence across multiple credible sources rather than relying on one feed."
+              }
+            ]
+          },
+          {
+            label: "Month 5: Digital Privacy",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 5: Data Protection • Lesson 1",
+                title: "Safeguarding Your Personal Information & Digital Footprint",
+                paragraphs: [
+                  "Never post your home address, school ID, phone number, or live location publicly, and beware of fake 'giveaway' forms harvesting personal data."
+                ],
+                highlightTitle: "Privacy Shield",
+                highlightText: "Once personal data is posted publicly online, you cannot permanently erase copies of it."
+              }
+            ]
+          },
+          {
+            label: "Month 6: Mastery",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 6: Media Mastery • Capstone",
+                title: "Becoming a Responsible Digital Citizen",
+                paragraphs: [
+                  "By questioning sources, verifying visuals, and protecting personal privacy, you protect both yourself and your community from misinformation."
+                ],
+                highlightTitle: "Course Milestone Unlocked",
+                highlightText: "Challenge yourself with the Media Literacy Quiz!"
+              }
+            ]
+          }
+        ]
+      },
+      mental: {
+        title: "Mental Health, Stress & Confidence",
+        icon: "🧠",
+        desc: "A 6-month course combining Emotional Resilience, Public Speaking Composure, Constructive Feedback, Healthy Boundaries, and Stress Recovery.",
+        months: [
+          {
+            label: "Month 1: Confidence",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 1: Authentic Confidence • Lesson 1",
+                title: "What is Authentic Confidence & How Do You Build It?",
+                paragraphs: [
+                  "A common myth is that confident people never feel anxious, awkward, or uncertain. In reality, authentic confidence is self-trust: knowing that even if you feel nervous or make a mistake, you can adapt, learn, and keep going.",
+                  "Confidence is built through action—preparing thoroughly, practicing out loud, and keeping small promises to yourself every day."
+                ],
+                highlightTitle: "Mindset Shift",
+                highlightText: "Courage comes first; confidence is the result of repeatedly stepping up despite nerves."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Authentic Confidence • Concept Check",
+                title: "Quick Check: Recovering From a Presentation Slip",
+                question: "Midway through a class speech, you lose your place and misstate a sentence. What demonstrates real composure and confidence?",
+                options: [
+                  "Apologize repeatedly and walk back to your seat.",
+                  "Take a calm 2-second breath, say 'Let me rephrase that,' and continue smoothly.",
+                  "Blame the audience for distracting you.",
+                  "Rush through the rest at triple speed without breathing."
+                ],
+                answer: 1,
+                explanation: "A calm pause and self-correction shows poise and signals to the audience that you are in control."
+              }
+            ]
+          },
+          {
+            label: "Month 2: Stress Reset",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 2: Nervous System Regulation • Lesson 1",
+                title: "Physiological Grounding & De-Escalating Overwhelm",
+                paragraphs: [
+                  "When exam pressure or deadlines trigger a racing heart, physiological sighs (two quick inhales through the nose followed by a long exhale through the mouth) rapidly signal your nervous system to slow down."
+                ],
+                highlightTitle: "Instant Reset",
+                highlightText: "Longer exhales activate your body's natural calming response within 60 seconds."
+              }
+            ]
+          },
+          {
+            label: "Month 3: Feedback",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 3: Growth & Critique • Lesson 1",
+                title: "Separating Your Identity From Your Work",
+                paragraphs: [
+                  "Constructive feedback on an essay, project, or sport technique is data—not a verdict on your worth as a person. Extract the actionable insight and apply it to your next iteration."
+                ],
+                highlightTitle: "Growth Habit",
+                highlightText: "Ask 'What can this feedback teach me?' instead of 'Why are they criticizing me?'"
+              }
+            ]
+          },
+          {
+            label: "Month 4: Boundaries",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 4: Assertive Communication • Lesson 1",
+                title: "Saying 'No' Respectfully & Protecting Mental Bandwidth",
+                paragraphs: [
+                  "Overcommitting to every request leads to resentment and burnout. Clear, polite boundaries ('I can't take this on today because I'm finishing my project') build mutual respect."
+                ],
+                highlightTitle: "Boundary Rule",
+                highlightText: "Clear communication is kinder than saying yes and failing to follow through."
+              }
+            ]
+          },
+          {
+            label: "Month 5: Reframing",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 5: Cognitive Reframing • Lesson 1",
+                title: "Challenging All-or-Nothing Self-Talk",
+                paragraphs: [
+                  "One low test score does not mean 'I am terrible at this subject'—it means 'I need a different study strategy for this chapter.' Accurate self-talk keeps setbacks temporary and solvable."
+                ],
+                highlightTitle: "Reframing Shift",
+                highlightText: "Replace permanent labels with specific, solvable next steps."
+              }
+            ]
+          },
+          {
+            label: "Month 6: Mastery",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 6: Emotional Resilience • Capstone",
+                title: "Sustaining Mental Fitness Through Life's Transitions",
+                paragraphs: [
+                  "With grounding habits, assertive boundaries, and resilient self-talk, you are equipped to handle academic, social, and workplace pressures with steady confidence."
+                ],
+                highlightTitle: "Course Milestone Unlocked",
+                highlightText: "Take the Mental Health, Stress & Confidence Quiz!"
+              }
+            ]
+          }
+        ]
+      },
+      skillcraft: {
+        title: "SkillCraft (Art & Culture Appreciation)",
+        icon: "🎭",
+        desc: "A 6-month course exploring Visual Composition, Color Psychology, Architectural Storytelling, Cinema Craft, and Cultural Heritage.",
+        months: [
+          {
+            label: "Month 1: Visual Eye",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 1: Visual Observation • Lesson 1",
+                title: "What is SkillCraft & Why Does Art & Culture Appreciation Matter?",
+                paragraphs: [
+                  "In a fast-scrolling world, most people glance at an image, building, or film scene for less than a second without noticing how it was crafted. SkillCraft trains you to slow down and decode the visual and cultural language behind human creativity.",
+                  "Understanding composition, light, architecture, and storytelling enriches how you experience museums, cinema, music, and everyday design—while sharpening your own creative eye."
+                ],
+                highlightTitle: "The Observer's Rule",
+                highlightText: "Great art never shouts randomly—every line, shadow, and color choice guides your attention."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Visual Observation • Concept Check",
+                title: "Quick Check: Color Temperature & Framing",
+                question: "In a painting or film frame, why does an artist surround a warm golden-lit subject with cool dark blue shadows?",
+                options: [
+                  "Because they ran out of warm paint.",
+                  "To create visual contrast that immediately pulls the viewer's eye to the subject and establishes mood.",
+                  "To hide the main character from the audience.",
+                  "Color contrast has no effect on human perception."
+                ],
+                answer: 1,
+                explanation: "Warm-vs-cool contrast is a classic composition technique used to establish focal point and emotional atmosphere."
+              }
+            ]
+          },
+          {
+            label: "Month 2: Composition",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 2: Framing & Balance • Lesson 1",
+                title: "The Rule of Thirds, Leading Lines & Negative Space",
+                paragraphs: [
+                  "Placing subjects along off-center grid intersections (Rule of Thirds) and using architectural lines or roads to guide the viewer's gaze creates natural movement and visual harmony."
+                ],
+                highlightTitle: "Composition Clue",
+                highlightText: "Empty 'negative space' around a subject often emphasizes solitude, scale, or calm."
+              }
+            ]
+          },
+          {
+            label: "Month 3: Architecture",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 3: Built Heritage • Lesson 1",
+                title: "Form Follows Function: Reading Historical & Modern Buildings",
+                paragraphs: [
+                  "From ancient Indian stepwells engineered to harvest monsoon water in arid climates to ventilated courtyards and modern sustainable skyscrapers, architecture reflects climate, engineering, and culture."
+                ],
+                highlightTitle: "Architectural Lens",
+                highlightText: "Look at how climate and human needs shaped the materials and arches of local monuments."
+              }
+            ]
+          },
+          {
+            label: "Month 4: Cinema Craft",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 4: Film & Sound • Lesson 1",
+                title: "Camera Angles, Pacing & Musical Subtext in Cinema",
+                paragraphs: [
+                  "Low-angle shots elevate characters to feel heroic, high-angle shots convey vulnerability, and background score tempo subtly accelerates your heartbeat before a plot twist."
+                ],
+                highlightTitle: "Cinema Insight",
+                highlightText: "Watch a scene once with the sound muted to see how much story the camera framing tells alone."
+              }
+            ]
+          },
+          {
+            label: "Month 5: Cultural Traditions",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 5: Living Crafts • Lesson 1",
+                title: "Preserving Traditional Crafts, Textiles & Folk Storytelling",
+                paragraphs: [
+                  "Handloom weaving, block printing, pottery, and folk theatre carry centuries of regional geometry, natural dye chemistry, and oral history passed across generations."
+                ],
+                highlightTitle: "Cultural Appreciation",
+                highlightText: "Behind every traditional craft is generations of trial, mathematics, and local ecology."
+              }
+            ]
+          },
+          {
+            label: "Month 6: Mastery",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 6: Cultural Fluency • Capstone",
+                title: "Bringing Creative Observation Into Everyday Life",
+                paragraphs: [
+                  "Whether visiting a gallery, designing a presentation slide, or exploring a new city, your trained eye now notices structure, harmony, and cultural stories everywhere."
+                ],
+                highlightTitle: "Course Milestone Unlocked",
+                highlightText: "Test your SkillCraft mastery in the Art & Culture Quiz!"
+              }
+            ]
+          }
+        ]
+      }
+    };
+
+    let currentTopicKey = null;
+    let currentMonthIndex = 0;
+    let currentStepIndex = 0;
+
+    function renderHub() {
+      const hub = document.getElementById("topic-hub");
+      hub.innerHTML = "";
+      Object.keys(courses).forEach(key => {
+        const course = courses[key];
+        const card = document.createElement("div");
+        card.className = "topic-select-card";
+        card.onclick = () => openCourse(key);
+        card.innerHTML = `
+          <div>
+            <span class="guided-pill">6-Month Course • Guided Track</span>
+            <div class="card-top">
+              <h3>${course.title}</h3>
+              <div class="card-icon">${course.icon}</div>
+            </div>
+            <p class="card-desc">${course.desc}</p>
           </div>
-          <div class="topic-icon">🏠</div>
-        </div>
-
-        <div class="topic-card" onclick="openCourse('media')">
-          <div class="topic-info">
-            <h3>Media Literacy</h3>
-            <span>6-Month Guided Track • Start Chapter 1 →</span>
+          <div class="card-meta">
+            <span class="track-info">6 Months • Lessons &amp; Concept Checks</span>
+            <button type="button" class="btn-chapter-start">Start Chapter 1 →</button>
           </div>
-          <div class="topic-icon">📰</div>
-        </div>
+        `;
+        hub.appendChild(card);
+      });
+    }
 
-        <div class="topic-card" onclick="openCourse('mental')">
-          <div class="topic-info">
-            <h3>Mental Health, Stress &amp; Confidence</h3>
-            <span>6-Month Guided Track • Start Chapter 1 →</span>
+    function openCourse(key) {
+      currentTopicKey = key;
+      currentMonthIndex = 0;
+      currentStepIndex = 0;
+      document.getElementById("topic-hub").style.display = "none";
+      document.getElementById("lesson-reader").style.display = "block";
+      document.getElementById("roadmap-header").innerText = `${courses[key].title} — 6-Month Course (Select Any Month)`;
+      renderMonthsBar();
+      renderStep();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showHub() {
+      document.getElementById("lesson-reader").style.display = "none";
+      document.getElementById("topic-hub").style.display = "grid";
+      window.history.replaceState({}, document.title, "lessons.html");
+    }
+
+    function renderMonthsBar() {
+      const course = courses[currentTopicKey];
+      const track = document.getElementById("months-track");
+      track.innerHTML = "";
+      course.months.forEach((m, idx) => {
+        const pill = document.createElement("button");
+        pill.type = "button";
+        pill.className = "month-pill" + (idx === currentMonthIndex ? " active" : "");
+        pill.innerText = m.label;
+        pill.onclick = () => {
+          currentMonthIndex = idx;
+          currentStepIndex = 0;
+          renderMonthsBar();
+          renderStep();
+        };
+        track.appendChild(pill);
+      });
+    }
+
+    function renderStep() {
+      const course = courses[currentTopicKey];
+      const monthObj = course.months[currentMonthIndex];
+      const step = monthObj.steps[currentStepIndex];
+
+      const badgeEl = document.getElementById("slide-step-badge");
+      badgeEl.innerText = step.badge;
+      badgeEl.className = step.type === "check" ? "slide-badge quiz-type" : "slide-badge";
+
+      document.getElementById("slide-title").innerText = step.title;
+
+      const bodyEl = document.getElementById("slide-body");
+      if (step.type === "lesson") {
+        let html = step.paragraphs.map(p => `<p>${p}</p>`).join("");
+        html += `
+          <div class="key-box">
+            <h4>💡 ${step.highlightTitle}</h4>
+            <p>${step.highlightText}</p>
           </div>
-          <div class="topic-icon">🧠</div>
-        </div>
+        `;
+        bodyEl.innerHTML = html;
+      } else {
+        let optsHTML = step.options.map((opt, i) => `
+          <button type="button" class="inline-opt-btn" id="inline-opt-${i}" onclick="checkInlineAnswer(${i})">${opt}</button>
+        `).join("");
+        bodyEl.innerHTML = `
+          <p style="font-weight: 600; color: #1e293b;">${step.question}</p>
+          <div class="inline-options">${optsHTML}</div>
+          <div class="inline-feedback" id="inline-feedback"></div>
+        `;
+      }
 
-        <div class="topic-card" onclick="openCourse('skillcraft')">
-          <div class="topic-info">
-            <h3>SkillCraft (Art &amp; Culture)</h3>
-            <span>6-Month Guided
+      document.getElementById("slide-counter").innerText = `${monthObj.label} • Step ${currentStepIndex + 1} of ${monthObj.steps.length}`;
+      document.getElementById("btn-prev").disabled = (currentMonthIndex === 0 && currentStepIndex === 0);
+
+      const isLastMonth = currentMonthIndex === course.months.length - 1;
+      const isLastStep = currentStepIndex === monthObj.steps.length - 1;
+      const nextBtn = document.getElementById("btn-next");
+
+      if (isLastMonth && isLastStep) {
+        nextBtn.innerText = "Take Final Topic Quiz →";
+        nextBtn.onclick = () => window.location.href = `quizzes.html?quiz=${currentTopicKey}`;
+      } else if (isLastStep) {
+        nextBtn.innerText = `Start ${course.months[currentMonthIndex + 1].label} →`;
+        nextBtn.onclick = () => changeSlide(1);
+      } else {
+        nextBtn.innerText = "Next →";
+        nextBtn.onclick = () => changeSlide(1);
+      }
+    }
+
+    function checkInlineAnswer(selectedIdx) {
+      const step = courses[currentTopicKey].months[currentMonthIndex].steps[currentStepIndex];
+      const btns = document.querySelectorAll(".inline-opt-btn");
+      btns.forEach(b => b.disabled = true);
+
+      const fb = document.getElementById("inline-feedback");
+      if (selectedIdx === step.answer) {
+        document.getElementById(`inline-opt-${selectedIdx}`).classList.add("correct");
+        fb.className = "inline-feedback show ok";
+        fb.innerHTML = `<strong>Correct!</strong> ${step.explanation}`;
+      } else {
+        document.getElementById(`inline-opt-${selectedIdx}`).classList.add("wrong");
+        document.getElementById(`inline-opt-${step.answer}`).classList.add("correct");
+        fb.className = "inline-feedback show bad";
+        fb.innerHTML = `<strong>Review Note:</strong> ${step.explanation}`;
+      }
+    }
+
+    function changeSlide(direction) {
+      const course = courses[currentTopicKey];
+      const monthObj = course.months[currentMonthIndex];
+
+      if (direction === 1) {
+        if (currentStepIndex + 1 < monthObj.steps.length) {
+          currentStepIndex++;
+        } else if (currentMonthIndex + 1 < course.months.length) {
+          currentMonthIndex++;
+          currentStepIndex = 0;
+          renderMonthsBar();
+        }
+      } else if (direction === -1) {
+        if (currentStepIndex - 1 >= 0) {
+          currentStepIndex--;
+        } else if (currentMonthIndex - 1 >= 0) {
+          currentMonthIndex--;
+          currentStepIndex = course.months[currentMonthIndex].steps.length - 1;
+          renderMonthsBar();
+        }
+      }
+      renderStep();
+      window.scrollTo({ top: 180, behavior: "smooth" });
+    }
+
+    renderHub();
+    const urlParams = new URLSearchParams(window.location.search);
+    const topicParam = urlParams.get("topic");
+    if (topicParam && courses[topicParam]) {
+      openCourse(topicParam);
+    }
+  </script>
+</body>
+</html>
