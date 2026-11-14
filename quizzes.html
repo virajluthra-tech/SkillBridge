@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0066cc" />
   <link rel="manifest" href="manifest.json" />
   <title>SkillBridge – 6-Month Examples &amp; Progressive Quizzes</title>
-  <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap)" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
     body { background-color: #f4f7fa; color: #111827; padding-bottom: 70px; }
@@ -67,28 +67,52 @@
     .list-item-arrow { font-weight: 700; color: #0066cc; font-size: 0.88rem; white-space: nowrap; flex-shrink: 0; }
 
     /* Interactive Panel */
-    #interactive-panel { display: none; max-width: 860px; margin: 0 auto; }
+    #interactive-panel { display: none; max-width: 880px; margin: 0 auto; }
     .back-btn {
       background: none; border: none; color: #0066cc; font-weight: 700; font-size: 0.95rem;
       cursor: pointer; margin-bottom: 18px; display: inline-flex; align-items: center; gap: 6px;
     }
 
+    /* Month Switcher Bar (Matches Lessons Format) */
+    .roadmap-box {
+      background: #ffffff; border-radius: 16px; padding: 18px 20px; margin-bottom: 22px;
+      border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .roadmap-title { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.5px; margin-bottom: 10px; }
+    .months-track { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+    .month-pill {
+      padding: 9px 6px; border-radius: 10px; text-align: center; font-size: 0.76rem; font-weight: 700;
+      background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; cursor: pointer; transition: 0.15s;
+    }
+    .month-pill:hover { border-color: #0066cc; color: #0066cc; }
+    .month-pill.active { background: #0066cc; color: #ffffff; border-color: #0066cc; }
+
     .panel-card {
-      background: #ffffff; border-radius: 22px; padding: 38px; border: 1px solid #e2e8f0;
+      background: #ffffff; border-radius: 22px; padding: 40px; border: 1px solid #e2e8f0;
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
     }
 
-    /* 6-Month Examples Grid */
-    .monthly-examples-stack { display: flex; flex-direction: column; gap: 20px; margin-top: 20px; }
-    .month-ex-card {
-      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px;
+    /* Example Reader Styling (Matches Lessons Reader) */
+    .ex-reader-title { font-size: 1.8rem; font-weight: 800; color: #0f172a; margin: 10px 0 18px; line-height: 1.25; }
+    .ex-paragraph { font-size: 1.05rem; color: #334155; line-height: 1.78; margin-bottom: 18px; }
+    .ex-action-box {
+      background: #ecfdf5; border-left: 4px solid #10b981; padding: 20px 24px;
+      border-radius: 0 12px 12px 0; margin: 22px 0;
     }
-    .month-ex-card h3 { font-size: 1.2rem; font-weight: 800; color: #0f172a; margin: 8px 0 10px; }
-    .month-ex-card p { font-size: 0.98rem; color: #334155; line-height: 1.65; margin-bottom: 12px; }
-    .ex-solution {
-      background: #ecfdf5; border-left: 4px solid #10b981; padding: 12px 16px;
-      border-radius: 0 10px 10px 0; color: #065f46; font-size: 0.95rem; line-height: 1.55;
+    .ex-action-box h4 { font-size: 0.98rem; font-weight: 800; color: #065f46; margin-bottom: 8px; }
+    .ex-action-box p { font-size: 1rem; color: #064e3b; line-height: 1.7; margin-bottom: 0; }
+
+    .slide-controls {
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+      margin-top: 32px; padding-top: 22px; border-top: 1px solid #e2e8f0;
     }
+    .btn-nav {
+      padding: 12px 24px; border-radius: 28px; font-weight: 700; font-size: 0.92rem;
+      cursor: pointer; border: none;
+    }
+    .btn-prev { background: #e2e8f0; color: #334155; }
+    .btn-prev:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-next { background: #0066cc; color: #ffffff; }
 
     /* Month 1-6 Quiz Selector Grid */
     .month-quiz-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 22px; }
@@ -148,6 +172,7 @@
       .nav-links { display: none; }
       .mobile-bottom-nav { display: flex; }
       .dual-sections, .month-quiz-grid { grid-template-columns: 1fr; }
+      .months-track { grid-template-columns: repeat(3, 1fr); }
       .panel-card { padding: 24px 18px; }
     }
   </style>
@@ -167,16 +192,16 @@
 
   <div class="page-banner">
     <h1>6-Month Examples &amp; Mastery Quizzes</h1>
-    <p>Study 6 monthly real-world case studies per topic, and pass each month's quiz with 100% accuracy to unlock the next month!</p>
+    <p>Step through detailed monthly real-world case studies one month at a time, then pass each month's quiz with 100% accuracy to unlock the next level.</p>
   </div>
 
   <main class="container">
     <div id="hub-view" class="dual-sections">
       <div class="section-column">
         <div class="section-header">
-          <span class="section-tag tag-blue">Part 1 • 36 Case Studies</span>
+          <span class="section-tag tag-blue">Part 1 • Step-by-Step Case Studies</span>
           <h2>Real-Life Examples</h2>
-          <p>Choose any topic to view 6 real-world examples—one for every month of the course.</p>
+          <p>Choose any topic to explore detailed, multi-paragraph real-world case studies across Months 1–6.</p>
         </div>
         <div class="topic-list" id="examples-list"></div>
       </div>
@@ -193,6 +218,13 @@
 
     <div id="interactive-panel">
       <button class="back-btn" onclick="resetHub()">← Back to All Examples &amp; Quizzes</button>
+
+      <!-- Month Switcher Bar (Visible during Examples Reader) -->
+      <div class="roadmap-box" id="example-roadmap-box" style="display:none;">
+        <div class="roadmap-title" id="example-roadmap-header">6-Month Case Studies • Select Any Month</div>
+        <div class="months-track" id="example-months-track"></div>
+      </div>
+
       <div class="panel-card" id="panel-content"></div>
     </div>
   </main>
@@ -214,12 +246,48 @@
         title: "Personal Finance and Taxes",
         icon: "💰",
         examples: [
-          { month: "Month 1: Financial Management", heading: "Splitting a ₹4,000 Monthly Allowance With 50/30/20", situation: "Aarav gets ₹4,000/month and wants ₹3,600 wireless headphones while needing ₹1,800 for bus passes and lunches.", solution: "He assigns ₹2,000 (50%) to Needs, ₹800 (20%) straight to Savings, and ₹1,200 (30%) to Wants—buying the headphones debt-free in 4.5 months." },
-          { month: "Month 2: Taxes & Pay Stubs", heading: "Reading Gross Salary vs. Net Pay & Restaurant GST", situation: "Meera receives a ₹35,000/month internship offer letter, but ₹32,800 arrives in her bank account; later she checks a ₹1,000 dinner bill showing ₹1,050.", solution: "She recognizes ₹35,000 as Gross Pay before TDS/deductions (Net Pay = ₹32,800), and identifies the extra ₹50 as 5% indirect GST." },
-          { month: "Month 3: Banking & UPI Safety", heading: "Stopping a Fake OLX 'Collect Request' UPI Scam", situation: "Selling an old study table online, Kabir receives a UPI prompt asking him to enter his 4-digit PIN to 'receive ₹2,500.'", solution: "Kabir declines immediately because entering a UPI PIN always deducts money—never receives it." },
-          { month: "Month 4: Scam Defense", heading: "Verifying an '80% Off' Smartphone Popup Ad", situation: "An Instagram ad links to 'amaz0n-flashsale.in' offering flagship phones at 80% off with a 3-minute countdown timer.", solution: "Spotting the misspelled domain and fake countdown urgency, Riya closes the tab and avoids card theft." },
-          { month: "Month 5: Smart Credit & Compounding", heading: "Starting a ₹1,000/Month Recurring Deposit Early", situation: "Two friends save ₹1,000/month: one starts at age 18, the other waits until age 28.", solution: "Because of compound interest, starting 10 years earlier yields nearly double the final corpus with far less effort." },
-          { month: "Month 6: Financial Independence", heading: "Handling a Sudden ₹4,500 Laptop Repair Without Debt", situation: "Two weeks before final exams, Arjun's laptop battery fails and requires a ₹4,500 replacement.", solution: "Because he maintained a dedicated Emergency Fund over 6 months, he pays cash immediately with zero stress." }
+          {
+            pill: "Month 1: Financial Mgmt",
+            month: "Month 1: Financial Management • Case Study 1",
+            heading: "Splitting a ₹6,000 Monthly Allowance With the 50 / 30 / 20 Rule",
+            situation: "Aarav receives a ₹6,000 monthly allowance from his parents to cover college transit, daily lunches, stationery, weekend outings, and personal savings. During his first two months, he spent money impulsively on food delivery and gaming top-ups during the first ten days, leaving himself completely broke by the 18th of the month and unable to afford a ₹3,600 pair of running shoes he genuinely needed.",
+            solution: "Starting in Month 3, Aarav applies the 50/30/20 financial management framework on the very first day his allowance arrives. He immediately sets aside ₹3,000 (50%) into a Needs envelope for metro passes, lunches, and notebooks, transfers ₹1,200 (20%) directly into a separate savings account he never touches for daily spending, and leaves ₹1,800 (30%) for Wants. By trimming takeaway snacks to once a week, he saves an extra ₹600 from his Wants budget and buys his ₹3,600 running shoes in cash after two months with zero debt and ₹2,400 still growing in savings."
+          },
+          {
+            pill: "Month 2: Taxes",
+            month: "Month 2: Taxes & Pay Stubs • Case Study 2",
+            heading: "Decoding Gross Salary vs. Net Take-Home Pay & Restaurant GST",
+            situation: "Meera lands her first paid design internship with an offer letter stating a monthly compensation of ₹35,000. When her first paycheck arrives, only ₹32,800 is deposited into her bank account, leaving her confused about where ₹2,200 went. That same evening, she treats her family to dinner where the menu prices add up to ₹1,600, yet the printed final receipt totals ₹1,680.",
+            solution: "Using her Month 2 Tax literacy, Meera checks her salary slip and distinguishes between Gross Salary (₹35,000 before statutory deductions and TDS—Tax Deducted at Source) and Net Take-Home Pay (₹32,800 actually available to spend and save). On the restaurant receipt, she spots the ₹80 line item labeled 'CGST 2.5% + SGST 2.5% (5% total)'—recognizing it as an indirect consumption tax collected by the restaurant on behalf of the government. Knowing both figures lets her build an accurate monthly budget based on her real ₹32,800 net income."
+          },
+          {
+            pill: "Month 3: Banking & UPI",
+            month: "Month 3: Banking & UPI Safety • Case Study 3",
+            heading: "Stopping a Fake Online Marketplace 'Collect Request' UPI Scam",
+            situation: "Kabir lists his gently used study desk on a local classifieds site for ₹2,500. Within ten minutes, a buyer messages saying they want to pay immediately via UPI. Instead of sending money, the buyer triggers a 'Collect Money Request' on Kabir's phone screen with a note claiming 'Click Pay and enter your 4-digit UPI PIN to receive ₹2,500 into your bank account.'",
+            solution: "Because Kabir learned the Golden Digital Rule in Month 3—that entering a UPI PIN is ONLY required when money leaves your account and NEVER to receive money—he immediately spots the trap. He declines the collect request, blocks the scammer's number, and reports the account. By pausing for five seconds and understanding how UPI authentication works, Kabir protects his entire ₹14,000 savings balance from being drained."
+          },
+          {
+            pill: "Month 4: Scam Defense",
+            month: "Month 4: Consumer Protection • Case Study 4",
+            heading: "Spotting a Lookalike Phishing Domain & Artificial Countdown Timer",
+            situation: "While scrolling social media late at night, Riya clicks an advertisement offering flagship wireless earbuds at '85% OFF — Flash Sale Ends in 02:45 Minutes!' The checkout page asks for her debit card number, expiry date, and CVV before the countdown hits zero.",
+            solution: "Before typing a single digit, Riya inspects the browser address bar and notices the URL reads 'amaz0n-festive-deals.xyz' instead of the official retail domain, alongside broken customer support links and zero independent reviews. Recognizing artificial countdown urgency as a classic phishing tactic designed to bypass rational thinking, she closes the browser tab immediately and purchases from a verified retailer the next morning."
+          },
+          {
+            pill: "Month 5: Smart Credit",
+            month: "Month 5: Credit & Compounding • Case Study 5",
+            heading: "How Starting a ₹1,500 Monthly Savings Habit Early Beats Waiting 10 Years",
+            situation: "Two college classmates, Dev and Rohan, both want to build a long-term wealth cushion. Dev starts automating ₹1,500 every month into a disciplined compound-interest savings/investment plan at age 19, while Rohan decides to wait until age 29 when he expects to earn a much higher salary, even though Rohan ends up contributing ₹3,000 per month later.",
+            solution: "Because compound interest generates returns not just on your deposits but also on every previous year's accumulated interest, Dev's early 10-year head start allows his money to multiply far longer. Even though Dev contributes less cash out of his own pocket overall, starting early puts compound growth on his side—while avoiding high-interest 'Buy Now, Pay Later' debt traps that compound at 30%+ against borrowers."
+          },
+          {
+            pill: "Month 6: Mastery",
+            month: "Month 6: Financial Independence • Case Study 6",
+            heading: "Surviving a Sudden ₹4,800 Laptop Repair Without Borrowing a Rupee",
+            situation: "Ten days before final semester project submissions, Arjun's laptop charging port and battery fail simultaneously, and the authorized service center quotes ₹4,800 for an urgent same-day replacement.",
+            solution: "Instead of panicking, missing his submission deadline, or taking an expensive personal loan from friends, Arjun withdraws ₹4,800 from the dedicated Emergency Fund he built systematically over six months. He gets his laptop repaired the same afternoon, submits his project on time, and simply dedicates his next two months' 20% savings allocation to replenish his emergency buffer back to full strength."
+          }
         ],
         monthlyQuizzes: [
           {
@@ -276,12 +344,48 @@
         title: "Practical Household Operations",
         icon: "🏠",
         examples: [
-          { month: "Month 1: Home & Kitchen Basics", heading: "Cooking a Balanced Meal Safely & Smothering a Pan Flare-Up", situation: "While sautéing vegetables, a drop of oil sparks a small flame in the pan.", solution: "Instead of throwing water (which causes explosive splatter), turn off the gas burner and slide a flat metal lid over the pan to cut off oxygen." },
-          { month: "Month 2: Preventive Maintenance", heading: "Stopping a Bathroom Leak Before Flooring Warps", situation: "A washbasin pipe joint starts dripping steadily on a Sunday morning.", solution: "Close the local angle valve under the sink immediately, place a bucket underneath, and call a plumber before water damages the floor." },
-          { month: "Month 3: Utilities & Electricity", heading: "Cutting a ₹4,800 Summer Electricity Bill by 25%", situation: "Two bedrooms run their ACs at 18°C with curtains open and chargers plugged in all day.", solution: "Raising the AC thermostat to 24°C, closing curtains against afternoon sun, and switching off idle strips cuts monthly power usage by a quarter." },
-          { month: "Month 4: Laundry & Room Resets", heading: "Preventing Red Dye From Ruining White School Shirts", situation: "A brand-new red cotton T-shirt is about to be washed with white uniforms.", solution: "Separating darks from whites and washing in cold water prevents permanent pink dye transfer." },
-          { month: "Month 5: Home Toolkit", heading: "Tightening a Loose Front-Door Hinge in 3 Minutes", situation: "The main door begins scraping the floor because top hinge screws loosened.", solution: "Using a standard Phillips screwdriver from a home toolkit tightens the screws immediately without paying a carpenter visit fee." },
-          { month: "Month 6: Tenant & Lease Readiness", heading: "Protecting a ₹20,000 PG/Apartment Security Deposit", situation: "Moving into a student hostel/apartment with pre-existing wall scratches and a cracked bathroom tile.", solution: "Taking timestamped move-in photos and emailing them to the landlord on Day 1 ensures zero unfair deductions at move-out." }
+          {
+            pill: "Month 1: Home Basics",
+            month: "Month 1: Kitchen & Fire Safety • Case Study 1",
+            heading: "Smothering a Cooking-Oil Pan Flare-Up Safely Without Panic",
+            situation: "While preparing dinner on a gas stove, Maya overheats cooking oil in a shallow frying pan. The moment she drops damp vegetables into the pan, the oil ignites into a 12-inch flame right beneath the kitchen exhaust hood.",
+            solution: "Remembering that pouring water onto burning oil causes explosive steam splatter that spreads fire across the kitchen, Maya keeps her composure: she immediately turns off the gas burner knob and slides a flat metal lid sideways across the pan. Within three seconds, starving the flame of oxygen extinguishes the fire completely with zero injury or damage."
+          },
+          {
+            pill: "Month 2: Maintenance",
+            month: "Month 2: Preventive Plumbing • Case Study 2",
+            heading: "Stopping a Under-Sink Pipe Drip Before Cabinet Wood Warps",
+            situation: "On a Sunday morning, Rohan notices water pooling beneath the kitchen sink because a rubber washer in the flexible inlet pipe has cracked.",
+            solution: "Instead of stuffing towels under the leak and ignoring it until Monday, Rohan reaches behind the basin, turns the local angle shut-off valve clockwise to stop water flow immediately, places a bucket underneath to catch residual drips, and calls a plumber with the exact pipe size—saving the wooden cabinet from swelling and rot."
+          },
+          {
+            pill: "Month 3: Utilities",
+            month: "Month 3: Energy Efficiency • Case Study 3",
+            heading: "Cutting a ₹5,200 Summer Electricity Bill by Nearly 25%",
+            situation: "Two roommates notice their monthly summer electricity bill has jumped to ₹5,200 because they keep the air conditioner set to 18°C all afternoon with thin curtains open to direct sunlight and desktop power strips running overnight.",
+            solution: "They raise the AC thermostat to 24°C (which reduces compressor energy draw by roughly 6% per degree), draw thick curtains during peak afternoon heat, and switch off idle appliance strips before sleeping—bringing the very next bill down to ₹3,950 without sacrificing comfort."
+          },
+          {
+            pill: "Month 4: Organization",
+            month: "Month 4: Laundry & Care • Case Study 4",
+            heading: "Preventing Color Bleeding & Shrinking on Laundry Day",
+            situation: "Doing laundry independently for the first time at a college hostel, Ananya is about to toss a brand-new dark red cotton sweatshirt into a warm wash cycle alongside her white formal shirts.",
+            solution: "Checking the garment care tags first, she separates dark colors from whites and washes the new red sweatshirt in cold water. Her white shirts remain crisp and bright, and the sweatshirt keeps its original fit without shrinking."
+          },
+          {
+            pill: "Month 5: Toolkits",
+            month: "Month 5: Basic Home Repairs • Case Study 5",
+            heading: "Fixing a Scraping Front Door in 3 Minutes With a Basic Toolkit",
+            situation: "The main entrance door begins scraping loudly against the floor tiles every time it opens because the top brass hinge screws have gradually worked loose.",
+            solution: "Using a standard Phillips screwdriver from a compact 5-piece home toolkit, Vikram tightens all four hinge screws firmly back into the frame—solving the issue in three minutes and avoiding a ₹500 handyman call-out charge."
+          },
+          {
+            pill: "Month 6: Lease & Living",
+            month: "Month 6: Tenant Readiness • Case Study 6",
+            heading: "Protecting a ₹20,000 Apartment Security Deposit on Move-In Day",
+            situation: "Moving into his first rented apartment, Siddharth notices a hairline crack in a bathroom tile, a scratched study desk, and a slightly stained curtain already present before he unpacks.",
+            solution: "Before moving a single box inside, he records a clear timestamped walkthrough video and emails photos of every pre-existing mark to the landlord on Day 1. Eleven months later when moving out, he receives 100% of his ₹20,000 security deposit back without any dispute."
+          }
         ],
         monthlyQuizzes: [
           { monthTitle: "Month 1 Quiz: Home & Kitchen Safety", questions: [
@@ -320,12 +424,48 @@
         title: "Time and Energy Management",
         icon: "⏰",
         examples: [
-          { month: "Month 1: Prioritization", heading: "Choosing Tomorrow's Assignment Over Desk Organizing", situation: "At 5 PM, Dev has an essay due at 8 AM tomorrow and a messy bookshelf.", solution: "Using the Urgent/Important Matrix, he finishes the essay first and saves bookshelf organizing for the weekend." },
-          { month: "Month 2: Anti-Procrastination", heading: "Starting a 10-Page Science Report With a 5-Minute Outline", situation: "Neha delays her science project for 4 days because it feels too huge.", solution: "She sets a 5-minute timer just to write 4 section headings—breaking inertia and finishing two pages that evening." },
-          { month: "Month 3: Focus Blocks", heading: "Finishing Physics Revision Twice as Fast With 45/10 Blocks", situation: "Checking WhatsApp every 3 minutes stretches a 1-hour homework sheet into 3 hours.", solution: "Placing the phone in another room for two 45-minute focus blocks with a 10-minute walk between finishes everything cleanly." },
-          { month: "Month 4: Energy Pacing", heading: "Choosing 7.5 Hours of Sleep Over 2 AM Cramming", situation: "Before a math exam, Sam considers staying awake until 2:30 AM.", solution: "He stops at 10:30 PM, sleeps 7.5 hours, and recalls formulas sharply during the morning exam." },
-          { month: "Month 5: Weekly Planning", heading: "Using a 2-Hour Sunday Buffer Block to Absorb Extra Homework", situation: "A surprise group presentation gets assigned mid-week.", solution: "Because Tanya left a 2-hour open buffer on Thursday evening, she completes her slides without missing sleep." },
-          { month: "Month 6: Mastery", heading: "Balancing Board Exam Prep, Sports & Music Without Burnout", situation: "Managing intense final-term schedules across academics and extracurriculars.", solution: "Time-blocking peak morning energy for tough subjects and evening hours for physical recharge sustains performance all year." }
+          {
+            pill: "Month 1: Prioritization",
+            month: "Month 1: Prioritization • Case Study 1",
+            heading: "Choosing Tomorrow's Graded Essay Over Desk Organizing",
+            situation: "At 5:30 PM on a Wednesday, Dev faces three options: a 1,000-word history essay due at 8:00 AM tomorrow, a messy bookshelf he has been wanting to color-code, and forty unread group chat messages.",
+            solution: "Applying the Urgent/Important Priority Matrix, Dev silences his phone and tackles the high-urgency, high-impact history essay immediately while his afternoon mental energy is still sharp. He finishes a strong draft by 7:15 PM, eats dinner relaxed, and saves bookshelf organizing for Saturday morning."
+          },
+          {
+            pill: "Month 2: Anti-Procrastination",
+            month: "Month 2: Beating Procrastination • Case Study 2",
+            heading: "Overcoming Paralysis on a 10-Page Science Project With a 5-Minute Step",
+            situation: "Neha puts off her 10-page environmental science report for four straight days because staring at a blank document feels overwhelming.",
+            solution: "Instead of forcing herself to 'finish the whole report,' she sets a 5-minute timer with one tiny goal: type four section headings and three rough bullet points. Once the headings appear on screen, mental resistance vanishes and she naturally keeps writing for 45 productive minutes."
+          },
+          {
+            pill: "Month 3: Focus Blocks",
+            month: "Month 3: Deep Focus • Case Study 3",
+            heading: "Cutting Physics Homework Time in Half With 45/10 Focus Cycles",
+            situation: "Keeping his smartphone face-up next to his notebook, Sam glances at notifications every three minutes—stretching a 50-minute physics problem set into nearly three exhausting hours.",
+            solution: "Sam puts his phone on silent in another room and runs two 45-minute uninterrupted focus blocks separated by a 10-minute screen-free stretch break. Without constant context switching, he solves every problem accurately in 90 minutes flat."
+          },
+          {
+            pill: "Month 4: Energy Pacing",
+            month: "Month 4: Biological Energy • Case Study 4",
+            heading: "Choosing 7.5 Hours of Sleep Over 2:30 AM Exam Cramming",
+            situation: "The night before a major mathematics exam, Tara debates staying awake until 2:30 AM to re-read every chapter one more time.",
+            solution: "Recognizing that sleep is when the brain consolidates formulas into long-term memory, she wraps up revision at 10:15 PM, gets 7.5 hours of uninterrupted sleep, and wakes up alert enough to spot tricky multi-step algebra shortcuts during the exam."
+          },
+          {
+            pill: "Month 5: Weekly Planning",
+            month: "Month 5: Buffer Time • Case Study 5",
+            heading: "Absorbing a Surprise Group Presentation Using a Weekly Buffer Block",
+            situation: "On Tuesday afternoon, a teacher assigns a graded group slide deck due Friday—threatening to derail Tanya's existing exam study timetable.",
+            solution: "Because Tanya only scheduled 80% of her week during her Sunday review and deliberately left a 2-hour 'Catch-Up Buffer' on Thursday evening, she slots the group slides straight into that open block without losing sleep or falling behind."
+          },
+          {
+            pill: "Month 6: Mastery",
+            month: "Month 6: Sustainable Execution • Case Study 6",
+            heading: "Balancing Final Exams, Athletics & Music Without Burnout",
+            situation: "During peak exam season, Kabir wants to maintain his morning football practice and guitar sessions alongside rigorous daily study targets.",
+            solution: "By scheduling his hardest analytical subjects during his peak morning focus window, placing football practice at 5:00 PM as an energy reset, and protecting a consistent bedtime, he achieves his highest grades of the year with steady energy."
+          }
         ],
         monthlyQuizzes: [
           { monthTitle: "Month 1 Quiz: Prioritization", questions: [
@@ -364,12 +504,48 @@
         title: "Media Literacy",
         icon: "📰",
         examples: [
-          { month: "Month 1: Lateral Reading", heading: "Fact-Checking a Viral WhatsApp School-Closure Rumor", situation: "A dramatic forwarded message claims all schools are closed tomorrow without linking any official circular.", solution: "Opening a new browser tab to check the official education portal reveals no closure notice—preventing false panic." },
-          { month: "Month 2: Hidden Sponsorships", heading: "Spotting an Undisclosed Skincare Promotion", situation: "A creator calls a ₹1,800 serum 'my secret miracle' while pinning a 15% affiliate discount code.", solution: "Recognizing the affiliate commission prompts checking independent dermatology reviews first." },
-          { month: "Month 3: Visual Verification", heading: "Reverse-Searching a Recycled Flood Photo", situation: "A viral post attaches a dramatic flood image to today's local rainstorm.", solution: "Reverse-image search proves the photo was actually taken 5 years ago in another country." },
-          { month: "Month 4: Algorithmic Awareness", heading: "Escaping a One-Sided News Feed Bubble", situation: "Pausing on three sensational videos causes your entire feed to show extreme, one-sided claims.", solution: "Searching balanced, evidence-cited journalism restores perspective." },
-          { month: "Month 5: Digital Privacy", heading: "Declining a 'Free iPhone Giveaway' Data-Harvesting Form", situation: "An unverified page asks for your full home address, school name, and phone number to claim a prize.", solution: "Refusing to enter personal data prevents spam and identity misuse." },
-          { month: "Month 6: Digital Citizenship", heading: "Helping Family Verify Health Claims Before Forwarding", situation: "A relative shares an unverified miracle cure in a family group.", solution: "Sharing a polite, credible medical fact-check stops misinformation respectfully." }
+          {
+            pill: "Month 1: Fact-Checking",
+            month: "Month 1: Lateral Reading • Case Study 1",
+            heading: "Verifying a Viral WhatsApp 'All Schools Closed Tomorrow' Forward",
+            situation: "At 9:30 PM, a forwarded message circulates rapidly across student groups claiming all schools in the city are closed tomorrow due to weather, decorated with urgent red siren emojis but linking zero official government notice.",
+            solution: "Instead of blindly forwarding it or skipping exam prep, Priya practices Lateral Reading: she opens a new browser tab, checks the official state education department website and two established local newspapers, sees no closure order exists, and alerts her study group so nobody misses morning classes."
+          },
+          {
+            pill: "Month 2: Hidden Ads",
+            month: "Month 2: Influencer Sponsorships • Case Study 2",
+            heading: "Spotting an Undisclosed Skincare Promotion Inside a Casual Vlog",
+            situation: "A lifestyle creator casually claims a ₹2,200 face serum 'cleared my skin in 48 hours' while pinning a personalized 15% discount code in the top comment.",
+            solution: "Recognizing the affiliate referral code means the creator earns a commission on every bottle sold, Ananya searches independent dermatological ingredient reviews before spending money—discovering a standard ₹350 pharmacy moisturizer offers the exact same active ingredient."
+          },
+          {
+            pill: "Month 3: Visual Forensics",
+            month: "Month 3: Image Verification • Case Study 3",
+            heading: "Uncovering a Recycled 5-Year-Old Flood Photo Shared as Breaking News",
+            situation: "During a routine monsoon shower, a viral social post shares a dramatic photo of cars submerged underwater with the caption 'Happening right now on Main Highway!'",
+            solution: "Running a quick reverse-image search reveals the exact photograph was published five years earlier during a cyclone in another state—preventing unnecessary family panic and stopping false traffic rumors."
+          },
+          {
+            pill: "Month 4: Algorithms",
+            month: "Month 4: Echo Chambers • Case Study 4",
+            heading: "Breaking Out of a One-Sided Recommendation Feed Bubble",
+            situation: "After watching two sensational videos on a controversial science topic, Arjun notices his entire video feed now exclusively recommends extreme, one-sided commentary.",
+            solution: "Understanding that algorithms optimize for watch time rather than balance, he deliberately searches peer-reviewed summaries and reads multiple perspectives to form an evidence-backed conclusion."
+          },
+          {
+            pill: "Month 5: Digital Privacy",
+            month: "Month 5: Data Protection • Case Study 5",
+            heading: "Refusing a 'Free Flagship Phone Giveaway' Data-Harvesting Form",
+            situation: "An unverified social page asks users to comment and fill out a form with their full home address, date of birth, school name, and phone number to 'claim a guaranteed giveaway prize.'",
+            solution: "Recognizing classic personal data harvesting, Meera refuses to enter her personal information, protecting herself and her family from targeted spam calls and identity impersonation."
+          },
+          {
+            pill: "Month 6: Mastery",
+            month: "Month 6: Digital Citizenship • Case Study 6",
+            heading: "Correcting a False Medical Cure Rumor in a Family Chat Respectfully",
+            situation: "An elderly relative forwards an unverified post claiming drinking raw lemon-salt water cures serious infections without medicine.",
+            solution: "Rather than mocking anyone, Rohan shares a polite message linking the official public health advisory explaining why medical evaluation is essential—protecting loved ones with empathy and facts."
+          }
         ],
         monthlyQuizzes: [
           { monthTitle: "Month 1 Quiz: Lateral Reading", questions: [
@@ -408,12 +584,48 @@
         title: "Mental Health, Stress & Confidence",
         icon: "🧠",
         examples: [
-          { month: "Month 1: Authentic Confidence", heading: "Recovering Calmly After Stumbling in a School Speech", situation: "Forgetting a transition line mid-speech in front of 100 students.", solution: "Taking a 2-second breath, saying 'Let me rephrase that clearly,' and continuing builds instant respect." },
-          { month: "Month 2: Stress Reset", heading: "Using Physiological Sighs Before a Difficult Exam", situation: "Heart racing and palms sweating 3 minutes before an exam paper is distributed.", solution: "Three physiological sighs (double inhale + long exhale) slow heart rate within 60 seconds." },
-          { month: "Month 3: Handling Feedback", heading: "Turning Tough Mentor Critique Into a Winning Pitch", situation: "A mentor points out three confusing slides in your project deck.", solution: "Instead of feeling defeated, you thank them, fix the three slides, and deliver a far clearer pitch." },
-          { month: "Month 4: Healthy Boundaries", heading: "Politely Declining Extra Work During Exam Week", situation: "A classmate asks you to build their poster the night before your science test.", solution: "Saying 'I can't help tonight because I'm studying for tomorrow's test' protects your priorities respectfully." },
-          { month: "Month 5: Cognitive Reframing", heading: "Reframing a Low Practice Quiz Score", situation: "Scoring 5/10 on a mock test a week before finals.", solution: "Viewing it as 'I just discovered which 5 concepts to review now' rather than 'I'm bad at this' fuels focused improvement." },
-          { month: "Month 6: Emotional Resilience", heading: "Navigating High-Pressure Competition Day With Composure", situation: "Presenting your live prototype to judges under time limits.", solution: "Combining preparation, slow breathing, and adaptable thinking turns pressure into confident execution." }
+          {
+            pill: "Month 1: Confidence",
+            month: "Month 1: Authentic Confidence • Case Study 1",
+            heading: "Recovering Calmly After Losing Your Place During a School Speech",
+            situation: "Halfway through presenting a project in front of 120 students and teachers, Kabir's mind goes blank and he stumbles over a key statistic.",
+            solution: "Instead of panicking or apologizing repeatedly, he takes a composed two-second breath, glances at his cue card, says 'Let me state that figure clearly,' and finishes his conclusion with steady eye contact—earning warm applause for his poise."
+          },
+          {
+            pill: "Month 2: Stress Reset",
+            month: "Month 2: Nervous System Reset • Case Study 2",
+            heading: "Using Physiological Sighs 3 Minutes Before a Tough Final Exam",
+            situation: "Sitting at her exam desk before papers are handed out, Riya feels her heart pounding rapidly and her thoughts racing.",
+            solution: "She performs three physiological sighs (two quick inhales through the nose followed by one long, slow exhale through the mouth). Within 60 seconds, her heart rate slows noticeably and she reads the first question calmly."
+          },
+          {
+            pill: "Month 3: Feedback",
+            month: "Month 3: Handling Critique • Case Study 3",
+            heading: "Turning Tough Mentor Feedback Into a Winning Pitch Deck",
+            situation: "After practicing his competition pitch, a mentor points out that three slides are overly crowded and confusing.",
+            solution: "Separating his personal self-worth from his draft slides, Arjun thanks the mentor, strips out clutter, replaces text walls with clear visual charts, and delivers a far stronger presentation on competition day."
+          },
+          {
+            pill: "Month 4: Boundaries",
+            month: "Month 4: Healthy Boundaries • Case Study 4",
+            heading: "Politely Declining Extra Favor Requests the Night Before a Test",
+            situation: "At 8:00 PM the night before her chemistry test, a friend asks Neha to format a 15-page group document from scratch.",
+            solution: "Instead of saying yes out of guilt and ruining her own exam prep, Neha replies warmly: 'I can't take this on tonight because I'm reviewing for tomorrow's chemistry test, but I can help check it tomorrow afternoon.' Her friend respects her honesty immediately."
+          },
+          {
+            pill: "Month 5: Reframing",
+            month: "Month 5: Cognitive Reframing • Case Study 5",
+            heading: "Reframing a 5/10 Mock Test Score Into a Targeted Study Roadmap",
+            situation: "Scoring 5 out of 10 on a practice quiz a week before finals tempts Dev to think 'I am hopeless at this subject.'",
+            solution: "Using cognitive reframing, he replaces that permanent label with an accurate statement: 'This mock test just showed me the exact 5 concepts to master this week.' He reviews those five topics and scores 9/10 on the real exam."
+          },
+          {
+            pill: "Month 6: Mastery",
+            month: "Month 6: Emotional Resilience • Case Study 6",
+            heading: "Leading a Team Through Last-Minute Technical Glitches With Composure",
+            situation: "Minutes before a live demonstration, a projector cable fails and team members begin blaming each other.",
+            solution: "Applying grounding breaths, calm communication, and solution-focused problem solving, Maya rallies the team to switch to backup laptop mode smoothly—turning a potential meltdown into a standout performance."
+          }
         ],
         monthlyQuizzes: [
           { monthTitle: "Month 1 Quiz: Authentic Confidence", questions: [
@@ -452,12 +664,48 @@
         title: "SkillCraft (Art & Culture Appreciation)",
         icon: "🎭",
         examples: [
-          { month: "Month 1: Visual Observation", heading: "Decoding Light & Warm-Cool Contrast in Classic Painting", situation: "Viewing a dimly lit historical portrait where golden candlelight illuminates the subject's hands.", solution: "Noticing how warm light against cool shadows directs your eyes straight to the story's focal point." },
-          { month: "Month 2: Composition", heading: "Applying the Rule of Thirds in Smartphone Photography", situation: "Taking a photo of a monument dead-center vs. placing it on the left third line with leading pathways.", solution: "Off-center framing creates natural visual movement and far stronger depth." },
-          { month: "Month 3: Architecture", heading: "Understanding Rani ki Vav & Stepwell Engineering", situation: "Visiting a traditional Indian stepwell built deep into the earth.", solution: "Appreciating how inverted temple architecture harvested monsoon water while cooling air temperatures naturally." },
-          { month: "Month 4: Cinema Craft", heading: "Watching a Film Scene With Sound Muted", situation: "Analyzing how a director builds tension before a plot twist.", solution: "Noticing tight close-ups, low camera angles, and shadow framing reveals visual storytelling." },
-          { month: "Month 5: Living Crafts", heading: "Recognizing Handloom Block-Printing Geometry", situation: "Examining a traditional Ajrakh or Bagru hand-printed textile.", solution: "Appreciating the natural mineral dyes and precision wooden block alignment passed across generations." },
-          { month: "Month 6: Creative Fluency", heading: "Designing Visually Balanced Presentation Slides", situation: "Building slides for a competition pitch.", solution: "Using clean negative space, color contrast, and visual hierarchy makes ideas memorable." }
+          {
+            pill: "Month 1: Visual Eye",
+            month: "Month 1: Visual Observation • Case Study 1",
+            heading: "Decoding Warm Candlelight vs. Cool Shadow Contrast in Classic Painting",
+            situation: "Visiting an art gallery, students walk past a dark 17th-century painting in two seconds assuming 'nothing much is happening.'",
+            solution: "Slowing down to apply SkillCraft observation, Ananya notices how the artist surrounded the subject's warm golden-lit hands with deep cool blue shadows—creating immediate visual contrast that guides the viewer's eye straight to the human emotion of the scene."
+          },
+          {
+            pill: "Month 2: Composition",
+            month: "Month 2: Framing & Balance • Case Study 2",
+            heading: "Using the Rule of Thirds & Leading Lines in Architectural Photography",
+            situation: "Taking travel photos of a historic monument, Rohan initially places the tower dead-center in every frame, making his shots look flat and static.",
+            solution: "Shifting the tower onto the right vertical third line and using a stone pathway in the foreground as a leading line adds instant depth, scale, and visual movement."
+          },
+          {
+            pill: "Month 3: Architecture",
+            month: "Month 3: Built Heritage • Case Study 3",
+            heading: "Reading Climate & Water Engineering in Traditional Indian Stepwells",
+            situation: "Exploring Rani ki Vav in Gujarat, visitors admire the intricate stone sculptures carved seven stories underground.",
+            solution: "Looking through an architectural lens reveals that stepwells were also ingenious civic engineering: harvesting seasonal monsoon rainwater while dropping air temperatures by 5°C–6°C at the bottom during scorching summers."
+          },
+          {
+            pill: "Month 4: Cinema Craft",
+            month: "Month 4: Film & Sound • Case Study 4",
+            heading: "Watching a Suspense Film Scene With the Audio Muted",
+            situation: "Analyzing how a filmmaker creates tension in a courtroom drama without relying on dialogue.",
+            solution: "Watching the scene once with sound muted reveals how low-angle camera shots make one character appear dominant while tight close-ups and shrinking negative space convey mounting pressure."
+          },
+          {
+            pill: "Month 5: Living Crafts",
+            month: "Month 5: Cultural Traditions • Case Study 5",
+            heading: "Appreciating Natural Indigo Chemistry & Hand-Block Alignment in Ajrakh",
+            situation: "Examining a hand-printed Ajrakh textile shawl at a craft exhibition.",
+            solution: "Understanding the 16-stage process—using carved teakwood blocks, natural indigo, madder root, and river water—transforms a piece of cloth into a living archive of regional geometry and ecological science."
+          },
+          {
+            pill: "Month 6: Mastery",
+            month: "Month 6: Creative Fluency • Case Study 6",
+            heading: "Designing Clean, High-Impact Presentation Slides Using Visual Hierarchy",
+            situation: "Preparing final slides for a national innovation pitch where judges only have 30 seconds to grasp each slide.",
+            solution: "Applying clean negative space, strong typography contrast, and a single focal visual per slide makes the team's presentation effortless to read and memorable."
+          }
         ],
         monthlyQuizzes: [
           { monthTitle: "Month 1 Quiz: Visual Observation", questions: [
@@ -495,6 +743,7 @@
     };
 
     let activeTopicKey = null;
+    let activeExampleMonthIdx = 0;
     let activeMonthIdx = 0;
     let qIndex = 0;
     let score = 0;
@@ -543,7 +792,7 @@
             <span class="list-item-icon">${item.icon}</span>
             <span class="list-item-title">${item.title}</span>
           </div>
-          <span class="list-item-arrow">6 Examples →</span>
+          <span class="list-item-arrow">6 Case Studies →</span>
         `;
         exList.appendChild(exBtn);
 
@@ -561,36 +810,79 @@
       });
     }
 
+    /* Step-by-Step Examples Reader (Same Format as Lessons) */
     function openExamples(key) {
-      const data = topicsData[key];
+      activeTopicKey = key;
+      activeExampleMonthIdx = 0;
       document.getElementById("hub-view").style.display = "none";
       document.getElementById("interactive-panel").style.display = "block";
-
-      let cardsHTML = data.examples.map(ex => `
-        <div class="month-ex-card">
-          <span class="section-tag tag-blue">${ex.month}</span>
-          <h3>${ex.heading}</h3>
-          <p><strong>Situation:</strong> ${ex.situation}</p>
-          <div class="ex-solution"><strong>✅ SkillBridge Action:</strong> ${ex.solution}</div>
-        </div>
-      `).join("");
-
-      document.getElementById("panel-content").innerHTML = `
-        <span class="section-tag tag-blue">${data.icon} ${data.title} • Complete 6-Month Case Studies</span>
-        <h2 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin: 10px 0 6px;">6 Monthly Real-Life Examples</h2>
-        <p style="color: #475569; margin-bottom: 16px;">Study how each month's concept applies in real-life scenarios before taking the sequential quizzes.</p>
-        <div class="monthly-examples-stack">${cardsHTML}</div>
-        <button class="btn-primary" onclick="openMonthQuizSelector('${key}')">Start Month 1–6 Quizzes →</button>
-      `;
+      document.getElementById("example-roadmap-box").style.display = "block";
+      document.getElementById("example-roadmap-header").innerText = `${topicsData[key].title} — 6-Month Case Studies`;
+      renderExampleMonthsBar();
+      renderExampleSlide();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
+    function renderExampleMonthsBar() {
+      const data = topicsData[activeTopicKey];
+      const track = document.getElementById("example-months-track");
+      track.innerHTML = "";
+      data.examples.forEach((ex, idx) => {
+        const pill = document.createElement("button");
+        pill.type = "button";
+        pill.className = "month-pill" + (idx === activeExampleMonthIdx ? " active" : "");
+        pill.innerText = ex.pill;
+        pill.onclick = () => {
+          activeExampleMonthIdx = idx;
+          renderExampleMonthsBar();
+          renderExampleSlide();
+        };
+        track.appendChild(pill);
+      });
+    }
+
+    function renderExampleSlide() {
+      const data = topicsData[activeTopicKey];
+      const ex = data.examples[activeExampleMonthIdx];
+      const isFirst = activeExampleMonthIdx === 0;
+      const isLast = activeExampleMonthIdx === data.examples.length - 1;
+
+      document.getElementById("panel-content").innerHTML = `
+        <span class="section-tag tag-blue">${data.icon} ${ex.month}</span>
+        <h2 class="ex-reader-title">${ex.heading}</h2>
+        <p class="ex-paragraph"><strong>Real-World Situation:</strong> ${ex.situation}</p>
+        <div class="ex-action-box">
+          <h4>✅ SkillBridge Step-by-Step Resolution</h4>
+          <p>${ex.solution}</p>
+        </div>
+        <div class="slide-controls">
+          <button type="button" class="btn-nav btn-prev" ${isFirst ? "disabled" : ""} onclick="changeExampleSlide(-1)">← Previous</button>
+          <span style="font-weight: 600; color: #64748b; font-size: 0.88rem;">Case Study ${activeExampleMonthIdx + 1} of 6</span>
+          ${isLast
+            ? `<button type="button" class="btn-nav btn-next" onclick="openMonthQuizSelector('${activeTopicKey}')">Start Month 1–6 Quizzes →</button>`
+            : `<button type="button" class="btn-nav btn-next" onclick="changeExampleSlide(1)">Next: ${data.examples[activeExampleMonthIdx + 1].pill} →</button>`}
+        </div>
+      `;
+    }
+
+    function changeExampleSlide(dir) {
+      const nextIdx = activeExampleMonthIdx + dir;
+      if (nextIdx >= 0 && nextIdx < 6) {
+        activeExampleMonthIdx = nextIdx;
+        renderExampleMonthsBar();
+        renderExampleSlide();
+        window.scrollTo({ top: 140, behavior: "smooth" });
+      }
+    }
+
+    /* Month 1-6 Sequential Quizzes */
     function openMonthQuizSelector(key) {
       activeTopicKey = key;
       const data = topicsData[key];
       const unlockedIdx = getUnlockedMonth(key);
 
       document.getElementById("hub-view").style.display = "none";
+      document.getElementById("example-roadmap-box").style.display = "none";
       document.getElementById("interactive-panel").style.display = "block";
 
       let gridHTML = data.monthlyQuizzes.map((mq, idx) => {
@@ -624,6 +916,7 @@
       activeMonthIdx = monthIdx;
       qIndex = 0;
       score = 0;
+      document.getElementById("example-roadmap-box").style.display = "none";
       renderQuestion();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -693,7 +986,7 @@
           <p style="font-size: 1.05rem; color: #475569; line-height: 1.6; margin-bottom: 24px;">
             ${passedAll
               ? (hasNextMonth ? `Awesome! You answered every question correctly and unlocked <strong>Month ${activeMonthIdx + 2} Quiz</strong>!` : "Incredible! You have conquered all 6 months of quizzes in this topic!")
-              : `You must get <strong>all ${total} answers correct (100%)</strong> to unlock Month ${activeMonthIdx + 2}. Review the monthly example and try again!`}
+              : `You must get <strong>all ${total} answers correct (100%)</strong> to unlock Month ${activeMonthIdx + 2}. Review the monthly case study and try again!`}
           </p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             ${passedAll && hasNextMonth
@@ -707,6 +1000,7 @@
 
     function resetHub() {
       buildHubLists();
+      document.getElementById("example-roadmap-box").style.display = "none";
       document.getElementById("interactive-panel").style.display = "none";
       document.getElementById("hub-view").style.display = "grid";
       window.history.replaceState({}, document.title, "quizzes.html");
