@@ -38,7 +38,6 @@
 
     .container { max-width: 1100px; margin: 0 auto; padding: 45px 20px 80px; }
 
-    /* Topic Selection Grid */
     .topics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
     .topic-select-card {
       background: #ffffff; border-radius: 18px; padding: 26px; border: 1px solid #e2e8f0;
@@ -68,7 +67,6 @@
       white-space: nowrap;
     }
 
-    /* Sequential Lesson Reader */
     #lesson-reader { display: none; max-width: 880px; margin: 0 auto; }
     .back-btn {
       background: none; border: none; color: #0066cc; font-weight: 700; font-size: 0.95rem;
@@ -97,13 +95,13 @@
     }
     .slide-badge.quiz-type { background: #ffedd5; color: #ea580c; }
     .slide-card h2 { font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 18px; line-height: 1.25; }
-    .slide-body p { font-size: 1.05rem; color: #334155; line-height: 1.75; margin-bottom: 16px; }
+    .slide-body p { font-size: 1.05rem; color: #334155; line-height: 1.78; margin-bottom: 18px; }
     .key-box {
       background: #f8fafc; border-left: 4px solid #0066cc; padding: 18px 22px;
       border-radius: 0 12px 12px 0; margin: 22px 0;
     }
     .key-box h4 { font-size: 0.96rem; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
-    .key-box p { font-size: 0.98rem; margin-bottom: 0; color: #475569; line-height: 1.6; }
+    .key-box p { font-size: 0.98rem; margin-bottom: 0; color: #475569; line-height: 1.65; }
 
     .inline-options { display: flex; flex-direction: column; gap: 12px; margin: 18px 0; }
     .inline-opt-btn {
@@ -134,7 +132,6 @@
     .btn-prev:disabled { opacity: 0.45; cursor: not-allowed; }
     .btn-next { background: #0066cc; color: #ffffff; }
 
-    /* Daily 5-Lesson Limit Paywall Modal */
     .paywall-overlay {
       display: none; position: fixed; inset: 0; background: rgba(11, 22, 44, 0.72);
       z-index: 2500; align-items: center; justify-content: center; padding: 20px;
@@ -156,7 +153,6 @@
       border-radius: 26px; font-weight: 700; font-size: 0.95rem; cursor: pointer;
     }
 
-    /* Mobile Bottom Tab Bar */
     .mobile-bottom-nav {
       display: none; position: fixed; bottom: 0; left: 0; right: 0; height: 64px;
       background: #0b162c; border-top: 1px solid #1e293b; z-index: 1500;
@@ -223,7 +219,6 @@
     </div>
   </main>
 
-  <!-- Daily 5-Lesson Limit Paywall Modal -->
   <div class="paywall-overlay" id="paywall-modal">
     <div class="paywall-box">
       <div style="font-size: 3rem;">🔒</div>
@@ -394,13 +389,28 @@
               {
                 type: "lesson",
                 badge: "Month 3: Banking & Digital Safety • Lesson 1",
-                title: "Savings Accounts, Interest & Digital Payment Safety",
+                title: "How Savings Accounts, Bank Interest & UPI Systems Actually Work",
                 paragraphs: [
-                  "A bank savings account keeps your money secure while paying annual interest (typically 3% to 6%) simply for storing your funds with the bank.",
-                  "With UPI apps and debit cards, digital vigilance is essential: never share your UPI PIN, never enter your PIN to 'receive' money (a PIN is ONLY required when money leaves your account), and never share bank OTPs."
+                  "Keeping physical cash in a drawer or backpack earns zero return and leaves you vulnerable to loss or theft. When you deposit money into a regulated bank savings account, the bank safeguards your balance and pays you annual interest (typically 3% to 6% in India) credited quarterly simply for keeping your funds with them.",
+                  "Modern banking also connects your account to instant digital rails like UPI (Unified Payments Interface) and debit cards. While these tools let you pay for groceries or split dinner bills in seconds, convenience requires strict authentication habits: your 4- or 6-digit UPI PIN is your digital signature that authorizes money to LEAVE your account.",
+                  "Because scammers frequently trick first-time users into approving fake 'Collect Requests' disguised as incoming prizes or refunds, knowing how authentication works protects every rupee you save."
                 ],
                 highlightTitle: "Golden Digital Rule",
-                highlightText: "You NEVER need to enter a UPI PIN or OTP to receive money into your account."
+                highlightText: "You NEVER need to enter a UPI PIN, ATM PIN, or bank OTP to receive money into your account—authentication is strictly for sending money out."
+              },
+              {
+                type: "check",
+                badge: "Month 3: Banking & Digital Safety • Concept Check",
+                title: "Quick Check: Authenticating Digital Payments",
+                question: "A buyer on a secondhand marketplace says they are sending ₹2,000 for your old bicycle and asks you to enter your UPI PIN on a pop-up request to 'accept' the payment. What should you do?",
+                options: [
+                  "Enter your UPI PIN quickly before the request expires.",
+                  "Decline immediately—entering a UPI PIN ALWAYS sends money out of your bank account, never brings money in.",
+                  "Share your debit card CVV instead.",
+                  "Send ₹10 first to verify the buyer."
+                ],
+                answer: 1,
+                explanation: "Scammers send fake Collect Requests disguised as incoming payments. Entering your PIN deducts money from your own account."
               }
             ]
           },
@@ -410,13 +420,28 @@
               {
                 type: "lesson",
                 badge: "Month 4: Consumer Protection • Lesson 1",
-                title: "Anatomy of Phishing, Fake Discounts & Predatory Traps",
+                title: "Anatomy of Phishing, Lookalike Websites & Predatory Traps",
                 paragraphs: [
-                  "Online fraud relies on urgency: 'Your bank account will be blocked in 2 hours!' or 'Get 85% off for the next 3 minutes!'.",
-                  "Before entering payment details on any website, verify the exact domain spelling, check independent reviews, and confirm secure HTTPS encryption."
+                  "Online fraudsters rarely hack bank servers directly; instead, they engineer psychological traps built around two intense emotions: fear ('Your bank KYC has expired—your account will be frozen in 2 hours unless you click here!') and greed ('Congratulations! Claim a flagship phone at 85% off—only 3 minutes left!').",
+                  "Whenever you encounter an unexpected link or too-good-to-be-true discount, pause for ten seconds and run a three-point inspection: first, check the exact spelling of the website domain in the address bar (scammers use lookalikes like 'amaz0n-deals.xyz'); second, search independent customer reviews outside that site; and third, never enter card numbers or CVVs on unverified pages.",
+                  "Being a sharp consumer also means reading subscription fine print—many 'free 7-day trials' automatically charge full annual fees unless you cancel at least 24 hours before the trial ends."
                 ],
                 highlightTitle: "Consumer Shield",
-                highlightText: "Artificial urgency is a scammer's favorite weapon—slow down and verify."
+                highlightText: "Artificial countdown timers and account-suspension threats are classic scam signatures. Legitimate banks never ask you to verify KYC via random SMS links."
+              },
+              {
+                type: "check",
+                badge: "Month 4: Consumer Protection • Concept Check",
+                title: "Quick Check: Spotting Lookalike Phishing Sites",
+                question: "An ad offers brand-new earbuds at 85% off on 'flipkrt-flash-sale.xyz' with a 2-minute countdown timer. What is the safest move?",
+                options: [
+                  "Enter your debit card details fast before the timer hits zero.",
+                  "Close the tab immediately—the misspelled domain and fake countdown urgency are unmistakable signs of a phishing scam.",
+                  "Share the link with all your friends so they can buy too.",
+                  "Pay using a relative's card."
+                ],
+                answer: 1,
+                explanation: "Misspelled URLs and high-pressure countdown timers are designed to steal card credentials before you think critically."
               }
             ]
           },
@@ -426,12 +451,28 @@
               {
                 type: "lesson",
                 badge: "Month 5: Credit & Compounding • Lesson 1",
-                title: "How Compound Interest Works For You—Or Against You",
+                title: "How Compound Interest Builds Wealth—Or Multiplies Debt Traps",
                 paragraphs: [
-                  "Compound interest calculates interest on both your initial money and accumulated interest. When saving early, compounding multiplies wealth; on unpaid credit cards (24%–42% APR), compounding multiplies debt rapidly."
+                  "Albert Einstein famously called compound interest the eighth wonder of the world because it calculates interest not just on your original deposit, but also on all the interest accumulated in previous years. When you start saving even ₹1,000 a month in your late teens or early twenties, time does the heavy lifting and multiplies your wealth exponentially.",
+                  "However, compound interest works in reverse when you borrow money recklessly. Credit cards and 'Buy Now, Pay Later' apps often charge 24% to 42% annual interest on unpaid balances. If you only pay the 'Minimum Amount Due' each month, interest compounds on the remaining balance—turning a ₹6,000 impulse purchase into a ₹14,000 debt burden.",
+                  "The golden rule of credit is simple: use debit or saved cash for everyday lifestyle purchases, and never borrow money for items that lose value the moment you open the box."
                 ],
                 highlightTitle: "Wealth Rule",
-                highlightText: "Earn compound interest through disciplined saving; never pay compound interest on impulse buys."
+                highlightText: "Make compound interest work FOR you through early, consistent saving—never pay compound interest on depreciating impulse buys."
+              },
+              {
+                type: "check",
+                badge: "Month 5: Credit & Compounding • Concept Check",
+                title: "Quick Check: Credit Cards & Compounding",
+                question: "Why is paying only the 'Minimum Amount Due' on a credit card bill a costly financial trap?",
+                options: [
+                  "Because the remaining unpaid balance accrues massive compound interest (often 24%–42% annually).",
+                  "Because banks reward minimum payments with free cash.",
+                  "Because it erases the rest of your debt automatically.",
+                  "It is not a trap at all."
+                ],
+                answer: 0,
+                explanation: "Paying only the minimum leaves the bulk of your balance compounding at steep annual interest rates."
               }
             ]
           },
@@ -441,12 +482,14 @@
               {
                 type: "lesson",
                 badge: "Month 6: Financial Independence • Capstone",
-                title: "Your Complete 6-Month Financial Blueprint",
+                title: "Your Complete 6-Month Financial Blueprint & Weekly Money Routine",
                 paragraphs: [
-                  "Over six months, you have mastered the 50/30/20 rule, tax slabs, GST, UPI scam prevention, and compounding. Spend 15 minutes every Sunday reviewing your weekly expenses and savings transfers."
+                  "Over six months, you have progressed from mastering foundational financial management and the 50/30/20 allocation rule to decoding direct and indirect taxes, securing digital UPI accounts, spotting phishing scams, and harnessing compound growth.",
+                  "Real-world financial mastery does not require complex spreadsheets or hours of daily work—it relies on a consistent 15-minute Sunday Money Check-In. Every Sunday evening, review your past week's receipts, verify that your 20% savings transfer went through automatically, check upcoming bills, and set clear spending boundaries for the week ahead.",
+                  "By combining an emergency buffer of 3–6 months of essential expenses with disciplined, debt-free habits, you step into adulthood with genuine financial freedom and peace of mind."
                 ],
                 highlightTitle: "Course Milestone Unlocked",
-                highlightText: "Head to the Quizzes section to test all 6 months of Personal Finance & Taxes!"
+                highlightText: "You have completed all 6 months of Personal Finance & Taxes! Test your knowledge in the sequential Month 1–6 Quizzes."
               }
             ]
           }
@@ -465,29 +508,151 @@
                 badge: "Month 1: Home Foundations • Lesson 1",
                 title: "What Are Practical Household Operations & Why Do They Matter?",
                 paragraphs: [
-                  "Practical household operations encompass all everyday systems required to keep a living space safe, hygienic, and financially manageable—from cooking nutritious meals to managing utility bills and preventing minor leaks.",
-                  "Mastering these skills early builds true independence wherever you live."
+                  "Practical household operations encompass all the everyday systems required to keep a living space safe, hygienic, efficient, and financially manageable—from cooking nutritious meals and handling laundry properly to managing monthly utility bills and preventing minor leaks from becoming costly structural repairs.",
+                  "Thousands of students move away for college hostels, PG accommodations, or their first job completely unprepared for basic home maintenance. Without these skills, young adults waste huge sums on daily restaurant delivery, suffer inflated electricity bills, and panic during minor household emergencies.",
+                  "Mastering household operations early builds genuine self-reliance: no matter what city or apartment you live in, you know how to keep yourself well-fed, safe, and organized."
                 ],
                 highlightTitle: "Independence Rule",
-                highlightText: "A well-run home is built on simple, repeatable daily routines."
+                highlightText: "A well-run home isn't built on luck—it is built on simple, repeatable daily routines."
               },
               {
                 type: "lesson",
                 badge: "Month 1: Kitchen & Cooking • Lesson 2",
-                title: "Why Basic Cooking & Kitchen Safety Come First",
+                title: "Why Basic Cooking & Kitchen Fire Safety Come First",
                 paragraphs: [
-                  "Home-cooked meals cost up to 70% less than takeout and give you full control over nutrition. Always turn pot handles inward, never leave active burners unattended, and NEVER pour water on an oil fire—slide a flat metal lid over the pan to smother oxygen."
+                  "Learning to cook basic, balanced meals is one of the highest-return life skills you will ever acquire. Home-cooked meals cost up to 70% less than restaurant delivery and give you complete control over nutrition, hygiene, and oil or salt levels.",
+                  "Before lighting a stove, master non-negotiable kitchen safety: never leave active burners unattended, always turn pot handles inward so nobody accidentally knocks boiling liquids off the counter, keep dish towels away from open flames, and NEVER pour water onto a grease or cooking-oil fire—water causes burning oil to splatter violently. Instead, turn off the gas and slide a flat metal lid over the pan to smother the oxygen."
                 ],
                 highlightTitle: "Beginner Milestone",
-                highlightText: "Master safe knife grip (curling fingertips inward) and three 20-minute staple dishes."
+                highlightText: "Master the 'claw grip' (curling fingertips inward when chopping) and learn three nutritious 20-minute staple dishes from scratch."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Home Foundations • Concept Check",
+                title: "Quick Check: Kitchen Fire Safety",
+                question: "While heating oil in a pan to cook dinner, the oil suddenly catches fire. What is the safest immediate action?",
+                options: [
+                  "Throw a jug of cold water directly onto the burning oil.",
+                  "Turn off the stove burner and slide a flat metal lid over the pan to smother the oxygen.",
+                  "Carry the flaming pan across the kitchen to the sink.",
+                  "Blow air onto the flames."
+                ],
+                answer: 1,
+                explanation: "Water causes burning oil to splatter explosively. Turning off the heat and covering the pan with a metal lid safely starves the fire of oxygen."
               }
             ]
           },
-          { label: "Month 2: Maintenance", steps: [{ type: "lesson", badge: "Month 2 • Lesson 1", title: "Leaks, Spills & Emergency Shut-Off Valves", paragraphs: ["Know the location of your main water shut-off valve and electrical MCB breaker box on day one, and wipe floor spills immediately to prevent slip injuries."], highlightTitle: "Safety Habit", highlightText: "Report dripping taps early rather than forcing valves shut." }] },
-          { label: "Month 3: Utilities", steps: [{ type: "lesson", badge: "Month 3 • Lesson 1", title: "Slashing Electricity Waste & AC Efficiency", paragraphs: ["Setting your AC to 24°C instead of 18°C saves roughly 24% on cooling electricity. Always keep windows closed while cooling rooms."], highlightTitle: "Utility Rule", highlightText: "Every 1°C increase in AC temperature saves ~6% electricity." }] },
-          { label: "Month 4: Organization", steps: [{ type: "lesson", badge: "Month 4 • Lesson 1", title: "Laundry Sorting & 15-Minute Room Resets", paragraphs: ["Separate whites from darks, read garment care labels, and run a daily 15-minute reset to clear surfaces and walkways."], highlightTitle: "Daily System", highlightText: "Clean as you go so weekend chores stay effortless." }] },
-          { label: "Month 5: Toolkits", steps: [{ type: "lesson", badge: "Month 5 • Lesson 1", title: "5 Essential Tools Every Home Needs", paragraphs: ["Keep a multi-bit screwdriver, pliers, measuring tape, flashlight, and electrical insulation tape handy for quick fixes."], highlightTitle: "Safety First", highlightText: "Always switch off power at the main breaker before inspecting electrical fixtures." }] },
-          { label: "Month 6: Lease & Living", steps: [{ type: "lesson", badge: "Month 6 • Capstone", title: "Rental Agreements & Security Deposits", paragraphs: ["Read lock-in periods, notice clauses, and take timestamped move-in photos to protect your security deposit."], highlightTitle: "Milestone Unlocked", highlightText: "Take the Practical Household Operations Quizzes!" }] }
+          {
+            label: "Month 2: Maintenance",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 2: Preventive Maintenance • Lesson 1",
+                title: "Handling Plumbing Leaks, Floor Spills & Emergency Shut-Off Valves",
+                paragraphs: [
+                  "Small household issues escalate rapidly when ignored. A single dripping bathroom tap wastes over 1,000 liters of water in a single month, while water spilled on smooth ceramic tiles is one of the leading causes of serious home slip-and-fall injuries.",
+                  "On your very first day in any home or hostel, locate two critical safety controls: first, the main water shut-off valve (and local angle valves under sinks) so you can stop flooding immediately if a pipe bursts; and second, the electrical MCB (Miniature Circuit Breaker) distribution box so you can safely cut power if an appliance sparks or overheats.",
+                  "When a tap starts dripping, avoid cranking the handle with excessive force—that crushes the internal rubber washer further. Instead, close the local valve and replace the inexpensive washer early."
+                ],
+                highlightTitle: "Safety Habit",
+                highlightText: "Wipe liquid floor spills dry immediately and know where your main water valve and electrical MCB box are located."
+              },
+              {
+                type: "check",
+                badge: "Month 2: Preventive Maintenance • Concept Check",
+                title: "Quick Check: Emergency Home Controls",
+                question: "A flexible water pipe under the bathroom sink bursts and begins spraying water. What is your fastest first step?",
+                options: [
+                  "Turn the local angle shut-off valve under the sink clockwise to stop the water flow immediately.",
+                  "Put paper towels over the spraying pipe and wait until tomorrow.",
+                  "Switch off the bedroom ceiling fan.",
+                  "Pour hot water over the pipe."
+                ],
+                answer: 0,
+                explanation: "Closing the local angle valve isolates the broken pipe within seconds and prevents floor flooding."
+              }
+            ]
+          },
+          {
+            label: "Month 3: Utilities",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 3: Energy & Utilities • Lesson 1",
+                title: "Slashing Electricity Waste & Reading Monthly Utility Bills",
+                paragraphs: [
+                  "Air conditioners, electric water heaters (geysers), and refrigerators account for over 70% of a typical household's monthly electricity bill. Many people unknowingly double their power consumption by setting the AC to 18°C while leaving bedroom windows slightly ajar or curtains open to direct afternoon sunlight.",
+                  "According to energy efficiency standards, every 1°C increase in your air conditioner thermostat reduces electricity consumption by approximately 6%. Setting your AC to a comfortable 24°C instead of 18°C cuts cooling electricity costs by nearly 24% without sacrificing comfort.",
+                  "Learning to read your monthly electricity bill—checking total units consumed (kWh), fixed meter charges, and slab rates—helps you spot sudden spikes caused by faulty appliances or forgotten geysers."
+                ],
+                highlightTitle: "Utility Rule",
+                highlightText: "Set ACs to 24°C, keep doors and windows sealed while cooling, and turn off geysers immediately after use."
+              },
+              {
+                type: "check",
+                badge: "Month 3: Energy & Utilities • Concept Check",
+                title: "Quick Check: Smart Cooling Efficiency",
+                question: "Roughly how much cooling electricity do you save by setting an air conditioner to 24°C instead of 18°C?",
+                options: [
+                  "Around 24% (roughly 6% saved per degree raised)",
+                  "0%—temperature settings do not affect power usage",
+                  "95%",
+                  "It actually uses more electricity"
+                ],
+                answer: 0,
+                explanation: "Raising the thermostat from 18°C to 24°C reduces compressor runtime and saves roughly 24% on cooling energy."
+              }
+            ]
+          },
+          {
+            label: "Month 4: Organization",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 4: Cleaning & Laundry • Lesson 1",
+                title: "Garment Care, Stain Prevention & The 15-Minute Daily Room Reset",
+                paragraphs: [
+                  "Ruining favorite clothes in the washing machine is an expensive beginner mistake. Always separate white and light-colored garments from dark or brand-new dyed fabrics (especially reds and dark blues) so dye bleeding does not turn white shirts pink. Checking the sewn-in care label tells you whether a garment requires cold water, gentle cycles, or air-drying.",
+                  "Treat food or ink stains immediately by blotting gently with cold water rather than rubbing harshly—hot water permanently bakes protein stains into fabric fibers.",
+                  "To prevent living spaces from turning chaotic during busy exam weeks, run a '15-Minute Daily Reset' every evening: clear food dishes to the kitchen, put dirty laundry in the hamper, clear desk surfaces, and sweep high-traffic floor areas."
+                ],
+                highlightTitle: "Daily System",
+                highlightText: "Sort whites from darks, treat stains with cold water immediately, and spend 15 minutes resetting your space each night."
+              }
+            ]
+          },
+          {
+            label: "Month 5: Toolkits",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 5: Basic Home Toolkit • Lesson 1",
+                title: "5 Essential Tools Every Home Needs & Basic Electrical Safety",
+                paragraphs: [
+                  "You do not need a professional workshop to handle everyday home fixes. Keeping five compact tools in a drawer—a multi-bit screwdriver (flathead and Phillips), combination pliers, a retractable measuring tape, a bright LED flashlight, and PVC electrical insulation tape—lets you tighten loose cabinet hinges, assemble study desks, and measure furniture spaces accurately.",
+                  "Whenever you replace a fused light bulb or inspect a loose wall switch, follow strict electrical safety: turn off the specific circuit breaker at the main MCB box first, verify the power is off, wear dry rubber-soled footwear, and never touch exposed copper wires."
+                ],
+                highlightTitle: "Safety First",
+                highlightText: "Always cut power at the main MCB breaker—not just the wall switch—before inspecting any light fixture or outlet."
+              }
+            ]
+          },
+          {
+            label: "Month 6: Lease & Living",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 6: Independent Living • Capstone",
+                title: "Understanding Rental Agreements, Notice Periods & Security Deposits",
+                paragraphs: [
+                  "When renting your first apartment, flatshare, or PG accommodation, never sign a lease agreement without reading four critical clauses: the monthly rent and maintenance split, the lock-in period (minimum months you must stay), the notice period (usually 1 to 2 months' advance written notice required before moving out), and security deposit refund terms.",
+                  "On move-in day—before unpacking a single box—record a clear timestamped video and take photos of every wall, bathroom fixture, appliance, and furniture item. Emailing those photos to the landlord on Day 1 creates indisputable proof of pre-existing wear so your entire security deposit is protected when you vacate."
+                ],
+                highlightTitle: "Course Milestone Unlocked",
+                highlightText: "You have completed Practical Household Operations! Test your readiness in the Month 1–6 Quizzes."
+              }
+            ]
+          }
         ]
       },
       time: {
@@ -501,20 +666,127 @@
               {
                 type: "lesson",
                 badge: "Month 1: Time & Energy • Lesson 1",
-                title: "What is Time & Energy Management?",
+                title: "What is Time & Energy Management & Why Is Clock-Watching Not Enough?",
                 paragraphs: [
-                  "Everyone has 1,440 minutes in a day. Accomplishing goals without burnout requires matching your highest-energy hours to your hardest, most important tasks rather than wasting peak energy on notifications."
+                  "Every human being receives the exact same 1,440 minutes each day, yet some students complete assignments, play sports, learn music, and sleep 8 hours while others stay awake until 2:00 AM feeling perpetually behind. The difference lies in managing both your calendar priorities and your biological mental energy.",
+                  "Sitting at a desk for three hours while exhausted and checking phone notifications every two minutes yields less comprehension than 50 minutes of uninterrupted, high-energy concentration. True productivity means matching your hardest analytical tasks to your highest-energy hours of the day.",
+                  "Using the Urgent/Important Priority Matrix helps you immediately separate true deadlines (high urgency, high impact) from tempting distractions like reorganizing stationery or scrolling social feeds."
                 ],
                 highlightTitle: "Core Principle",
-                highlightText: "Manage your mental energy alongside your clock."
+                highlightText: "Protect your peak daily energy window for your most challenging priority—never waste your sharpest hours on passive scrolling."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Time & Energy • Concept Check",
+                title: "Quick Check: Prioritizing an Evening Schedule",
+                question: "At 5:30 PM, you have a graded essay due tomorrow at 8:00 AM, a clean bookshelf you want to color-code, and 35 unread group messages. Which task should come first?",
+                options: [
+                  "Read all 35 group messages and watch reels to 'warm up.'",
+                  "Color-code your bookshelf first.",
+                  "Complete the graded essay due tomorrow while your afternoon energy is still strong.",
+                  "Wait until 1:00 AM when panic forces you to rush."
+                ],
+                answer: 2,
+                explanation: "High-urgency, high-importance deadlines always take top priority over low-impact busywork."
               }
             ]
           },
-          { label: "Month 2: Anti-Procrastination", steps: [{ type: "lesson", badge: "Month 2 • Lesson 1", title: "The 5-Minute Micro-Step Rule", paragraphs: ["Shrink overwhelming projects into a tiny 5-minute starter step so momentum replaces avoidance."], highlightTitle: "Action Formula", highlightText: "Start with 5 minutes—momentum handles the rest." }] },
-          { label: "Month 3: Focus Blocks", steps: [{ type: "lesson", badge: "Month 3 • Lesson 1", title: "45/10 Focus Cycles & Single-Tasking", paragraphs: ["Work distraction-free for 45 minutes with your phone in another room, followed by a 10-minute screen-free break."], highlightTitle: "Focus Habit", highlightText: "Single-tasking doubles learning retention." }] },
-          { label: "Month 4: Energy Pacing", steps: [{ type: "lesson", badge: "Month 4 • Lesson 1", title: "Sleep, Hydration & Recovery", paragraphs: ["Consistent sleep locks in memory far better than late-night cramming."], highlightTitle: "Energy Rule", highlightText: "Rest is the fuel that makes deep focus possible." }] },
-          { label: "Month 5: Weekly Planning", steps: [{ type: "lesson", badge: "Month 5 • Lesson 1", title: "Sunday Reviews & Buffer Blocks", paragraphs: ["Leave 20% of your weekly schedule open as buffer time for unexpected delays."], highlightTitle: "Planning Habit", highlightText: "Plan 80%, buffer 20%." }] },
-          { label: "Month 6: Mastery", steps: [{ type: "lesson", badge: "Month 6 • Capstone", title: "Sustainable Execution Without Burnout", paragraphs: ["Combine daily priorities, micro-steps, and recovery cycles for lifelong calm productivity."], highlightTitle: "Milestone Unlocked", highlightText: "Test your Time & Energy skills in the Quizzes tab!" }] }
+          {
+            label: "Month 2: Anti-Procrastination",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 2: Overcoming Procrastination • Lesson 1",
+                title: "Shrinking the Starting Line With the 5-Minute Micro-Step Rule",
+                paragraphs: [
+                  "Procrastination is rarely a sign of laziness—psychologists have shown it is actually emotional avoidance triggered when a task feels overwhelming, ambiguous, or intimidating. When your brain sees 'Write 10-page research report,' it experiences friction and looks for an immediate distraction.",
+                  "The cure is shrinking the starting line using the 5-Minute Micro-Step Rule: give yourself permission to work for just five minutes on one tiny, concrete starter action—such as opening a blank document and typing four section headings.",
+                  "Once you cross that tiny five-minute threshold, mental resistance dissolves and natural momentum carries you forward effortlessly."
+                ],
+                highlightTitle: "Action Formula",
+                highlightText: "Replace vague mountains ('Study Physics') with tiny, specific starter actions ('Solve the first 2 example problems in 5 minutes')."
+              },
+              {
+                type: "check",
+                badge: "Month 2: Overcoming Procrastination • Concept Check",
+                title: "Quick Check: Breaking Task Paralysis",
+                question: "You have been putting off a major history project for three days because it feels too big. Which action best applies the 5-Minute Micro-Step Rule?",
+                options: [
+                  "Set a 5-minute timer just to create the document and write 3 outline headings.",
+                  "Promise yourself you will finish the entire project in one 8-hour marathon tomorrow.",
+                  "Watch productivity videos for two hours instead of starting.",
+                  "Wait until the night before submission."
+                ],
+                answer: 0,
+                explanation: "A tiny, concrete 5-minute starter step eliminates overwhelm and triggers immediate momentum."
+              }
+            ]
+          },
+          {
+            label: "Month 3: Focus Blocks",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 3: Deep Focus • Lesson 1",
+                title: "45/10 Focus Cycles & Eliminating Context-Switching Costs",
+                paragraphs: [
+                  "Research on human attention reveals that every time you glance at a smartphone notification or switch browser tabs, your brain suffers 'attention residue'—taking up to 15 minutes to regain full deep concentration.",
+                  "To double your study and work output, use structured 45/10 Focus Cycles: place your phone on silent in another room, close all unrelated browser tabs, and focus deeply on a single task for 45 minutes.",
+                  "When the 45-minute timer rings, take a genuine 10-minute screen-free break—stretch, drink water, or look out a window—so your brain resets cleanly for the next cycle."
+                ],
+                highlightTitle: "Focus Habit",
+                highlightText: "Focused single-tasking finishes work in half the time with dramatically fewer careless errors than multitasking."
+              }
+            ]
+          },
+          {
+            label: "Month 4: Energy Pacing",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 4: Biological Energy • Lesson 1",
+                title: "Sleep, Hydration & Movement as Cognitive Performance Multipliers",
+                paragraphs: [
+                  "Pulling all-nighters to cram before exams is one of the most counterproductive study habits. During deep sleep, your brain transfers newly studied concepts from fragile short-term memory into durable long-term memory.",
+                  "Sacrificing sleep impairs problem-solving, slows recall speed, and increases anxiety. Pairing 7.5 to 8 hours of consistent sleep with regular hydration and 20 minutes of daily outdoor movement keeps cognitive energy steady across the entire semester."
+                ],
+                highlightTitle: "Energy Rule",
+                highlightText: "Recovery is not the opposite of productivity—quality sleep and hydration are the biological fuel that makes focus possible."
+              }
+            ]
+          },
+          {
+            label: "Month 5: Weekly Planning",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 5: Time-Blocking • Lesson 1",
+                title: "Sunday Weekly Reviews & The 80/20 Buffer Rule",
+                paragraphs: [
+                  "Rigid schedules that pack every single hour from morning until night inevitably collapse the moment a bus runs late or a teacher assigns surprise homework. Once a packed schedule breaks, people often abandon planning altogether.",
+                  "Instead, spend 15 minutes every Sunday evening reviewing upcoming deadlines and time-blocking only 80% of your week—deliberately leaving 20% open as unscheduled 'Catch-Up Buffer Blocks' to absorb unexpected tasks calmly."
+                ],
+                highlightTitle: "Planning Habit",
+                highlightText: "Schedule 80% of your week and protect 20% as open buffer time so unexpected delays never derail you."
+              }
+            ]
+          },
+          {
+            label: "Month 6: Mastery",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 6: Sustainable Mastery • Capstone",
+                title: "Designing Your Long-Term Routine Without Burnout",
+                paragraphs: [
+                  "Over six months, you have built a complete personal operating system: prioritizing high-impact deadlines, defeating procrastination with 5-minute starter steps, protecting 45-minute distraction-free focus blocks, and honoring sleep and buffer time.",
+                  "Writing down your Top 3 priorities the evening before ensures you wake up every morning with clarity and momentum rather than decision fatigue."
+                ],
+                highlightTitle: "Course Milestone Unlocked",
+                highlightText: "You have completed Time and Energy Management! Test your mastery in the Month 1–6 Quizzes."
+              }
+            ]
+          }
         ]
       },
       media: {
@@ -528,20 +800,127 @@
               {
                 type: "lesson",
                 badge: "Month 1: Information Verification • Lesson 1",
-                title: "What is Media Literacy & Lateral Reading?",
+                title: "What is Media Literacy & Why Do Viral Claims Mislead Millions?",
                 paragraphs: [
-                  "Outrageous posts spread 6x faster than facts. Lateral reading means leaving a suspicious post immediately and checking whether independent, reputable news organizations confirm the claim."
+                  "Modern social media algorithms are engineered to maximize watch time and emotional engagement—not factual accuracy. Research shows that posts triggering outrage, fear, or shock spread up to six times faster than calm, verified reporting because strong emotions compel people to hit 'Share' before pausing to check the source.",
+                  "Media literacy equips you with the single most effective habit used by professional fact-checkers: Lateral Reading. Instead of staring closely at a suspicious post to judge whether its fonts or logos look official, you immediately open a new browser tab and search whether independent, reputable news outlets and official institutions confirm the claim.",
+                  "Practicing lateral reading protects you from forwarding panic-inducing rumors, fake school-closure notices, and fabricated scientific claims."
                 ],
-                highlightTitle: "Golden Rule",
-                highlightText: "Likes and shares are never proof of factual accuracy."
+                highlightTitle: "Golden Verification Rule",
+                highlightText: "High likes, views, or forwards from trusted relatives never prove that a post is factual—always verify outside the original post."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Information Verification • Concept Check",
+                title: "Quick Check: Applying Lateral Reading",
+                question: "A forwarded WhatsApp message claims all schools in your city are closed tomorrow due to an emergency, using urgent red siren emojis but linking no official government circular. What is the smartest action?",
+                options: [
+                  "Forward it immediately to every classmate.",
+                  "Open a new tab to check official education department portals and established local news outlets before acting or sharing.",
+                  "Assume it is true because a relative sent it.",
+                  "Skip morning preparation without checking."
+                ],
+                answer: 1,
+                explanation: "Lateral reading—checking official portals and credible news outlets independently—stops false rumors immediately."
               }
             ]
           },
-          { label: "Month 2: Hidden Ads", steps: [{ type: "lesson", badge: "Month 2 • Lesson 1", title: "Spotting Undisclosed Influencer Sponsorships", paragraphs: ["Check for promo codes, affiliate bio links, and one-sided hype before trusting creator endorsements."], highlightTitle: "Critical Lens", highlightText: "Separate independent reviews from paid ads." }] },
-          { label: "Month 3: Visual Forensics", steps: [{ type: "lesson", badge: "Month 3 • Lesson 1", title: "Reverse Image Search & Out-of-Context Media", paragraphs: ["Use reverse-image search to uncover when and where a viral photo was originally taken."], highlightTitle: "Visual Check", highlightText: "Old images are frequently recycled with misleading captions." }] },
-          { label: "Month 4: Algorithms", steps: [{ type: "lesson", badge: "Month 4 • Lesson 1", title: "Breaking Out of Algorithmic Echo Chambers", paragraphs: ["Algorithms repeat whatever you pause on. Actively compare evidence across multiple credible sources."], highlightTitle: "Awareness Habit", highlightText: "Question why a post was recommended to you." }] },
-          { label: "Month 5: Digital Privacy", steps: [{ type: "lesson", badge: "Month 5 • Lesson 1", title: "Protecting Personal Data & Digital Footprints", paragraphs: ["Never share home addresses, school IDs, or phone numbers in public comments or unverified giveaways."], highlightTitle: "Privacy Shield", highlightText: "Guard personal data like cash." }] },
-          { label: "Month 6: Mastery", steps: [{ type: "lesson", badge: "Month 6 • Capstone", title: "Responsible Digital Citizenship", paragraphs: ["Verify before sharing and help stop misinformation in your community."], highlightTitle: "Milestone Unlocked", highlightText: "Take the Media Literacy Quizzes!" }] }
+          {
+            label: "Month 2: Hidden Ads",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 2: Persuasion & Sponsorships • Lesson 1",
+                title: "Decoding Influencer Marketing & Undisclosed Brand Sponsorships",
+                paragraphs: [
+                  "Traditional television commercials clearly announce when an advertisement begins, whereas modern digital advertising often disguises itself as friendly advice from a favorite creator. Brands pay influencers to weave products casually into daily vlogs, 'unboxing' videos, and 'get ready with me' clips.",
+                  "To separate genuine product testing from paid promotion, look for three telltale signs: personalized affiliate discount codes (where the creator earns a commission on every sale), pinned purchase links in the description, and one-sided hype that ignores drawbacks or cheaper alternatives.",
+                  "Before spending money on any hyped product, cross-check independent consumer reviews and ingredient or specification comparisons."
+                ],
+                highlightTitle: "Critical Lens",
+                highlightText: "When a creator shares a personal promo code or affiliate link, treat the video as an advertisement rather than an independent review."
+              },
+              {
+                type: "check",
+                badge: "Month 2: Persuasion & Sponsorships • Concept Check",
+                title: "Quick Check: Spotting Sponsored Content",
+                question: "A creator calls a ₹2,000 skincare product 'my overnight miracle' and pins a personal 15% discount code in the comments. What does that discount code indicate?",
+                options: [
+                  "The creator likely earns an affiliate commission or sponsorship fee when viewers buy through that code.",
+                  "The product is guaranteed by doctors to work for everyone.",
+                  "The creator paid full retail price out of pocket.",
+                  "It is a government health subsidy."
+                ],
+                answer: 0,
+                explanation: "Affiliate codes track sales referred by the creator, signaling a financial incentive behind the endorsement."
+              }
+            ]
+          },
+          {
+            label: "Month 3: Visual Forensics",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 3: Visual Verification • Lesson 1",
+                title: "Reverse Image Search & Uncovering Out-of-Context Media",
+                paragraphs: [
+                  "Seeing is no longer believing online. One of the easiest ways misinformation spreads during storms, protests, or breaking news events is 'Out-of-Context Media'—where someone takes a real, dramatic photograph from five years ago or from another continent and attaches a false caption claiming 'Happening right now in our city!'",
+                  "Using a free Reverse Image Search tool (such as Google Lens or TinEye) lets you upload or right-click any suspicious photo to trace where and when it first appeared on the internet.",
+                  "Checking weather details, street signs, license plates, and upload timestamps takes less than 30 seconds and prevents you from falling for recycled clickbait."
+                ],
+                highlightTitle: "Visual Check",
+                highlightText: "Dramatic photos paired with breaking-news captions are frequently recycled from older events—always verify the original upload date."
+              }
+            ]
+          },
+          {
+            label: "Month 4: Algorithms",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 4: Algorithmic Awareness • Lesson 1",
+                title: "How Recommendation Algorithms Create Filter Bubbles & Echo Chambers",
+                paragraphs: [
+                  "Every time you pause on a video, replay a clip, or leave an angry comment, recommendation algorithms log that behavior and immediately serve you dozens more posts with the exact same viewpoint. Over weeks, this builds an 'Echo Chamber'—making one extreme perspective appear unanimous while hiding counter-evidence.",
+                  "Intellectual independence requires intentionally stepping outside your automated feed: read full articles beyond sensational headlines, check whether claims cite primary data or peer-reviewed research, and compare multiple credible perspectives before forming strong opinions."
+                ],
+                highlightTitle: "Awareness Habit",
+                highlightText: "Your social feed is a personalized mirror of past clicks—not an objective window into the entire world."
+              }
+            ]
+          },
+          {
+            label: "Month 5: Digital Privacy",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 5: Data Protection • Lesson 1",
+                title: "Safeguarding Your Personal Information & Permanent Digital Footprint",
+                paragraphs: [
+                  "Every comment, photo, location tag, and online form you submit contributes to your permanent Digital Footprint. Even if you delete a post minutes later, automated scrapers or screenshots may already have saved copies.",
+                  "Protect your physical safety and identity by never posting your home address, school ID card, phone number, or live real-time location publicly. Beware of viral 'personality quizzes' or 'free giveaway' forms that ask for your birth date, mother's maiden name, or phone number—scammers use those exact answers to guess security questions and reset passwords."
+                ],
+                highlightTitle: "Privacy Shield",
+                highlightText: "Guard personal data like cash—never trade your address, ID details, or phone number for online giveaways or viral quizzes."
+              }
+            ]
+          },
+          {
+            label: "Month 6: Mastery",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 6: Media Mastery • Capstone",
+                title: "Becoming a Responsible, Fact-Driven Digital Citizen",
+                paragraphs: [
+                  "Across six months of Media Literacy, you have mastered lateral reading, spotting hidden sponsorships, reverse-image forensics, breaking algorithmic echo chambers, and protecting personal privacy.",
+                  "Whenever you see a sensational claim in a family or friend group chat, pausing to share a polite, evidence-backed clarification helps elevate the information quality of your entire community."
+                ],
+                highlightTitle: "Course Milestone Unlocked",
+                highlightText: "You have completed Media Literacy! Test your verification instincts in the Month 1–6 Quizzes."
+              }
+            ]
+          }
         ]
       },
       mental: {
@@ -555,20 +934,126 @@
               {
                 type: "lesson",
                 badge: "Month 1: Authentic Confidence • Lesson 1",
-                title: "What is Authentic Self-Confidence?",
+                title: "What is Authentic Self-Confidence & How Do You Build It?",
                 paragraphs: [
-                  "Authentic confidence is not the absence of fear—it is trusting that you can prepare, try, adapt, and learn even when stepping outside your comfort zone."
+                  "One of the biggest myths in school and career life is that confident people never feel nervous, awkward, or uncertain. In reality, authentic confidence is not the absence of fear—it is self-trust: knowing that even if your hands shake or you stumble over a sentence, you can recover, adapt, and keep going.",
+                  "Confidence cannot be built simply by wishing for fear to disappear before you act; it is built through preparation and small repeated actions—practicing presentations out loud, maintaining steady posture and eye contact, and keeping small daily promises to yourself.",
+                  "When you speak clearly at a calm pace and pause instead of rushing, audiences immediately perceive poise and credibility."
                 ],
                 highlightTitle: "Mindset Shift",
-                highlightText: "Action builds confidence; waiting for fear to vanish keeps you stuck."
+                highlightText: "Courage comes first; authentic confidence is the natural result of stepping up and practicing despite nerves."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Authentic Confidence • Concept Check",
+                title: "Quick Check: Recovering From a Presentation Slip",
+                question: "Midway through a class speech in front of 100 students, you lose your place and misstate a sentence. What demonstrates real composure and confidence?",
+                options: [
+                  "Apologize five times and walk back to your seat.",
+                  "Take a calm 2-second breath, say 'Let me rephrase that clearly,' and continue smoothly.",
+                  "Blame the audience for distracting you.",
+                  "Rush through the rest of your notes at triple speed without breathing."
+                ],
+                answer: 1,
+                explanation: "A brief, calm pause and self-correction shows poise and signals to the audience that you are completely in control."
               }
             ]
           },
-          { label: "Month 2: Stress Reset", steps: [{ type: "lesson", badge: "Month 2 • Lesson 1", title: "Physiological Breathing & Grounding", paragraphs: ["Two quick nasal inhales followed by a long mouth exhale calms a racing heart within 60 seconds."], highlightTitle: "Instant Reset", highlightText: "Longer exhales activate your body's calming response." }] },
-          { label: "Month 3: Feedback", steps: [{ type: "lesson", badge: "Month 3 • Lesson 1", title: "Separating Your Identity From Critique", paragraphs: ["Treat constructive feedback on your project as free coaching rather than a personal attack."], highlightTitle: "Growth Habit", highlightText: "Extract useful edits and level up." }] },
-          { label: "Month 4: Boundaries", steps: [{ type: "lesson", badge: "Month 4 • Lesson 1", title: "Saying 'No' Respectfully", paragraphs: ["Clear, polite boundaries protect your mental energy from burnout and overcommitment."], highlightTitle: "Boundary Rule", highlightText: "Honest limits build stronger respect." }] },
-          { label: "Month 5: Reframing", steps: [{ type: "lesson", badge: "Month 5 • Lesson 1", title: "Challenging All-or-Nothing Self-Talk", paragraphs: ["Replace 'I failed' with 'This strategy didn't work yet—here is my next adjustment.'"], highlightTitle: "Reframing Shift", highlightText: "Keep setbacks temporary and solvable." }] },
-          { label: "Month 6: Mastery", steps: [{ type: "lesson", badge: "Month 6 • Capstone", title: "Lifelong Emotional Resilience", paragraphs: ["Carry grounding tools, boundaries, and composed self-trust into every challenge."], highlightTitle: "Milestone Unlocked", highlightText: "Test your skills in the Mental Health & Confidence Quizzes!" }] }
+          {
+            label: "Month 2: Stress Reset",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 2: Nervous System Regulation • Lesson 1",
+                title: "Physiological Grounding & De-Escalating Exam Overwhelm",
+                paragraphs: [
+                  "When high-stakes exams, deadlines, or social pressure trigger a racing heart and shallow breathing, telling yourself 'stop stressing' rarely works because your body's sympathetic fight-or-flight response has already been activated.",
+                  "Neuroscientists have identified one of the fastest ways to calm the nervous system in real time: the Physiological Sigh. Take two quick inhales through your nose (a deep breath followed by a short top-off inhale to expand lung air sacs) and then release one long, slow exhale through your mouth.",
+                  "Repeating three physiological sighs sends an immediate signal via the vagus nerve to slow your heart rate within 60 seconds, restoring clear thinking before an exam or speech."
+                ],
+                highlightTitle: "Instant Reset",
+                highlightText: "Making your exhale longer than your inhale activates your body's natural calming response within 60 seconds."
+              },
+              {
+                type: "check",
+                badge: "Month 2: Nervous System Regulation • Concept Check",
+                title: "Quick Check: Calming Pre-Exam Anxiety",
+                question: "Three minutes before a major exam begins, your heart is racing and your thoughts feel scattered. Which physical technique rapidly slows your heart rate?",
+                options: [
+                  "Three physiological sighs (double nasal inhale followed by a long, slow mouth exhale).",
+                  "Holding your breath for as long as possible.",
+                  "Fast, shallow breathing.",
+                  " frantically flipping through ten chapters at once."
+                ],
+                answer: 0,
+                explanation: "Long, controlled exhales stimulate the parasympathetic nervous system and quickly reduce acute physical stress."
+              }
+            ]
+          },
+          {
+            label: "Month 3: Feedback",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 3: Growth & Critique • Lesson 1",
+                title: "Separating Your Personal Identity From Constructive Feedback",
+                paragraphs: [
+                  "Receiving critical feedback on an essay, coding project, or presentation often triggers defensiveness because our brains confuse 'My draft has flaws' with 'I am not smart enough.'",
+                  "High performers treat every project as an evolving prototype and view constructive critique as free expert coaching. When a teacher or mentor points out weak sections, separate your self-worth from the draft, ask 'Which specific change will make this work stronger?', and apply the insight immediately."
+                ],
+                highlightTitle: "Growth Habit",
+                highlightText: "Feedback evaluates a current draft—never your permanent potential. Extract the useful edit and level up."
+              }
+            ]
+          },
+          {
+            label: "Month 4: Boundaries",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 4: Assertive Communication • Lesson 1",
+                title: "Setting Healthy Boundaries & Saying 'No' Respectfully",
+                paragraphs: [
+                  "Saying 'yes' to every last-minute favor out of fear of disappointing people inevitably leads to exhaustion, missed personal deadlines, and quiet resentment. Healthy boundaries protect your mental bandwidth so you can show up reliably for your real commitments.",
+                  "Assertive communication is warm, direct, and honest—without aggression or guilt. Saying 'I can't take that on tonight because I'm studying for tomorrow's test, but I can help tomorrow afternoon' communicates clear limits while preserving mutual respect."
+                ],
+                highlightTitle: "Boundary Rule",
+                highlightText: "Clear, polite honesty is far kinder than saying yes and burning yourself out or failing to follow through."
+              }
+            ]
+          },
+          {
+            label: "Month 5: Reframing",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 5: Cognitive Reframing • Lesson 1",
+                title: "Challenging All-or-Nothing Self-Talk & Social Comparison",
+                paragraphs: [
+                  "During setbacks, automatic inner self-talk often slips into permanent exaggerations like 'I failed this quiz, so I am terrible at math.' Cognitive reframing trains you to replace distorted labels with accurate, actionable reality: 'I missed three questions on quadratic equations, which shows me the exact topic to practice tonight.'",
+                  "Similarly, avoid comparing your behind-the-scenes daily struggle against other people's curated social media highlight reels—measure your progress against who you were last month."
+                ],
+                highlightTitle: "Reframing Shift",
+                highlightText: "Replace permanent self-labels ('I'm hopeless') with temporary, solvable next steps ('Here is what I'll practice next')."
+              }
+            ]
+          },
+          {
+            label: "Month 6: Mastery",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 6: Emotional Resilience • Capstone",
+                title: "Sustaining Mental Fitness Through Life's Big Transitions",
+                paragraphs: [
+                  "Over six months, you have assembled a lifelong toolkit for emotional resilience: building confidence through action, resetting acute stress with physiological breathing, welcoming feedback, protecting boundaries, and reframing setbacks.",
+                  "Carrying these daily habits into college, careers, and leadership lets you navigate pressure with grounded calm and steady self-trust."
+                ],
+                highlightTitle: "Course Milestone Unlocked",
+                highlightText: "You have completed Mental Health, Stress & Confidence! Test your mastery in the Month 1–6 Quizzes."
+              }
+            ]
+          }
         ]
       },
       skillcraft: {
@@ -582,20 +1067,126 @@
               {
                 type: "lesson",
                 badge: "Month 1: Visual Observation • Lesson 1",
-                title: "What is SkillCraft & Why Does Art Appreciation Matter?",
+                title: "What is SkillCraft & Why Does Art & Culture Appreciation Matter?",
                 paragraphs: [
-                  "SkillCraft trains you to slow down and decode how painters, architects, filmmakers, and artisans use light, proportion, and symbolism to communicate human stories across centuries."
+                  "In a fast-scrolling digital world, the average museum visitor glances at a painting for less than three seconds before moving on—missing 95% of the craft, symbolism, and human emotion embedded inside the work. SkillCraft trains you to slow down and decode the visual and cultural language behind human creativity.",
+                  "Artists, designers, and filmmakers use deliberate tools—such as warm-vs-cool color temperature and strong light-and-shadow contrast—to guide where your eyes look first and how a scene makes you feel.",
+                  "Developing this visual literacy enriches how you experience galleries, cinema, music, and travel while sharpening your own design instincts for presentations and photography."
                 ],
-                highlightTitle: "Observer's Rule",
-                highlightText: "Every line, shadow, and color choice in great art is deliberate."
+                highlightTitle: "The Observer's Rule",
+                highlightText: "Great art never shouts randomly—every line, shadow, and color choice guides your attention with purpose."
+              },
+              {
+                type: "check",
+                badge: "Month 1: Visual Observation • Concept Check",
+                title: "Quick Check: Color Temperature & Light Contrast",
+                question: "In a classic painting or film frame, why does an artist surround a warm golden-lit subject with deep, cool blue shadows?",
+                options: [
+                  "Because they ran out of warm paint.",
+                  "To create visual contrast that immediately pulls the viewer's eye to the focal point and establishes mood.",
+                  "To hide the main character from the audience.",
+                  "Color contrast has no effect on human perception."
+                ],
+                answer: 1,
+                explanation: "Warm-vs-cool contrast is a foundational visual technique used to establish focal point and emotional atmosphere."
               }
             ]
           },
-          { label: "Month 2: Composition", steps: [{ type: "lesson", badge: "Month 2 • Lesson 1", title: "Rule of Thirds, Leading Lines & Negative Space", paragraphs: ["Off-center focal points and architectural leading lines create visual movement and balance."], highlightTitle: "Composition Clue", highlightText: "Negative space gives the viewer's eye room to breathe." }] },
-          { label: "Month 3: Architecture", steps: [{ type: "lesson", badge: "Month 3 • Lesson 1", title: "Form Follows Function in Built Heritage", paragraphs: ["From stepwells engineered to harvest monsoon water to ventilated courtyards, buildings reflect climate and culture."], highlightTitle: "Architectural Lens", highlightText: "Great architecture harmonizes beauty with human utility." }] },
-          { label: "Month 4: Cinema Craft", steps: [{ type: "lesson", badge: "Month 4 • Lesson 1", title: "Camera Angles, Pacing & Musical Subtext", paragraphs: ["Low angles convey power, high angles convey vulnerability, and score tempo shapes suspense."], highlightTitle: "Cinema Insight", highlightText: "Watch a scene muted to see how framing tells the story." }] },
-          { label: "Month 5: Cultural Traditions", steps: [{ type: "lesson", badge: "Month 5 • Lesson 1", title: "Living Crafts, Textiles & Folk Storytelling", paragraphs: ["Handloom weaving, block printing, and pottery preserve centuries of regional geometry and natural chemistry."], highlightTitle: "Cultural Appreciation", highlightText: "Traditional crafts carry living community history." }] },
-          { label: "Month 6: Mastery", steps: [{ type: "lesson", badge: "Month 6 • Capstone", title: "Creative Fluency in Everyday Life", paragraphs: ["Apply composition, color harmony, and cultural curiosity to presentations, photography, and travel."], highlightTitle: "Milestone Unlocked", highlightText: "Take the SkillCraft Quizzes!" }] }
+          {
+            label: "Month 2: Composition",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 2: Framing & Balance • Lesson 1",
+                title: "The Rule of Thirds, Leading Lines & Negative Space",
+                paragraphs: [
+                  "Beginners almost always place their subject dead-center in every photograph or slide, which often creates a stiff, static image. Visual artists use the Rule of Thirds—dividing a frame into a 3×3 grid and placing key subjects along off-center intersections—to create natural balance and visual energy.",
+                  "They also use 'Leading Lines' (such as pathways, rivers, staircases, or architectural arches) to pull the viewer's gaze smoothly through the image toward the focal point.",
+                  "Equally important is 'Negative Space'—deliberate empty area around a subject that prevents clutter and conveys calm, scale, or solitude."
+                ],
+                highlightTitle: "Composition Clue",
+                highlightText: "Empty negative space is never wasted space—it gives the viewer's eye room to breathe and makes the subject stand out."
+              },
+              {
+                type: "check",
+                badge: "Month 2: Framing & Balance • Concept Check",
+                title: "Quick Check: Architectural Photography Framing",
+                question: "How do 'Leading Lines' improve a photograph or painting?",
+                options: [
+                  "Roads, arches, or pathways naturally guide the viewer's eye through the frame toward the main subject.",
+                  "They erase the background completely.",
+                  "They force everything into the dead center.",
+                  "They add random clutter."
+                ],
+                answer: 0,
+                explanation: "Leading lines create visual depth and direct viewer attention intentionally."
+              }
+            ]
+          },
+          {
+            label: "Month 3: Architecture",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 3: Built Heritage • Lesson 1",
+                title: "Form Follows Function: Reading Historical & Modern Architecture",
+                paragraphs: [
+                  "Buildings are three-dimensional history books written in stone, brick, timber, and glass. The core architectural principle 'Form Follows Function' explains that great structures are shaped by human purpose, local materials, and climate.",
+                  "In arid regions of western India, ancient architects engineered intricate subterranean Stepwells (like Rani ki Vav) that harvested seasonal monsoon rainwater while naturally dropping air temperatures by 5°C–6°C at the bottom. Similarly, traditional ventilated courtyards and lattice screens (jalis) cooled homes centuries before electric air conditioning."
+                ],
+                highlightTitle: "Architectural Lens",
+                highlightText: "When exploring any monument or modern skyscraper, look at how climate, light, and human utility shaped its structure."
+              }
+            ]
+          },
+          {
+            label: "Month 4: Cinema Craft",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 4: Film & Sound • Lesson 1",
+                title: "Camera Angles, Visual Pacing & Musical Subtext in Cinema",
+                paragraphs: [
+                  "Great cinema communicates emotion visually before a single line of dialogue is spoken. Shooting a character from a low camera angle (looking upward) makes them appear heroic, powerful, or imposing, whereas a high-angle shot looking down conveys vulnerability or isolation.",
+                  "Meanwhile, editing rhythm and musical score subtly guide your heartbeat—slowing tempo during quiet reflection and accelerating tension before a plot twist. Try watching a favorite movie scene once with the sound completely muted to see how much story the camera framing tells alone."
+                ],
+                highlightTitle: "Cinema Insight",
+                highlightText: "Camera angles, lighting, and musical tempo silently shape how an audience feels about every character."
+              }
+            ]
+          },
+          {
+            label: "Month 5: Cultural Traditions",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 5: Living Crafts • Lesson 1",
+                title: "Preserving Traditional Crafts, Textiles & Folk Storytelling",
+                paragraphs: [
+                  "Across India and the world, living craft traditions—such as Ajrakh and Bagru hand-block printing, Banarasi and Kanjeevaram handloom weaving, terracotta pottery, and folk theatre—carry centuries of regional geometry, natural dye chemistry, and oral history.",
+                  "Behind a single hand-printed textile lies a multi-stage process using carved wooden blocks, natural indigo, madder root, and mineral pigments developed through generations of sustainable ecological knowledge."
+                ],
+                highlightTitle: "Cultural Appreciation",
+                highlightText: "Traditional crafts are living archives of mathematics, natural chemistry, and community storytelling."
+              }
+            ]
+          },
+          {
+            label: "Month 6: Mastery",
+            steps: [
+              {
+                type: "lesson",
+                badge: "Month 6: Cultural Fluency • Capstone",
+                title: "Bringing Creative Observation Into Everyday Life & Design",
+                paragraphs: [
+                  "Over six months of SkillCraft, you have trained your eye to recognize light contrast, Rule of Thirds composition, climate-responsive architecture, cinematic framing, and living cultural heritage.",
+                  "These exact principles elevate your everyday work—whether designing clean competition presentation slides, taking memorable photographs, or exploring new cities with deeper curiosity."
+                ],
+                highlightTitle: "Course Milestone Unlocked",
+                highlightText: "You have completed SkillCraft! Test your visual and cultural fluency in the Month 1–6 Quizzes."
+              }
+            ]
+          }
         ]
       }
     };
@@ -622,7 +1213,7 @@
             <p class="card-desc">${course.desc}</p>
           </div>
           <div class="card-meta">
-            <span class="track-info">6 Months • Sequential Lessons</span>
+            <span class="track-info">6 Months • Full Mastery Lessons</span>
             <button type="button" class="btn-chapter-start">Start Chapter 1 →</button>
           </div>
         `;
