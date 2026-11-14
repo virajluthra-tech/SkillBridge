@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0066cc" />
+  <link rel="manifest" href="manifest.json" />
   <title>SkillBridge – About Us &amp; Plans</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap)" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body { background-color: #f4f7fa; color: #111827; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: #f4f7fa; color: #111827; padding-bottom: 70px; }
 
     nav {
       background-color: #0b162c; color: #ffffff; display: flex; justify-content: space-between;
@@ -20,47 +22,47 @@
       height: 100%; display: flex; align-items: center; padding: 0 16px; transition: 0.2s;
     }
     .nav-links a.active, .nav-links a:hover { background-color: #0066cc; color: #ffffff; }
-    .btn-login {
-      background-color: #0066cc; color: #ffffff; padding: 8px 20px; border-radius: 20px;
-      font-weight: 600; font-size: 0.9rem; text-decoration: none;
+    .status-pill {
+      background-color: #0066cc; color: #ffffff; padding: 7px 16px; border-radius: 20px;
+      font-weight: 700; font-size: 0.82rem; text-decoration: none; white-space: nowrap;
     }
+    .status-pill.premium { background-color: #10b981; }
 
     .page-banner {
       background: linear-gradient(135deg, #0066cc, #004c99); color: #ffffff;
-      padding: 55px 5%; text-align: center;
+      padding: 50px 5%; text-align: center;
     }
-    .page-banner h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 12px; }
-    .page-banner p { font-size: 1.1rem; color: #e0f2fe; max-width: 680px; margin: 0 auto; }
+    .page-banner h1 { font-size: 2.35rem; font-weight: 800; margin-bottom: 10px; }
+    .page-banner p { font-size: 1.05rem; color: #e0f2fe; max-width: 680px; margin: 0 auto; }
 
-    .container { max-width: 1040px; margin: 0 auto; padding: 60px 24px 80px; }
+    .container { max-width: 1040px; margin: 0 auto; padding: 50px 20px 80px; }
 
     .mission-card {
-      background: #ffffff; border-radius: 22px; padding: 42px; margin-bottom: 50px;
+      background: #ffffff; border-radius: 22px; padding: 36px; margin-bottom: 45px;
       border: 1px solid #e2e8f0; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
     }
-    .mission-card h2 { font-size: 1.85rem; font-weight: 800; color: #0f172a; margin-bottom: 16px; }
-    .mission-card p { font-size: 1.08rem; color: #475569; line-height: 1.75; margin-bottom: 16px; }
+    .mission-card h2 { font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 14px; }
+    .mission-card p { font-size: 1.05rem; color: #475569; line-height: 1.7; margin-bottom: 14px; }
 
-    /* Two Subscription Tiers */
-    .plans-title { text-align: center; font-size: 2rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
-    .plans-subtitle { text-align: center; color: #64748b; margin-bottom: 36px; font-size: 1.05rem; }
+    .plans-title { text-align: center; font-size: 1.95rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+    .plans-subtitle { text-align: center; color: #64748b; margin-bottom: 32px; font-size: 1.02rem; }
 
-    .plans-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .plans-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
     .plan-card {
-      background: #ffffff; border-radius: 22px; padding: 38px; border: 2px solid #e2e8f0;
+      background: #ffffff; border-radius: 22px; padding: 34px; border: 2px solid #e2e8f0;
       box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06); display: flex; flex-direction: column; justify-content: space-between;
     }
     .plan-card.featured { border-color: #0066cc; position: relative; }
     .popular-badge {
-      position: absolute; top: -14px; right: 28px; background: #0066cc; color: #ffffff;
-      font-size: 0.78rem; font-weight: 700; padding: 5px 14px; border-radius: 20px; text-transform: uppercase;
+      position: absolute; top: -14px; right: 24px; background: #0066cc; color: #ffffff;
+      font-size: 0.76rem; font-weight: 700; padding: 5px 14px; border-radius: 20px; text-transform: uppercase;
     }
-    .plan-name { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 8px; }
-    .plan-price { font-size: 2.4rem; font-weight: 800; color: #0066cc; margin-bottom: 20px; }
-    .plan-price span { font-size: 1rem; font-weight: 500; color: #64748b; }
-    .plan-features { list-style: none; margin-bottom: 30px; }
+    .plan-name { font-size: 1.38rem; font-weight: 800; color: #0f172a; margin-bottom: 8px; }
+    .plan-price { font-size: 2.3rem; font-weight: 800; color: #0066cc; margin-bottom: 18px; }
+    .plan-price span { font-size: 0.98rem; font-weight: 500; color: #64748b; }
+    .plan-features { list-style: none; margin-bottom: 28px; }
     .plan-features li {
-      padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #334155; font-size: 1rem;
+      padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #334155; font-size: 0.98rem;
       display: flex; align-items: center; gap: 10px;
     }
     .btn-plan {
@@ -68,42 +70,50 @@
       text-decoration: none; font-size: 1rem; border: none; cursor: pointer; transition: 0.2s;
     }
     .btn-free { background: #e2e8f0; color: #1e293b; }
-    .btn-free:hover { background: #cbd5e1; }
     .btn-premium { background: #0066cc; color: #ffffff; }
-    .btn-premium:hover { background: #0052a3; }
     .btn-premium.purchased { background: #10b981; cursor: default; }
 
-    /* Payment Confirmation Modal */
+    /* Modal */
     .modal-overlay {
-      display: none; position: fixed; inset: 0; background: rgba(11, 22, 44, 0.65);
+      display: none; position: fixed; inset: 0; background: rgba(11, 22, 44, 0.68);
       z-index: 2000; align-items: center; justify-content: center; padding: 20px;
     }
     .modal-overlay.show { display: flex; }
     .modal-box {
-      background: #ffffff; border-radius: 22px; max-width: 440px; width: 100%; padding: 36px;
-      text-align: center; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25); animation: popIn 0.2s ease;
+      background: #ffffff; border-radius: 22px; max-width: 440px; width: 100%; padding: 34px;
+      text-align: center; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
     }
-    @keyframes popIn {
-      from { transform: scale(0.92); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    .modal-icon { font-size: 3rem; margin-bottom: 14px; }
-    .modal-box h3 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
-    .modal-box p { font-size: 1rem; color: #475569; line-height: 1.6; margin-bottom: 26px; }
+    .modal-icon { font-size: 3rem; margin-bottom: 12px; }
+    .modal-box h3 { font-size: 1.45rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+    .modal-box p { font-size: 0.98rem; color: #475569; line-height: 1.6; margin-bottom: 24px; }
     .modal-actions { display: flex; gap: 12px; justify-content: center; }
     .btn-modal-cancel {
-      background: #e2e8f0; color: #334155; border: none; padding: 12px 24px;
-      border-radius: 24px; font-weight: 700; font-size: 0.95rem; cursor: pointer;
+      background: #e2e8f0; color: #334155; border: none; padding: 12px 22px;
+      border-radius: 24px; font-weight: 700; font-size: 0.94rem; cursor: pointer;
     }
     .btn-modal-confirm {
-      background: #0066cc; color: #ffffff; border: none; padding: 12px 26px;
-      border-radius: 24px; font-weight: 700; font-size: 0.95rem; cursor: pointer;
+      background: #0066cc; color: #ffffff; border: none; padding: 12px 24px;
+      border-radius: 24px; font-weight: 700; font-size: 0.94rem; cursor: pointer;
     }
-    .btn-modal-confirm:hover { background: #0052a3; }
 
-    footer { background-color: #0b162c; color: #94a3b8; text-align: center; padding: 28px; font-size: 0.9rem; }
+    /* Mobile Bottom Nav */
+    .mobile-bottom-nav {
+      display: none; position: fixed; bottom: 0; left: 0; right: 0; height: 64px;
+      background: #0b162c; border-top: 1px solid #1e293b; z-index: 1500;
+      justify-content: space-around; align-items: center;
+    }
+    .mobile-tab {
+      color: #94a3b8; text-decoration: none; font-size: 0.72rem; font-weight: 600;
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+    }
+    .mobile-tab span.icon { font-size: 1.25rem; }
+    .mobile-tab.active { color: #38bdf8; }
 
-    @media (max-width: 780px) {
+    footer { background-color: #0b162c; color: #94a3b8; text-align: center; padding: 26px; font-size: 0.88rem; }
+
+    @media (max-width: 850px) {
+      .nav-links { display: none; }
+      .mobile-bottom-nav { display: flex; }
       .plans-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -118,7 +128,7 @@
       <a href="quizzes.html">Quizzes &amp; Examples</a>
       <a href="about.html" class="active">About Us</a>
     </div>
-    <a href="#plans" class="btn-login">Plans &amp; Access</a>
+    <a href="#plans" id="plan-status-pill" class="status-pill">Free (5/5 left)</a>
   </nav>
 
   <div class="page-banner">
@@ -130,16 +140,16 @@
     <div class="mission-card">
       <h2>Why We Built SkillBridge</h2>
       <p>
-        Traditional schooling equips students with academic formulas and historical dates, yet leaves major gaps when it comes to practical adulting—like budgeting pocket money, spotting digital scams, cooking safely, managing burnout, or appreciating art and culture.
+        Traditional schooling equips students with academic formulas and historical dates, yet leaves major gaps when it comes to practical adulting—like budgeting pocket money, understanding taxes, cooking safely, managing burnout, or appreciating art and culture.
       </p>
       <p>
-        Created by a student team working alongside dedicated mentors, SkillBridge turns these six essential life pillars into a structured, multi-month learning curriculum paired with real-world case studies and progressive quizzes.
+        SkillBridge turns these six essential life pillars into a structured 6-month learning curriculum paired with 36 monthly real-world case studies and progressive mastery quizzes.
       </p>
     </div>
 
     <div id="plans">
       <h2 class="plans-title">Simple, Accessible Learning Plans</h2>
-      <p class="plans-subtitle">Start learning for free or unlock unlimited daily progression across all 6 tracks.</p>
+      <p class="plans-subtitle">Free Explorer allows 5 lessons per day. Upgrade to Premium Mastery for unlimited daily access.</p>
 
       <div class="plans-grid">
         <div class="plan-card">
@@ -148,9 +158,9 @@
             <div class="plan-price">₹0 <span>/ forever</span></div>
             <ul class="plan-features">
               <li>✓ Access to all 6 core life-skill tracks</li>
-              <li>✓ Up to <strong>5 lessons per day</strong> across the platform</li>
-              <li>✓ Real-life case study examples</li>
-              <li>✓ Interactive topic practice quizzes</li>
+              <li>✓ Strict limit of <strong>5 lesson steps per day</strong></li>
+              <li>✓ 36 monthly real-life case study examples</li>
+              <li>✓ Sequential Month 1–6 mastery quizzes</li>
             </ul>
           </div>
           <a href="lessons.html" class="btn-plan btn-free">Start Free Today</a>
@@ -162,10 +172,10 @@
             <div class="plan-name">Premium Mastery</div>
             <div class="plan-price">₹150 <span>/ month</span></div>
             <ul class="plan-features">
-              <li>✓ <strong>Unlimited lessons</strong> every day with zero restrictions</li>
+              <li>✓ <strong>Unlimited lessons</strong> every day—removes the 5/day limit</li>
               <li>✓ Full access to all 6-month mastery roadmaps</li>
-              <li>✓ Complete library of real-world scenarios &amp; quizzes</li>
-              <li>✓ Priority access to new SkillCraft &amp; Finance modules</li>
+              <li>✓ Complete library of 36 real-world scenarios &amp; quizzes</li>
+              <li>✓ Instant activation across the entire app</li>
             </ul>
           </div>
           <button type="button" id="btn-unlock-premium" class="btn-plan btn-premium" onclick="openPurchaseModal()">
@@ -173,15 +183,20 @@
           </button>
         </div>
       </div>
+
+      <div style="text-align: center; margin-top: 26px;">
+        <button type="button" onclick="resetDemoState()" style="background:none; border:none; color:#64748b; text-decoration:underline; font-size:0.85rem; cursor:pointer;">
+          (Demo Reset: Reset Daily Lesson Limit &amp; Lock Status for Judges)
+        </button>
+      </div>
     </div>
   </main>
 
-  <!-- Purchase Confirmation Modal -->
   <div class="modal-overlay" id="purchase-modal">
     <div class="modal-box" id="modal-step-confirm">
       <div class="modal-icon">💳</div>
       <h3>Purchase Premium Mastery?</h3>
-      <p>Would you like to purchase <strong>Premium Mastery (₹150 / month)</strong> for unlimited daily lessons across all 6 SkillBridge tracks?</p>
+      <p>Would you like to purchase <strong>Premium Mastery (₹150 / month)</strong> to remove the 5-lesson daily limit and unlock unlimited access?</p>
       <div class="modal-actions">
         <button type="button" class="btn-modal-cancel" onclick="closePurchaseModal()">Cancel</button>
         <button type="button" class="btn-modal-confirm" onclick="completePurchase()">Confirm &amp; Pay ₹150</button>
@@ -191,7 +206,7 @@
     <div class="modal-box" id="modal-step-success" style="display:none;">
       <div class="modal-icon">🎉</div>
       <h3>Payment Successful!</h3>
-      <p>Thank you! Your <strong>Premium Mastery</strong> plan (₹150/month) is now active. You have unlimited access to all lessons and tracks.</p>
+      <p>Your <strong>Premium Mastery</strong> plan (₹150/month) is now active! The 5-lesson daily restriction has been removed across all courses.</p>
       <div class="modal-actions">
         <button type="button" class="btn-modal-confirm" onclick="closePurchaseModal()">Done</button>
       </div>
@@ -202,7 +217,35 @@
     <p>&copy; 2026 SkillBridge — Bridging the gap between classroom education and real-world readiness.</p>
   </footer>
 
+  <div class="mobile-bottom-nav">
+    <a href="index.html" class="mobile-tab"><span class="icon">🏠</span>Home</a>
+    <a href="lessons.html" class="mobile-tab"><span class="icon">📚</span>Lessons</a>
+    <a href="quizzes.html" class="mobile-tab"><span class="icon">🎯</span>Quizzes</a>
+    <a href="about.html" class="mobile-tab active"><span class="icon">💎</span>Plans</a>
+  </div>
+
   <script>
+    function syncUIState() {
+      const isPremium = localStorage.getItem("skillbridge_premium") === "true";
+      const pill = document.getElementById("plan-status-pill");
+      const unlockBtn = document.getElementById("btn-unlock-premium");
+
+      if (isPremium) {
+        pill.innerText = "★ Premium Active";
+        pill.classList.add("premium");
+        unlockBtn.innerText = "✓ Premium Mastery Active";
+        unlockBtn.classList.add("purchased");
+        unlockBtn.onclick = null;
+        document.getElementById("plan-badge").innerText = "Active Plan";
+      } else {
+        const today = new Date().toDateString();
+        const savedDate = localStorage.getItem("skillbridge_date");
+        const count = savedDate === today ? parseInt(localStorage.getItem("skillbridge_daily_count") || "0", 10) : 0;
+        const left = Math.max(0, 5 - count);
+        pill.innerText = `Free (${left}/5 left today)`;
+      }
+    }
+
     function openPurchaseModal() {
       document.getElementById("modal-step-confirm").style.display = "block";
       document.getElementById("modal-step-success").style.display = "none";
@@ -210,20 +253,24 @@
     }
 
     function completePurchase() {
+      localStorage.setItem("skillbridge_premium", "true");
       document.getElementById("modal-step-confirm").style.display = "none";
       document.getElementById("modal-step-success").style.display = "block";
-
-      const unlockBtn = document.getElementById("btn-unlock-premium");
-      unlockBtn.innerText = "✓ Premium Mastery Active";
-      unlockBtn.classList.add("purchased");
-      unlockBtn.onclick = null;
-      document.getElementById("plan-badge").innerText = "Active Plan";
+      syncUIState();
     }
 
     function closePurchaseModal() {
       document.getElementById("purchase-modal").classList.remove("show");
     }
-  </script>
 
+    function resetDemoState() {
+      localStorage.removeItem("skillbridge_premium");
+      localStorage.removeItem("skillbridge_daily_count");
+      alert("Demo reset! Your app is back on the Free Explorer plan (5 lessons/day).");
+      location.reload();
+    }
+
+    syncUIState();
+  </script>
 </body>
 </html>

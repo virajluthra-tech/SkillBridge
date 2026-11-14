@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SkillBridge – Real-Life Examples &amp; Interactive Quizzes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0066cc" />
+  <link rel="manifest" href="manifest.json" />
+  <title>SkillBridge – 6-Month Examples &amp; Progressive Quizzes</title>
+  <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap)" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body { background-color: #f4f7fa; color: #111827; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: #f4f7fa; color: #111827; padding-bottom: 70px; }
 
     nav {
       background-color: #0b162c; color: #ffffff; display: flex; justify-content: space-between;
@@ -20,108 +22,133 @@
       height: 100%; display: flex; align-items: center; padding: 0 16px; transition: 0.2s;
     }
     .nav-links a.active, .nav-links a:hover { background-color: #0066cc; color: #ffffff; }
-    .btn-login {
-      background-color: #0066cc; color: #ffffff; padding: 8px 20px; border-radius: 20px;
-      font-weight: 600; font-size: 0.9rem; text-decoration: none;
+    .status-pill {
+      background-color: #0066cc; color: #ffffff; padding: 7px 16px; border-radius: 20px;
+      font-weight: 700; font-size: 0.82rem; text-decoration: none; white-space: nowrap;
     }
+    .status-pill.premium { background-color: #10b981; }
 
     .page-banner {
       background: linear-gradient(135deg, #0066cc, #004c99); color: #ffffff;
-      padding: 50px 5%; text-align: center;
+      padding: 48px 5%; text-align: center;
     }
-    .page-banner h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; }
-    .page-banner p { font-size: 1.08rem; color: #e0f2fe; max-width: 660px; margin: 0 auto; }
+    .page-banner h1 { font-size: 2.3rem; font-weight: 800; margin-bottom: 10px; }
+    .page-banner p { font-size: 1.05rem; color: #e0f2fe; max-width: 680px; margin: 0 auto; }
 
-    .container { max-width: 1140px; margin: 0 auto; padding: 50px 24px 80px; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 45px 20px 80px; }
 
-    /* Two Main Sections: Examples vs Quizzes */
-    .dual-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    /* Dual Hub */
+    .dual-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
     .section-column {
-      background: #ffffff; border-radius: 22px; padding: 32px;
+      background: #ffffff; border-radius: 22px; padding: 30px;
       border: 1px solid #e2e8f0; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
     }
-    .section-header {
-      padding-bottom: 18px; margin-bottom: 22px; border-bottom: 2px solid #f1f5f9;
-    }
+    .section-header { padding-bottom: 16px; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; }
     .section-tag {
-      display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      display: inline-block; font-size: 0.76rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.6px; padding: 4px 12px; border-radius: 14px; margin-bottom: 8px;
     }
     .tag-blue { background: #e0f2fe; color: #0066cc; }
     .tag-orange { background: #ffedd5; color: #ea580c; }
-    .section-header h2 { font-size: 1.65rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
-    .section-header p { font-size: 0.95rem; color: #64748b; }
+    .tag-green { background: #dcfce7; color: #15803d; }
+    .section-header h2 { font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+    .section-header p { font-size: 0.94rem; color: #64748b; }
 
-    .topic-list { display: flex; flex-direction: column; gap: 14px; }
+    .topic-list { display: flex; flex-direction: column; gap: 12px; }
     .list-item-btn {
       width: 100%; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px;
-      padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
-      gap: 16px; cursor: pointer; text-align: left; transition: 0.2s;
+      padding: 15px 18px; display: flex; justify-content: space-between; align-items: center;
+      gap: 14px; cursor: pointer; text-align: left; transition: 0.2s;
     }
     .list-item-btn:hover { background: #f0f7ff; border-color: #0066cc; transform: translateX(4px); }
-    .list-item-left { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0; }
-    .list-item-icon { font-size: 1.55rem; flex-shrink: 0; }
-    .list-item-title { font-size: 1.02rem; font-weight: 700; color: #1e293b; line-height: 1.3; }
-    .list-item-arrow {
-      font-weight: 700; color: #0066cc; font-size: 0.9rem;
-      white-space: nowrap; flex-shrink: 0;
-    }
+    .list-item-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+    .list-item-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .list-item-title { font-size: 1rem; font-weight: 700; color: #1e293b; line-height: 1.3; }
+    .list-item-arrow { font-weight: 700; color: #0066cc; font-size: 0.88rem; white-space: nowrap; flex-shrink: 0; }
 
-    /* Interactive Reader / Quiz Box */
-    #interactive-panel { display: none; max-width: 820px; margin: 0 auto; }
+    /* Interactive Panel */
+    #interactive-panel { display: none; max-width: 860px; margin: 0 auto; }
     .back-btn {
       background: none; border: none; color: #0066cc; font-weight: 700; font-size: 0.95rem;
-      cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 6px;
+      cursor: pointer; margin-bottom: 18px; display: inline-flex; align-items: center; gap: 6px;
     }
-    .back-btn:hover { text-decoration: underline; }
 
     .panel-card {
-      background: #ffffff; border-radius: 22px; padding: 40px; border: 1px solid #e2e8f0;
+      background: #ffffff; border-radius: 22px; padding: 38px; border: 1px solid #e2e8f0;
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
     }
 
-    /* Example Styling */
-    .scenario-box {
-      background: #f8fafc; border-left: 4px solid #0066cc; padding: 20px;
-      border-radius: 0 12px 12px 0; margin: 20px 0;
+    /* 6-Month Examples Grid */
+    .monthly-examples-stack { display: flex; flex-direction: column; gap: 20px; margin-top: 20px; }
+    .month-ex-card {
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px;
     }
-    .scenario-box h4 { color: #0f172a; margin-bottom: 8px; font-size: 1.05rem; }
-    .scenario-box p { color: #334155; line-height: 1.65; }
-    .takeaway-box {
-      background: #ecfdf5; border: 1px solid #a7f3d0; padding: 18px 20px;
-      border-radius: 12px; color: #065f46; line-height: 1.6;
+    .month-ex-card h3 { font-size: 1.2rem; font-weight: 800; color: #0f172a; margin: 8px 0 10px; }
+    .month-ex-card p { font-size: 0.98rem; color: #334155; line-height: 1.65; margin-bottom: 12px; }
+    .ex-solution {
+      background: #ecfdf5; border-left: 4px solid #10b981; padding: 12px 16px;
+      border-radius: 0 10px 10px 0; color: #065f46; font-size: 0.95rem; line-height: 1.55;
     }
 
-    /* Quiz Styling */
-    .quiz-progress { font-size: 0.9rem; font-weight: 700; color: #0066cc; margin-bottom: 10px; }
-    .quiz-question { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 24px; line-height: 1.35; }
+    /* Month 1-6 Quiz Selector Grid */
+    .month-quiz-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 22px; }
+    .month-quiz-card {
+      border: 2px solid #e2e8f0; border-radius: 16px; padding: 22px; background: #ffffff;
+      cursor: pointer; transition: 0.2s; text-align: left;
+    }
+    .month-quiz-card.unlocked:hover { border-color: #0066cc; background: #f0f7ff; }
+    .month-quiz-card.completed { border-color: #10b981; background: #f0fdf4; }
+    .month-quiz-card.locked {
+      background: #f1f5f9; border-color: #cbd5e1; opacity: 0.72; cursor: not-allowed;
+    }
+    .mq-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .mq-title { font-size: 1.15rem; font-weight: 800; color: #0f172a; }
+    .mq-sub { font-size: 0.9rem; color: #475569; }
+
+    /* Active Question View */
+    .quiz-progress { font-size: 0.88rem; font-weight: 700; color: #0066cc; margin-bottom: 10px; }
+    .quiz-question { font-size: 1.35rem; font-weight: 800; color: #0f172a; margin-bottom: 22px; line-height: 1.35; }
     .options-grid { display: flex; flex-direction: column; gap: 12px; }
     .option-btn {
-      padding: 16px 20px; border-radius: 14px; border: 2px solid #e2e8f0; background: #ffffff;
-      text-align: left; font-size: 1rem; font-weight: 600; color: #1e293b; cursor: pointer; transition: 0.15s;
+      padding: 15px 18px; border-radius: 14px; border: 2px solid #e2e8f0; background: #ffffff;
+      text-align: left; font-size: 0.98rem; font-weight: 600; color: #1e293b; cursor: pointer;
     }
     .option-btn:hover:not(:disabled) { border-color: #0066cc; background: #f0f7ff; }
     .option-btn.correct { border-color: #10b981; background: #ecfdf5; color: #065f46; }
     .option-btn.wrong { border-color: #ef4444; background: #fef2f2; color: #991b1b; }
 
     .feedback-banner {
-      margin-top: 20px; padding: 16px 20px; border-radius: 12px; font-size: 0.98rem;
-      line-height: 1.55; display: none;
+      margin-top: 18px; padding: 15px 18px; border-radius: 12px; font-size: 0.96rem; line-height: 1.55; display: none;
     }
     .feedback-banner.show { display: block; }
     .feedback-correct { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
     .feedback-wrong { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
 
     .btn-primary {
-      background: #0066cc; color: #ffffff; border: none; padding: 13px 30px;
-      border-radius: 28px; font-weight: 700; font-size: 0.98rem; cursor: pointer; margin-top: 22px;
+      background: #0066cc; color: #ffffff; border: none; padding: 13px 28px;
+      border-radius: 28px; font-weight: 700; font-size: 0.95rem; cursor: pointer; margin-top: 20px;
     }
-    .btn-primary:hover { background: #0052a3; }
 
-    footer { background-color: #0b162c; color: #94a3b8; text-align: center; padding: 28px; font-size: 0.9rem; }
+    /* Mobile Bottom Nav */
+    .mobile-bottom-nav {
+      display: none; position: fixed; bottom: 0; left: 0; right: 0; height: 64px;
+      background: #0b162c; border-top: 1px solid #1e293b; z-index: 1500;
+      justify-content: space-around; align-items: center;
+    }
+    .mobile-tab {
+      color: #94a3b8; text-decoration: none; font-size: 0.72rem; font-weight: 600;
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+    }
+    .mobile-tab span.icon { font-size: 1.25rem; }
+    .mobile-tab.active { color: #38bdf8; }
 
-    @media (max-width: 900px) {
-      .dual-sections { grid-template-columns: 1fr; }
+    footer { background-color: #0b162c; color: #94a3b8; text-align: center; padding: 26px; font-size: 0.88rem; }
+
+    @media (max-width: 850px) {
+      .nav-links { display: none; }
+      .mobile-bottom-nav { display: flex; }
+      .dual-sections, .month-quiz-grid { grid-template-columns: 1fr; }
+      .panel-card { padding: 24px 18px; }
     }
   </style>
 </head>
@@ -135,39 +162,35 @@
       <a href="quizzes.html" class="active">Quizzes &amp; Examples</a>
       <a href="about.html">About Us</a>
     </div>
-    <a href="about.html#plans" class="btn-login">Plans &amp; Access</a>
+    <a href="about.html#plans" id="plan-status-pill" class="status-pill">Free (5/5 left)</a>
   </nav>
 
   <div class="page-banner">
-    <h1>Real-Life Examples &amp; Quizzes</h1>
-    <p>Explore practical real-world case studies or challenge yourself with progressive scenario quizzes across all 6 core topics.</p>
+    <h1>6-Month Examples &amp; Mastery Quizzes</h1>
+    <p>Study 6 monthly real-world case studies per topic, and pass each month's quiz with 100% accuracy to unlock the next month!</p>
   </div>
 
   <main class="container">
-    <!-- Dual Hub: Examples (6 Topics) + Quizzes (6 Topics) -->
     <div id="hub-view" class="dual-sections">
-      <!-- Column 1: Examples -->
       <div class="section-column">
         <div class="section-header">
-          <span class="section-tag tag-blue">Part 1 • Case Studies</span>
+          <span class="section-tag tag-blue">Part 1 • 36 Case Studies</span>
           <h2>Real-Life Examples</h2>
-          <p>Select a topic below to study how these skills work in everyday real-world situations.</p>
+          <p>Choose any topic to view 6 real-world examples—one for every month of the course.</p>
         </div>
         <div class="topic-list" id="examples-list"></div>
       </div>
 
-      <!-- Column 2: Quizzes -->
       <div class="section-column">
         <div class="section-header">
-          <span class="section-tag tag-orange">Part 2 • Practice</span>
-          <h2>Topic Quizzes</h2>
-          <p>Choose any topic below to test your decision-making with 5 progressive questions.</p>
+          <span class="section-tag tag-orange">Part 2 • Sequential Unlock</span>
+          <h2>Topic Quizzes (Months 1–6)</h2>
+          <p>Score 100% on Month 1's quiz to unlock Month 2, and advance all the way to Month 6.</p>
         </div>
         <div class="topic-list" id="quizzes-list"></div>
       </div>
     </div>
 
-    <!-- Interactive Panel for Viewing an Example or Taking a Quiz -->
     <div id="interactive-panel">
       <button class="back-btn" onclick="resetHub()">← Back to All Examples &amp; Quizzes</button>
       <div class="panel-card" id="panel-content"></div>
@@ -178,259 +201,329 @@
     <p>&copy; 2026 SkillBridge — Bridging the gap between classroom education and real-world readiness.</p>
   </footer>
 
+  <div class="mobile-bottom-nav">
+    <a href="index.html" class="mobile-tab"><span class="icon">🏠</span>Home</a>
+    <a href="lessons.html" class="mobile-tab"><span class="icon">📚</span>Lessons</a>
+    <a href="quizzes.html" class="mobile-tab active"><span class="icon">🎯</span>Quizzes</a>
+    <a href="about.html" class="mobile-tab"><span class="icon">💎</span>Plans</a>
+  </div>
+
   <script>
     const topicsData = {
       finance: {
         title: "Personal Finance and Taxes",
         icon: "💰",
-        example: {
-          heading: "Case Study: Budgeting a ₹2,000 Monthly Allowance & Avoiding a Fake Deal",
-          situation: "Aarav receives ₹2,000 at the start of the month and wants a ₹3,600 pair of wireless headphones. He sees an ad on an unknown social media link offering the exact headphones at 80% off (₹720) if he enters his card details within 5 minutes.",
-          solution: "Instead of falling for the high-pressure scam link, Aarav checks verified retailers and applies the 50/30/20 rule: he saves ₹600 per month from his allowance, reaching ₹3,600 safely in 6 months without borrowing money or risking fraud."
-        },
-        questions: [
+        examples: [
+          { month: "Month 1: Financial Management", heading: "Splitting a ₹4,000 Monthly Allowance With 50/30/20", situation: "Aarav gets ₹4,000/month and wants ₹3,600 wireless headphones while needing ₹1,800 for bus passes and lunches.", solution: "He assigns ₹2,000 (50%) to Needs, ₹800 (20%) straight to Savings, and ₹1,200 (30%) to Wants—buying the headphones debt-free in 4.5 months." },
+          { month: "Month 2: Taxes & Pay Stubs", heading: "Reading Gross Salary vs. Net Pay & Restaurant GST", situation: "Meera receives a ₹35,000/month internship offer letter, but ₹32,800 arrives in her bank account; later she checks a ₹1,000 dinner bill showing ₹1,050.", solution: "She recognizes ₹35,000 as Gross Pay before TDS/deductions (Net Pay = ₹32,800), and identifies the extra ₹50 as 5% indirect GST." },
+          { month: "Month 3: Banking & UPI Safety", heading: "Stopping a Fake OLX 'Collect Request' UPI Scam", situation: "Selling an old study table online, Kabir receives a UPI prompt asking him to enter his 4-digit PIN to 'receive ₹2,500.'", solution: "Kabir declines immediately because entering a UPI PIN always deducts money—never receives it." },
+          { month: "Month 4: Scam Defense", heading: "Verifying an '80% Off' Smartphone Popup Ad", situation: "An Instagram ad links to 'amaz0n-flashsale.in' offering flagship phones at 80% off with a 3-minute countdown timer.", solution: "Spotting the misspelled domain and fake countdown urgency, Riya closes the tab and avoids card theft." },
+          { month: "Month 5: Smart Credit & Compounding", heading: "Starting a ₹1,000/Month Recurring Deposit Early", situation: "Two friends save ₹1,000/month: one starts at age 18, the other waits until age 28.", solution: "Because of compound interest, starting 10 years earlier yields nearly double the final corpus with far less effort." },
+          { month: "Month 6: Financial Independence", heading: "Handling a Sudden ₹4,500 Laptop Repair Without Debt", situation: "Two weeks before final exams, Arjun's laptop battery fails and requires a ₹4,500 replacement.", solution: "Because he maintained a dedicated Emergency Fund over 6 months, he pays cash immediately with zero stress." }
+        ],
+        monthlyQuizzes: [
           {
-            q: "1. You receive ₹1,000 as monthly pocket money. What is the smartest way to manage it?",
-            options: ["Spend all ₹1,000 immediately on snacks and games.", "Divide it systematically between savings, essential needs, and planned spending.", "Buy whatever your friends are buying so you fit in.", "Spend it fast and keep asking for more."],
-            answer: 1,
-            explanation: "Dividing money into savings, needs, and wants builds lifelong budgeting discipline."
+            monthTitle: "Month 1 Quiz: Financial Management",
+            questions: [
+              { q: "1. According to the 50/30/20 rule, what percentage of your income goes toward essential Needs?", options: ["20%", "50%", "80%", "10%"], answer: 1, explanation: "50% covers Needs, 30% Wants, and 20% Savings." },
+              { q: "2. Which of these is a genuine NEED rather than a WANT?", options: ["Basic groceries and drinking water", "Designer sneakers", "A gaming console", "Movie VIP tickets"], answer: 0, explanation: "Needs are essentials required for health and daily living." },
+              { q: "3. If you save ₹150 every week, how much will you have after 8 weeks?", options: ["₹900", "₹1,200", "₹1,500", "₹1,050"], answer: 1, explanation: "₹150 × 8 = ₹1,200." }
+            ]
           },
           {
-            q: "2. You want to buy quality headphones, but they exceed your current cash. What is the best financial move?",
-            options: ["Borrow money from friends without a repayment plan.", "Buy the cheapest unbranded pair immediately.", "Compare prices across trusted stores and save toward them gradually.", "Use a random 'buy now' link from a popup ad."],
-            answer: 2,
-            explanation: "Comparing prices and saving prevents debt and ensures you get reliable quality."
+            monthTitle: "Month 2 Quiz: Taxes & Pay Stubs",
+            questions: [
+              { q: "1. What type of tax is GST added to restaurant bills and electronics?", options: ["Direct Income Tax", "Indirect Consumption Tax", "Property Tax", "Voluntary Tip"], answer: 1, explanation: "GST is an indirect tax collected on goods and services." },
+              { q: "2. Your salary after taxes and deductions are subtracted from Gross Pay is called:", options: ["Net Take-Home Pay", "GST Surcharge", "Gross Bonus", "Tax Credit"], answer: 0, explanation: "Net Take-Home Pay is the actual spendable amount deposited in your bank." },
+              { q: "3. Who benefits from public tax revenue?", options: ["Nobody", "Society through public roads, hospitals, schools, and transit", "Only private stores", "Only foreign banks"], answer: 1, explanation: "Taxes fund public infrastructure and essential civic services." }
+            ]
           },
           {
-            q: "3. Which of the following is a genuine NEED rather than a WANT?",
-            options: ["A new gaming console.", "Basic groceries and drinking water.", "Limited-edition designer sneakers.", "Upgrading to the latest flagship phone."],
-            answer: 1,
-            explanation: "Needs are essentials required for health, safety, and daily functioning."
+            monthTitle: "Month 3 Quiz: Banking & UPI Safety",
+            questions: [
+              { q: "1. When is your 4- or 6-digit UPI PIN required?", options: ["To receive money from a friend", "ONLY when sending money out of your bank account", "To check your phone battery", "To open a public website"], answer: 1, explanation: "You never enter a UPI PIN to receive money." },
+              { q: "2. What is the safest place to store emergency savings?", options: ["Under a bedroom pillow", "In a regulated bank savings account earning interest", "In an unlocked school locker", "In a public social media wallet"], answer: 1, explanation: "Bank savings accounts protect your funds and pay annual interest." },
+              { q: "3. Someone calls claiming to be from your bank asking for your OTP. What should you do?", options: ["Read the OTP immediately", "Hang up immediately—banks never ask for OTPs or PINs", "Text them your password", "Give them your card CVV"], answer: 1, explanation: "Never share OTPs or PINs with anyone over phone or SMS." }
+            ]
           },
           {
-            q: "4. You see a smartphone advertised at 80% off on an unfamiliar website with a countdown timer. What should you do?",
-            options: ["Enter your payment details immediately before the timer runs out.", "Verify whether the seller is legitimate, check reviews, and look for HTTPS security.", "Forward the link to all your WhatsApp groups.", "Share your OTP to lock in the discount."],
-            answer: 1,
-            explanation: "Artificial urgency and steep discounts on unknown sites are classic signs of online payment scams."
+            monthTitle: "Month 4 Quiz: Scam Defense",
+            questions: [
+              { q: "1. A website URL reads 'flipkrt-mega-offer.xyz' with an 85% discount timer. What is this?", options: ["An official festival sale", "A phishing/impersonation scam site", "A government portal", "A bank reward"], answer: 1, explanation: "Misspelled domains and fake countdown timers are classic scam indicators." },
+              { q: "2. Before buying from an unfamiliar online store, what should you check?", options: ["Whether the font is colorful", "HTTPS security, exact domain spelling, and independent reviews", "How many emojis are in the ad", "Nothing"], answer: 1, explanation: "Verifying domain authenticity and independent reviews prevents fraud." },
+              { q: "3. Why do scammers use fake '2-minute countdown timers'?", options: ["To save server electricity", "To trigger panic so you pay before thinking critically", "Because the internet closes at night", "For decoration"], answer: 1, explanation: "Artificial urgency prevents buyers from verifying legitimacy." }
+            ]
           },
           {
-            q: "5. If you save ₹150 every week consistently, how much will you have saved after 8 weeks?",
-            options: ["₹900", "₹1,050", "₹1,200", "₹1,500"],
-            answer: 2,
-            explanation: "₹150 × 8 weeks = ₹1,200 saved through steady weekly consistency."
+            monthTitle: "Month 5 Quiz: Smart Credit & Compounding",
+            questions: [
+              { q: "1. What is compound interest?", options: ["Interest earned on both your principal and previously accumulated interest", "A one-time bank fee", "Zero percent interest", "A tax penalty"], answer: 0, explanation: "Compounding accelerates growth over time when saving early." },
+              { q: "2. Why are unpaid credit card balances dangerous?", options: ["They carry very high compound interest rates (often 24%–42% annually)", "They pay you bonus cash", "They never need to be repaid", "They lower prices"], answer: 0, explanation: "High-interest revolving debt compounds rapidly against you." },
+              { q: "3. What is the smartest way to buy an expensive non-essential gadget?", options: ["Save in advance until you can pay in full", "Max out a high-interest loan", "Skip paying utility bills", "Borrow without a plan"], answer: 0, explanation: "Saving ahead avoids interest charges and debt stress." }
+            ]
+          },
+          {
+            monthTitle: "Month 6 Quiz: Financial Mastery Capstone",
+            questions: [
+              { q: "1. What is the primary purpose of an Emergency Fund?", options: ["Covering unexpected medical or urgent repair shocks without debt", "Buying concert tickets", "Investing in risky lotteries", "Paying for daily snacks"], answer: 0, explanation: "An emergency buffer protects your stability during sudden crises." },
+              { q: "2. In what order should you allocate monthly income?", options: ["Wants → Impulse Buys → Needs", "Needs & Savings first → Planned Wants last", "Random spending → Savings if anything remains", "Borrowing → Spending"], answer: 1, explanation: "Paying essential needs and savings first guarantees financial progress." },
+              { q: "3. How often should you review your budget and bank statements?", options: ["Once every 5 years", "Weekly or monthly to catch leaks and stay on target", "Never", "Only when your card declines"], answer: 1, explanation: "Regular check-ins keep spending aligned with your goals." }
+            ]
           }
         ]
       },
       household: {
         title: "Practical Household Operations",
         icon: "🏠",
-        example: {
-          heading: "Case Study: Handling a Kitchen Spill, Leaking Tap & High AC Bill",
-          situation: "While helping prepare dinner at home, water spills near the kitchen counter, a bathroom tap starts dripping steadily, and the family's summer electricity bill jumps by 30%.",
-          solution: "First, wipe up the floor spill immediately to prevent dangerous slips. Second, notify an adult or plumber about the leaking tap rather than forcing the handle with pliers (which can break the pipe). Third, keep windows closed while the AC runs at 24°C and switch off idle appliances."
-        },
-        questions: [
-          {
-            q: "1. You notice a tap at home is dripping steadily. What is the smartest response?",
-            options: ["Ignore it until the bathroom floods.", "Inform an adult/household member promptly and help get the washer repaired.", "Leave it running full force.", "Try dismantling the main pipe yourself without shutting off the water."],
-            answer: 1,
-            explanation: "Reporting leaks early saves hundreds of liters of water and prevents pipe damage."
-          },
-          {
-            q: "2. You have 15 minutes to tidy a cluttered room before guests arrive. What is the most effective strategy?",
-            options: ["Shove everything messy under the bed.", "Start with high-visibility surfaces and essential walkways first.", "Give up because 15 minutes isn't enough.", "Dump everything into another room."],
-            answer: 1,
-            explanation: "Prioritizing main surfaces and floors quickly restores order and safety."
-          },
-          {
-            q: "3. You are helping prepare dinner in the kitchen. What is the safest approach?",
-            options: ["Use unfamiliar sharp appliances without asking.", "Follow instructions carefully, keep handles turned inward, and ask for help when unsure.", "Rush through chopping to finish faster.", "Leave food cooking unattended on an open flame."],
-            answer: 1,
-            explanation: "Attention and proper guidance prevent kitchen burns, cuts, and grease fires."
-          },
-          {
-            q: "4. Your family wants to lower monthly electricity bills. Which daily habit makes the biggest difference?",
-            options: ["Leaving lights and fans on in empty rooms.", "Keeping chargers and TVs on standby all night.", "Switching off lights, fans, and appliances whenever you leave a room.", "Leaving windows open while the air conditioner is running."],
-            answer: 2,
-            explanation: "Eliminating idle appliance usage and keeping cooled rooms sealed directly reduces power consumption."
-          },
-          {
-            q: "5. You accidentally spill water on a tiled floor. What should you do right away?",
-            options: ["Walk away and hope it evaporates.", "Cover it with a single sheet of paper and leave it.", "Wipe it dry immediately so nobody slips and gets injured.", "Wait for someone else to notice it."],
-            answer: 2,
-            explanation: "Wet tiled floors are a major household fall hazard and should be dried immediately."
-          }
+        examples: [
+          { month: "Month 1: Home & Kitchen Basics", heading: "Cooking a Balanced Meal Safely & Smothering a Pan Flare-Up", situation: "While sautéing vegetables, a drop of oil sparks a small flame in the pan.", solution: "Instead of throwing water (which causes explosive splatter), turn off the gas burner and slide a flat metal lid over the pan to cut off oxygen." },
+          { month: "Month 2: Preventive Maintenance", heading: "Stopping a Bathroom Leak Before Flooring Warps", situation: "A washbasin pipe joint starts dripping steadily on a Sunday morning.", solution: "Close the local angle valve under the sink immediately, place a bucket underneath, and call a plumber before water damages the floor." },
+          { month: "Month 3: Utilities & Electricity", heading: "Cutting a ₹4,800 Summer Electricity Bill by 25%", situation: "Two bedrooms run their ACs at 18°C with curtains open and chargers plugged in all day.", solution: "Raising the AC thermostat to 24°C, closing curtains against afternoon sun, and switching off idle strips cuts monthly power usage by a quarter." },
+          { month: "Month 4: Laundry & Room Resets", heading: "Preventing Red Dye From Ruining White School Shirts", situation: "A brand-new red cotton T-shirt is about to be washed with white uniforms.", solution: "Separating darks from whites and washing in cold water prevents permanent pink dye transfer." },
+          { month: "Month 5: Home Toolkit", heading: "Tightening a Loose Front-Door Hinge in 3 Minutes", situation: "The main door begins scraping the floor because top hinge screws loosened.", solution: "Using a standard Phillips screwdriver from a home toolkit tightens the screws immediately without paying a carpenter visit fee." },
+          { month: "Month 6: Tenant & Lease Readiness", heading: "Protecting a ₹20,000 PG/Apartment Security Deposit", situation: "Moving into a student hostel/apartment with pre-existing wall scratches and a cracked bathroom tile.", solution: "Taking timestamped move-in photos and emailing them to the landlord on Day 1 ensures zero unfair deductions at move-out." }
+        ],
+        monthlyQuizzes: [
+          { monthTitle: "Month 1 Quiz: Home & Kitchen Safety", questions: [
+            { q: "1. What should you NEVER pour onto a grease or cooking-oil fire?", options: ["Baking soda", "Water", "A flat metal lid", "Salt"], answer: 1, explanation: "Water causes burning oil to splatter violently." },
+            { q: "2. Which way should pot handles face on a stove?", options: ["Sticking out over the walkway", "Turned inward away from the stove edge", "Over another lit burner", "Straight up"], answer: 1, explanation: "Inward handles prevent accidental knocks and burns." },
+            { q: "3. Why is basic home cooking a major financial advantage?", options: ["It is up to 70% cheaper and healthier than daily takeout", "It uses more electricity than a factory", "It takes 6 hours per meal", "It requires restaurant equipment"], answer: 0, explanation: "Cooking at home saves significant money and improves nutrition." }
+          ]},
+          { monthTitle: "Month 2 Quiz: Home Maintenance", questions: [
+            { q: "1. You spill water on a smooth tiled floor. What is the right action?", options: ["Wipe it dry immediately", "Leave it to evaporate", "Cover it with loose paper", "Walk away"], answer: 0, explanation: "Drying spills immediately prevents dangerous slip injuries." },
+            { q: "2. What does your home's MCB box control?", options: ["Water pressure", "Electrical circuits and overload protection", "Wi-Fi speed", "Gas cylinders"], answer: 1, explanation: "The Miniature Circuit Breaker (MCB) safely cuts electrical power." },
+            { q: "3. A tap is dripping steadily. What should you do?", options: ["Report/repair the worn washer early", "Force the handle with a hammer", "Leave it running", "Ignore it for months"], answer: 0, explanation: "Early repair saves hundreds of liters of water." }
+          ]},
+          { monthTitle: "Month 3 Quiz: Utilities & Energy", questions: [
+            { q: "1. What is the optimal energy-saving AC temperature setting?", options: ["16°C", "24°C", "30°C", "18°C with windows open"], answer: 1, explanation: "24°C balances comfort and ~24% energy savings." },
+            { q: "2. Leaving windows open while the AC runs:", options: ["Cools the neighborhood and spikes your electricity bill", "Saves power", "Cleans the filter", "Helps the compressor"], answer: 0, explanation: "Open windows force the AC compressor to run continuously." },
+            { q: "3. Switching off lights and fans when leaving a room:", options: ["Reduces monthly electricity waste immediately", "Damages the bulbs", "Has zero effect", "Increases voltage"], answer: 0, explanation: "Turning off unused appliances directly lowers energy consumption." }
+          ]},
+          { monthTitle: "Month 4 Quiz: Cleaning & Laundry", questions: [
+            { q: "1. Why should white clothes be washed separately from new dark/red garments?", options: ["To prevent color dye bleeding onto whites", "Because whites dissolve in water", "To make washing take longer", "No reason"], answer: 0, explanation: "Dark dyes bleed in the wash and stain white fabrics." },
+            { q: "2. You have 15 minutes to tidy a messy room. Where do you start?", options: ["Clear main surfaces and floor walkways first", "Shove trash under the bed", "Give up", "Move mess to another room"], answer: 0, explanation: "Clearing surfaces and walkways restores order quickly." },
+            { q: "3. Where do you check whether a jacket can be machine-washed?", options: ["The sewn-in fabric care tag", "The price barcode", "The zipper brand", "Nowhere"], answer: 0, explanation: "Garment care tags specify safe wash temperatures and drying rules." }
+          ]},
+          { monthTitle: "Month 5 Quiz: Basic Home Toolkit", questions: [
+            { q: "1. Before replacing a ceiling light fixture or inspecting an outlet, always:", options: ["Switch off power at the main MCB breaker", "Stand on a wet floor", "Use metal scissors", "Keep the switch on"], answer: 0, explanation: "Cutting power at the breaker prevents electric shock." },
+            { q: "2. Which tool tightens loose cabinet and door screws?", options: ["Screwdriver", "Paintbrush", "Measuring cup", "Rolling pin"], answer: 0, explanation: "A multi-bit screwdriver handles standard household screws." },
+            { q: "3. Why keep a flashlight in your home toolkit?", options: ["Safe visibility during power outages without open candle flames", "For decoration", "To replace batteries", "To measure walls"], answer: 0, explanation: "Flashlights eliminate fire hazards during blackouts." }
+          ]},
+          { monthTitle: "Month 6 Quiz: Independent Living Capstone", questions: [
+            { q: "1. How do you protect your security deposit when moving into a rented room?", options: ["Take timestamped photos of existing condition on move-in day", "Never read the lease", "Pay cash without a receipt", "Ignore damages"], answer: 0, explanation: "Timestamped move-in documentation proves pre-existing wear." },
+            { q: "2. What is a 'notice period' in a rental agreement?", options: ["How far in advance you must inform the landlord before moving out", "Free rent month", "Electricity bill due date", "Wi-Fi password"], answer: 0, explanation: "Notice periods prevent deposit forfeiture when vacating." },
+            { q: "3. True household independence relies on:", options: ["Preventive daily habits, safety awareness, and utility discipline", "Ignoring maintenance until things break", "Ordering takeout every meal", "Leaving bills unread"], answer: 0, explanation: "Consistent preventive routines keep any home safe and affordable." }
+          ]}
         ]
       },
       time: {
         title: "Time and Energy Management",
         icon: "⏰",
-        example: {
-          heading: "Case Study: Balancing Homework, Sports Practice & a Big Project",
-          situation: "Riya has a history assignment due tomorrow, evening sports practice, and a science project due next week that she keeps putting off.",
-          solution: "She prioritizes the urgent history assignment right after a short 15-minute post-practice rest, avoids phone notifications during a 45-minute focus block, and breaks the next week's science project into a tiny 10-minute outline step."
-        },
-        questions: [
-          {
-            q: "1. You have homework, sports practice, and a hobby to fit into one evening. What should you do?",
-            options: ["Leave everything until 11 PM.", "Create a realistic schedule that prioritizes deadlines and includes short breaks.", "Skip sleep to do everything.", "Spend two hours scrolling social media first."],
-            answer: 1,
-            explanation: "Structured time blocks with realistic breaks help you finish obligations without burnout."
-          },
-          {
-            q: "2. You have been studying intensely for an hour and your focus is fading. What is the best move?",
-            options: ["Take a 5–10 minute screen-free break to stretch and hydrate.", "Force yourself to stare at the book for 3 more hours.", "Open five different social apps at once.", "Quit studying for the rest of the week."],
-            answer: 0,
-            explanation: "Short mental recovery breaks restore focus and improve memory retention."
-          },
-          {
-            q: "3. Which task should you prioritize first at 5:00 PM?",
-            options: ["Watching a newly uploaded video.", "An assignment that is due tomorrow morning.", "Color-coding your bookshelf.", "Checking every group chat notification."],
-            answer: 1,
-            explanation: "Urgent, high-impact deadlines always come before low-priority busywork."
-          },
-          {
-            q: "4. You keep postponing a large school project because it feels overwhelming. What helps most?",
-            options: ["Waiting around for sudden inspiration.", "Breaking the project into small, 10-minute starter tasks.", "Avoiding thinking about it until the night before.", "Trying to complete the entire project in one sitting."],
-            answer: 1,
-            explanation: "Small, actionable steps remove mental friction and build momentum."
-          },
-          {
-            q: "5. What does 'managing your energy' truly mean?",
-            options: ["Staying busy every single waking minute.", "Ignoring exhaustion and pushing through.", "Balancing focused work, physical movement, and quality rest.", "Avoiding any task that requires effort."],
-            answer: 2,
-            explanation: "Sustainable productivity depends on matching demanding work with proper rest."
-          }
+        examples: [
+          { month: "Month 1: Prioritization", heading: "Choosing Tomorrow's Assignment Over Desk Organizing", situation: "At 5 PM, Dev has an essay due at 8 AM tomorrow and a messy bookshelf.", solution: "Using the Urgent/Important Matrix, he finishes the essay first and saves bookshelf organizing for the weekend." },
+          { month: "Month 2: Anti-Procrastination", heading: "Starting a 10-Page Science Report With a 5-Minute Outline", situation: "Neha delays her science project for 4 days because it feels too huge.", solution: "She sets a 5-minute timer just to write 4 section headings—breaking inertia and finishing two pages that evening." },
+          { month: "Month 3: Focus Blocks", heading: "Finishing Physics Revision Twice as Fast With 45/10 Blocks", situation: "Checking WhatsApp every 3 minutes stretches a 1-hour homework sheet into 3 hours.", solution: "Placing the phone in another room for two 45-minute focus blocks with a 10-minute walk between finishes everything cleanly." },
+          { month: "Month 4: Energy Pacing", heading: "Choosing 7.5 Hours of Sleep Over 2 AM Cramming", situation: "Before a math exam, Sam considers staying awake until 2:30 AM.", solution: "He stops at 10:30 PM, sleeps 7.5 hours, and recalls formulas sharply during the morning exam." },
+          { month: "Month 5: Weekly Planning", heading: "Using a 2-Hour Sunday Buffer Block to Absorb Extra Homework", situation: "A surprise group presentation gets assigned mid-week.", solution: "Because Tanya left a 2-hour open buffer on Thursday evening, she completes her slides without missing sleep." },
+          { month: "Month 6: Mastery", heading: "Balancing Board Exam Prep, Sports & Music Without Burnout", situation: "Managing intense final-term schedules across academics and extracurriculars.", solution: "Time-blocking peak morning energy for tough subjects and evening hours for physical recharge sustains performance all year." }
+        ],
+        monthlyQuizzes: [
+          { monthTitle: "Month 1 Quiz: Prioritization", questions: [
+            { q: "1. Which task deserves top priority at 5:00 PM?", options: ["An assignment due tomorrow morning", "Rearranging desk pens", "Scrolling social reels", "Watching trailers"], answer: 0, explanation: "Urgent, high-impact deadlines always come first." },
+            { q: "2. Why is clock management alone incomplete?", options: ["Because mental energy fluctuates—hard tasks need peak energy hours", "Because clocks are inaccurate", "Because sleep doesn't matter", "It isn't"], answer: 0, explanation: "Matching hard tasks to high-energy windows maximizes output." },
+            { q: "3. When is the best time to write tomorrow's Top 3 priorities?", options: ["The evening before", "Never", "At midnight", "Next week"], answer: 0, explanation: "Planning the night before eliminates morning decision fatigue." }
+          ]},
+          { monthTitle: "Month 2 Quiz: Beating Procrastination", questions: [
+            { q: "1. What is the main psychological cause of procrastination?", options: ["Overwhelm from tasks feeling too large or vague", "Too much organization", "Sleeping 8 hours", "Having a checklist"], answer: 0, explanation: "Breaking big tasks into tiny steps removes overwhelm." },
+            { q: "2. How does the 5-Minute Rule work?", options: ["Commit to just 5 minutes of a starter micro-step to build momentum", "Work only 5 minutes a week", "Take 5-hour breaks", "Wait 5 days"], answer: 0, explanation: "Starting is the hardest part; 5 minutes triggers momentum." },
+            { q: "3. Which goal is easiest to start immediately?", options: ["Write 3 bullet points for the intro paragraph", "Write an award-winning book", "Master all of history", "Study everything"], answer: 0, explanation: "Specific, small actions are effortless to begin." }
+          ]},
+          { monthTitle: "Month 3 Quiz: Focus Cycles", questions: [
+            { q: "1. What happens when you check notifications every few minutes while studying?", options: ["Context switching destroys deep focus and doubles task time", "You learn faster", "Memory improves", "Nothing"], answer: 0, explanation: "Regaining deep focus after a distraction takes several minutes." },
+            { q: "2. In a 45/10 focus cycle, what should you do during the 10-minute break?", options: ["Stretch, hydrate, and rest your eyes away from screens", "Scroll short videos", "Panic", "Skip the break"], answer: 0, explanation: "Screen-free recovery restores cognitive sharpness." },
+            { q: "3. Single-tasking vs. Multitasking:", options: ["Single-tasking produces higher accuracy and faster completion", "Multitasking is always better", "They are identical", "Neither works"], answer: 0, explanation: "Focused single-tasking beats divided attention." }
+          ]},
+          { monthTitle: "Month 4 Quiz: Energy Pacing", questions: [
+            { q: "1. Why does sleep improve exam performance?", options: ["Sleep consolidates memory and restores neural energy", "It wastes study hours", "It erases formulas", "Only athletes need sleep"], answer: 0, explanation: "Memory consolidation happens during quality sleep." },
+            { q: "2. What does managing your energy mean?", options: ["Balancing focused work, movement, nutrition, and rest", "Working nonstop", "Ignoring fatigue", "Avoiding effort"], answer: 0, explanation: "Sustainable output requires deliberate recovery." },
+            { q: "3. After 90 minutes of intense problem-solving, you feel foggy. Best move?", options: ["Take a 10-minute walk and drink water", "Drink 4 sugary sodas", "Force 3 more hours", "Quit the subject"], answer: 0, explanation: "Physical movement and hydration quickly refresh brain energy." }
+          ]},
+          { monthTitle: "Month 5 Quiz: Weekly Planning", questions: [
+            { q: "1. Why leave 20% of your weekly schedule unscheduled as buffer time?", options: ["To absorb unexpected delays without derailing your week", "Because you have nothing to do", "To forget deadlines", "No reason"], answer: 0, explanation: "Buffer blocks keep schedules realistic and resilient." },
+            { q: "2. What is 'time-blocking'?", options: ["Assigning specific calendar blocks to priority tasks", "Blocking friends", "Turning off clocks", "Guessing"], answer: 0, explanation: "Time-blocking turns intentions into scheduled commitments." },
+            { q: "3. A 15-minute Sunday review helps you:", options: ["Spot upcoming deadlines early and balance workload", "Forget homework", "Add stress", "Waste time"], answer: 0, explanation: "Weekly reviews prevent last-minute surprises." }
+          ]},
+          { monthTitle: "Month 6 Quiz: Time & Energy Mastery Capstone", questions: [
+            { q: "1. Sustainable high performance comes from:", options: ["Clear priorities + distraction-free focus + consistent rest", "All-nighters", "Constant multitasking", "Waiting for motivation"], answer: 0, explanation: "Systems beat willpower every time." },
+            { q: "2. When facing three deadlines, you should:", options: ["Rank by deadline/impact and execute sequentially", "Do all three simultaneously", "Ignore them", "Start the easiest busywork"], answer: 0, explanation: "Sequential prioritization ensures timely completion." },
+            { q: "3. True productivity is measured by:", options: ["Meaningful progress on priorities while preserving health", "Hours spent staring at a screen", "Number of open tabs", "Exhaustion"], answer: 0, explanation: "Results and sustainability define real productivity." }
+          ]}
         ]
       },
       media: {
         title: "Media Literacy",
         icon: "📰",
-        example: {
-          heading: "Case Study: Viral Health Rumors & Undisclosed Influencer Ads",
-          situation: "A viral reel claims a miracle drink cures exam stress overnight, while a popular creator praises a skincare serum without mentioning they were paid ₹50,000 to promote it.",
-          solution: "Instead of sharing the viral claim or buying the serum blindly, you cross-check reputable medical sources via lateral reading and spot the creator's affiliate discount code—recognizing paid marketing from objective facts."
-        },
-        questions: [
-          {
-            q: "1. You see shocking breaking news circulating on Instagram with thousands of likes. What should you do?",
-            options: ["Share it immediately to your story.", "Cross-check reliable, established news sources before believing or sharing.", "Assume it is true solely because it has high likes.", "Forward it to every family group."],
-            answer: 1,
-            explanation: "Viral engagement does not equal truth; always verify claims with credible outlets."
-          },
-          {
-            q: "2. An influencer praises a product passionately without mentioning a sponsorship. What should you consider?",
-            options: ["Every creator recommendation is 100% unpaid.", "It may still be sponsored or affiliate content—look for promo codes and independent reviews.", "Famous creators never advertise products.", "Buy it immediately before it sells out."],
-            answer: 1,
-            explanation: "Many online endorsements involve paid partnerships or commissions."
-          },
-          {
-            q: "3. You see a dramatic, suspicious photograph attached to a heated online post. What is the best step?",
-            options: ["Assume the caption tells the whole story.", "Check the image's original source, date, and context using reverse search.", "Repost it as proof.", "Argue in the comments immediately."],
-            answer: 1,
-            explanation: "Old or edited images are frequently taken out of context to mislead viewers."
-          },
-          {
-            q: "4. Two websites give completely different explanations of the same event. How should you evaluate them?",
-            options: ["Believe whichever headline sounds more dramatic.", "Compare their primary evidence, cited experts, and source credibility.", "Trust whichever one popped up first.", "Ignore all news forever."],
-            answer: 1,
-            explanation: "Evaluating evidence and credible citations helps separate reporting from bias."
-          },
-          {
-            q: "5. An online account asks for your home address and phone number to enter a 'free giveaway.' What should you do?",
-            options: ["Send your full address right away.", "Post your details in the public comments.", "Keep personal information private and avoid unverified giveaways.", "Share your friend's address instead."],
-            answer: 2,
-            explanation: "Protecting personal data prevents identity theft, spam, and physical safety risks."
-          }
+        examples: [
+          { month: "Month 1: Lateral Reading", heading: "Fact-Checking a Viral WhatsApp School-Closure Rumor", situation: "A dramatic forwarded message claims all schools are closed tomorrow without linking any official circular.", solution: "Opening a new browser tab to check the official education portal reveals no closure notice—preventing false panic." },
+          { month: "Month 2: Hidden Sponsorships", heading: "Spotting an Undisclosed Skincare Promotion", situation: "A creator calls a ₹1,800 serum 'my secret miracle' while pinning a 15% affiliate discount code.", solution: "Recognizing the affiliate commission prompts checking independent dermatology reviews first." },
+          { month: "Month 3: Visual Verification", heading: "Reverse-Searching a Recycled Flood Photo", situation: "A viral post attaches a dramatic flood image to today's local rainstorm.", solution: "Reverse-image search proves the photo was actually taken 5 years ago in another country." },
+          { month: "Month 4: Algorithmic Awareness", heading: "Escaping a One-Sided News Feed Bubble", situation: "Pausing on three sensational videos causes your entire feed to show extreme, one-sided claims.", solution: "Searching balanced, evidence-cited journalism restores perspective." },
+          { month: "Month 5: Digital Privacy", heading: "Declining a 'Free iPhone Giveaway' Data-Harvesting Form", situation: "An unverified page asks for your full home address, school name, and phone number to claim a prize.", solution: "Refusing to enter personal data prevents spam and identity misuse." },
+          { month: "Month 6: Digital Citizenship", heading: "Helping Family Verify Health Claims Before Forwarding", situation: "A relative shares an unverified miracle cure in a family group.", solution: "Sharing a polite, credible medical fact-check stops misinformation respectfully." }
+        ],
+        monthlyQuizzes: [
+          { monthTitle: "Month 1 Quiz: Lateral Reading", questions: [
+            { q: "1. What is 'Lateral Reading'?", options: ["Opening new tabs to verify a claim across independent, reputable sources", "Reading sideways", "Trusting the post's own comments", "Counting likes"], answer: 0, explanation: "Lateral reading verifies credibility outside the original post." },
+            { q: "2. High likes and shares on a social post prove:", options: ["Nothing about factual accuracy—only emotional engagement", "100% scientific truth", "Official approval", "Expert review"], answer: 0, explanation: "Sensational misinformation often gets high engagement." },
+            { q: "3. Before forwarding urgent breaking news, you should:", options: ["Verify it with at least two credible news or official sources", "Forward immediately", "Add exclamation marks", "Assume it's real"], answer: 0, explanation: "Verification stops the spread of rumors." }
+          ]},
+          { monthTitle: "Month 2 Quiz: Hidden Sponsorships", questions: [
+            { q: "1. Which clue suggests an influencer review might be sponsored?", options: ["A personal affiliate discount code and pinned purchase link", "Balanced pros and cons", "No brand mention", "Library citation"], answer: 0, explanation: "Affiliate codes earn creators commission on sales." },
+            { q: "2. Should you rely solely on one creator's praise before buying?", options: ["No—compare independent user and expert reviews", "Yes always", "Only if they have millions of followers", "Only at night"], answer: 0, explanation: "Independent reviews give balanced reality." },
+            { q: "3. Why do brands pay influencers for casual-style videos?", options: ["Friendly recommendations feel less like traditional ads", "Because TV doesn't exist", "By accident", "For free"], answer: 0, explanation: "Native influencer marketing blends ads into entertainment." }
+          ]},
+          { monthTitle: "Month 3 Quiz: Visual Verification", questions: [
+            { q: "1. How can you check where a suspicious online photo originated?", options: ["Reverse-image search", "Zooming in on pixels", "Reading angry comments", "Guessing"], answer: 0, explanation: "Reverse search finds the earliest upload and true context." },
+            { q: "2. Out-of-context media occurs when:", options: ["A real photo from another time or place is given a false new caption", "A camera lens is dirty", "A photo is black and white", "It is printed"], answer: 0, explanation: "Recycling real images with false captions is a common tactic." },
+            { q: "3. When viewing dramatic viral video clips, always check:", options: ["Date, location, original uploader, and full unedited context", "Only the background music", "Only the thumbnail", "Nothing"], answer: 0, explanation: "Short clips can distort what happened before or after." }
+          ]},
+          { monthTitle: "Month 4 Quiz: Algorithms & Bias", questions: [
+            { q: "1. How do social media algorithms choose what you see next?", options: ["They amplify content similar to what you pause on, like, or argue with", "Randomly", "By textbook order", "By alphabetical order"], answer: 0, explanation: "Algorithms optimize for watch time and engagement." },
+            { q: "2. What is an 'echo chamber'?", options: ["An environment where you only see opinions reinforcing what you already believe", "A music studio", "A library", "A radio station"], answer: 0, explanation: "Echo chambers narrow perspective unless you seek diverse sources." },
+            { q: "3. Two articles disagree on an event. Best way to evaluate them?", options: ["Compare primary evidence, data, and cited experts", "Pick the angrier headline", "Pick the shorter one", "Ignore evidence"], answer: 0, explanation: "Primary evidence separates facts from spin." }
+          ]},
+          { monthTitle: "Month 5 Quiz: Digital Privacy", questions: [
+            { q: "1. Which information should NEVER be shared in public comments or giveaways?", options: ["Home address, phone number, and ID details", "Favorite color", "Favorite book", "Favorite sport"], answer: 0, explanation: "Personal identifiable information creates safety and fraud risks." },
+            { q: "2. Why do fake giveaways ask for your phone number and address?", options: ["To harvest and sell personal data or send phishing scams", "To mail free gold", "For school attendance", "No reason"], answer: 0, explanation: "Data harvesting is a major privacy threat." },
+            { q: "3. Once personal info is posted publicly online:", options: ["It can be screenshotted and copied permanently", "It vanishes in 5 seconds", "Only friends see it", "It is encrypted"], answer: 0, explanation: "Assume anything posted publicly is permanent." }
+          ]},
+          { monthTitle: "Month 6 Quiz: Media Literacy Capstone", questions: [
+            { q: "1. A media-literate citizen always asks:", options: ["Who created this, what is their motive, and what evidence backs it?", "How many likes does it have?", "Is it viral?", "Does it make me angry?"], answer: 0, explanation: "Source, motive, and evidence are the core pillars of media literacy." },
+            { q: "2. Stopping misinformation starts with:", options: ["Pausing to verify before sharing", "Forwarding everything fast", "Commenting angrily", "Turning off critical thinking"], answer: 0, explanation: "Individual verification breaks viral rumor chains." },
+            { q: "3. Credible journalism relies on:", options: ["Named sources, verifiable evidence, and transparent corrections", "Anonymous rumors", "Clickbait headlines", "Secret ads"], answer: 0, explanation: "Accountability and evidence define reliable reporting." }
+          ]}
         ]
       },
       mental: {
         title: "Mental Health, Stress & Confidence",
         icon: "🧠",
-        example: {
-          heading: "Case Study: Recovering From a Mistake During a Live Presentation",
-          situation: "During a competition pitch, Kabir forgets his opening statistic, feels his heart racing, and receives blunt feedback from a mentor afterward.",
-          solution: "Kabir takes one slow breath, calmly corrects his point without apologizing excessively, and finishes strong. Afterward, he writes down the mentor's specific suggestions to improve the slide deck rather than taking the critique personally."
-        },
-        questions: [
-          {
-            q: "1. You have to speak in front of your class and feel nervous. What is the most effective way to build confidence?",
-            options: ["Make an excuse to skip class.", "Practice your key points out loud beforehand and take slow, steady breaths.", "Compare yourself negatively to top speakers.", "Read off the floor without looking up."],
-            answer: 1,
-            explanation: "Preparation and controlled breathing channel nervous energy into calm delivery."
-          },
-          {
-            q: "2. A teacher or teammate gives constructive feedback on your project. What is the best response?",
-            options: ["Ignore everything they said.", "Take it as a personal insult.", "Extract the actionable points to improve your work.", "Quit the project entirely."],
-            answer: 2,
-            explanation: "Viewing feedback objectively turns critique into rapid skill growth."
-          },
-          {
-            q: "3. You feel overwhelmed by five different responsibilities at once. What helps regain control?",
-            options: ["List them out and break them into small, one-at-a-time steps.", "Panic and try doing all five simultaneously.", "Ignore all deadlines.", "Take on three more tasks."],
-            answer: 0,
-            explanation: "Externalizing tasks onto paper and tackling one small step reduces mental overwhelm."
-          },
-          {
-            q: "4. You stumble over a sentence during a presentation. What should you do?",
-            options: ["Freeze and walk off stage.", "Blame the slides or your partner.", "Pause, correct yourself calmly, and continue smoothly.", "Assume the entire presentation is ruined."],
-            answer: 2,
-            explanation: "Audiences rarely mind small stumbles when you recover with composure."
-          },
-          {
-            q: "5. What does authentic self-confidence actually mean?",
-            options: ["Never feeling afraid or making mistakes.", "Always being the loudest person in the room.", "Believing in your ability to try, learn, and improve through effort.", "Acting superior to everyone else."],
-            answer: 2,
-            explanation: "True confidence is rooted in resilience and willingness to learn, not perfection."
-          }
+        examples: [
+          { month: "Month 1: Authentic Confidence", heading: "Recovering Calmly After Stumbling in a School Speech", situation: "Forgetting a transition line mid-speech in front of 100 students.", solution: "Taking a 2-second breath, saying 'Let me rephrase that clearly,' and continuing builds instant respect." },
+          { month: "Month 2: Stress Reset", heading: "Using Physiological Sighs Before a Difficult Exam", situation: "Heart racing and palms sweating 3 minutes before an exam paper is distributed.", solution: "Three physiological sighs (double inhale + long exhale) slow heart rate within 60 seconds." },
+          { month: "Month 3: Handling Feedback", heading: "Turning Tough Mentor Critique Into a Winning Pitch", situation: "A mentor points out three confusing slides in your project deck.", solution: "Instead of feeling defeated, you thank them, fix the three slides, and deliver a far clearer pitch." },
+          { month: "Month 4: Healthy Boundaries", heading: "Politely Declining Extra Work During Exam Week", situation: "A classmate asks you to build their poster the night before your science test.", solution: "Saying 'I can't help tonight because I'm studying for tomorrow's test' protects your priorities respectfully." },
+          { month: "Month 5: Cognitive Reframing", heading: "Reframing a Low Practice Quiz Score", situation: "Scoring 5/10 on a mock test a week before finals.", solution: "Viewing it as 'I just discovered which 5 concepts to review now' rather than 'I'm bad at this' fuels focused improvement." },
+          { month: "Month 6: Emotional Resilience", heading: "Navigating High-Pressure Competition Day With Composure", situation: "Presenting your live prototype to judges under time limits.", solution: "Combining preparation, slow breathing, and adaptable thinking turns pressure into confident execution." }
+        ],
+        monthlyQuizzes: [
+          { monthTitle: "Month 1 Quiz: Authentic Confidence", questions: [
+            { q: "1. What does authentic self-confidence mean?", options: ["Trusting you can try, adapt, and learn even when nervous", "Never feeling scared", "Being louder than everyone", "Never making mistakes"], answer: 0, explanation: "Confidence is self-trust through action, not perfection." },
+            { q: "2. What is the best way to reduce public speaking nerves?", options: ["Practice out loud beforehand and breathe slowly", "Skip the presentation", "Read silently", "Compare yourself to others"], answer: 0, explanation: "Preparation converts nervous energy into poise." },
+            { q: "3. If you misstate a word during a speech, you should:", options: ["Pause, correct yourself calmly, and continue", "Walk off stage", "Blame the audience", "Stop talking"], answer: 0, explanation: "Calm recovery demonstrates strong composure." }
+          ]},
+          { monthTitle: "Month 2 Quiz: Stress Regulation", questions: [
+            { q: "1. Which breathing pattern rapidly calms a racing nervous system?", options: ["Two quick inhales followed by a long, slow exhale", "Holding your breath for 2 minutes", "Fast shallow panting", "None"], answer: 0, explanation: "Extended exhales activate the parasympathetic calming response." },
+            { q: "2. When overwhelmed by 6 tasks at once, the best first step is:", options: ["Write them down and focus on one small step at a time", "Panic and try all 6 simultaneously", "Ignore all deadlines", "Add more tasks"], answer: 0, explanation: "Externalizing tasks reduces cognitive overload." },
+            { q: "3. Feeling nervous before a big event means:", options: ["Your body is mobilizing energy to perform—totally normal", "You are doomed to fail", "You must quit", "Something is wrong with you"], answer: 0, explanation: "Pre-performance adrenaline is normal and helpful when channeled." }
+          ]},
+          { monthTitle: "Month 3 Quiz: Handling Feedback", questions: [
+            { q: "1. How should you view constructive feedback on your work?", options: ["As helpful coaching to improve your work, not a personal attack", "As an insult", "As a reason to quit", "Ignore it completely"], answer: 0, explanation: "Separating self-worth from drafts accelerates growth." },
+            { q: "2. What is the best question to ask after receiving critique?", options: ["'Which specific change will make this project stronger?'", "'Why do they hate me?'", "'How can I make excuses?'", "Nothing"], answer: 0, explanation: "Actionable focus turns critique into progress." },
+            { q: "3. People who grow fastest:", options: ["Seek feedback early and iterate", "Hide their work forever", "Argue with every suggestion", "Avoid challenges"], answer: 0, explanation: "Early feedback prevents wasted effort." }
+          ]},
+          { monthTitle: "Month 4 Quiz: Healthy Boundaries", questions: [
+            { q: "1. Saying 'No' politely when overloaded:", options: ["Protects your mental energy and builds mutual respect", "Is always rude", "Destroys friendships", "Shows weakness"], answer: 0, explanation: "Clear boundaries prevent resentment and burnout." },
+            { q: "2. Which response sets a clear, respectful boundary?", options: ["'I can't take that on today because I'm finishing my own deadline.'", "'Fine, I'll ruin my sleep for you.'", "Ignoring them forever", "Yelling"], answer: 0, explanation: "Polite firmness communicates limits clearly." },
+            { q: "3. Overcommitting to every request leads to:", options: ["Burnout and broken promises", "Infinite energy", "Better grades", "Less stress"], answer: 0, explanation: "Knowing your bandwidth keeps commitments reliable." }
+          ]},
+          { monthTitle: "Month 5 Quiz: Cognitive Reframing", questions: [
+            { q: "1. Reframing 'I failed this chapter' into 'I need a new study method for this chapter':", options: ["Keeps setbacks temporary and solvable", "Ignores reality", "Is dishonest", "Wastes time"], answer: 0, explanation: "Growth-oriented self-talk drives problem solving." },
+            { q: "2. 'All-or-nothing' thinking means:", options: ["Believing one small mistake ruins everything", "Balanced evaluation", "Calm planning", "Patience"], answer: 0, explanation: "Recognizing partial progress prevents discouragement." },
+            { q: "3. Comparing your behind-the-scenes effort to someone else's highlight reel:", options: ["Creates unfair anxiety and distorts reality", "Helps you focus", "Is always accurate", "Improves sleep"], answer: 0, explanation: "Compare yourself to your own progress yesterday." }
+          ]},
+          { monthTitle: "Month 6 Quiz: Resilience Capstone", questions: [
+            { q: "1. Emotional resilience is:", options: ["The ability to recover, adapt, and grow after setbacks", "Never feeling sad or stressed", "Avoiding all risks", "Ignoring emotions"], answer: 0, explanation: "Resilience is adaptability under pressure." },
+            { q: "2. Combining preparation, breathing resets, and boundaries gives you:", options: ["Steady confidence across school, work, and life", "Zero challenges", "Perfection", "Luck"], answer: 0, explanation: "Practical mental habits create lasting composure." },
+            { q: "3. The best time to practice stress-management habits is:", options: ["Daily, so they are automatic during high-pressure moments", "Only once a year", "Never", "After burnout"], answer: 0, explanation: "Daily practice makes calm responses effortless." }
+          ]}
         ]
       },
       skillcraft: {
         title: "SkillCraft (Art & Culture Appreciation)",
         icon: "🎭",
-        example: {
-          heading: "Case Study: Analyzing Composition & Storytelling in Art and Cinema",
-          situation: "Two viewers look at a classic painting and a movie scene: one glances for 2 seconds and says 'nice colors,' while the other notices how warm golden light highlights the central figure against dark shadows.",
-          solution: "By observing lighting contrast, framing (Rule of Thirds), and architectural symmetry, you uncover the deeper emotion and cultural history the creator intentionally built into the work."
-        },
-        questions: [
-          {
-            q: "1. When viewing a painting or photograph, how do artists use warm colors (reds, oranges) vs. cool colors (blues, greens)?",
-            options: ["Colors are chosen completely at random.", "Warm colors draw attention and energy forward, while cool colors create depth or calm.", "Cool colors are only used for mistakes.", "Warm colors make every painting invisible."],
-            answer: 1,
-            explanation: "Color temperature is a primary tool artists use to guide focus and evoke emotion."
-          },
-          {
-            q: "2. What does the 'Rule of Thirds' help achieve in photography, film, and painting?",
-            options: ["It forces every subject into the exact dead center.", "It places key subjects off-center along grid intersections for natural balance and movement.", "It limits a painting to only three colors.", "It removes all background details."],
-            answer: 1,
-            explanation: "Off-center placement creates dynamic visual flow and stronger storytelling."
-          },
-          {
-            q: "3. In architecture, what does the classic principle 'Form follows Function' mean?",
-            options: ["Buildings should look pretty even if nobody can walk inside.", "A structure's design should be shaped primarily by its practical purpose and climate.", "All buildings must be painted the same color.", "Engineering doesn't matter in architecture."],
-            answer: 1,
-            explanation: "Great architecture harmonizes visual beauty with real-world usability and environment."
-          },
-          {
-            q: "4. Why might a film director shoot a character from a 'low angle' (camera looking upward)?",
-            options: ["Because the tripod broke.", "To make the character appear powerful, heroic, or imposing.", "To hide the character's face completely.", "To make the character look tiny and helpless."],
-            answer: 1,
-            explanation: "Camera angles subtly shape how the audience perceives a character's power or vulnerability."
-          },
-          {
-            q: "5. What is the best approach when visiting a museum, heritage monument, or art gallery?",
-            options: ["Rush through taking selfies without looking at the works.", "Slow down with 3–4 pieces, observe brushwork/materials, and read the historical context.", "Touch the sculptures to test what they are made of.", "Assume older art has no connection to modern life."],
-            answer: 1,
-            explanation: "Slow observation and cultural context transform art viewing into a meaningful experience."
-          }
+        examples: [
+          { month: "Month 1: Visual Observation", heading: "Decoding Light & Warm-Cool Contrast in Classic Painting", situation: "Viewing a dimly lit historical portrait where golden candlelight illuminates the subject's hands.", solution: "Noticing how warm light against cool shadows directs your eyes straight to the story's focal point." },
+          { month: "Month 2: Composition", heading: "Applying the Rule of Thirds in Smartphone Photography", situation: "Taking a photo of a monument dead-center vs. placing it on the left third line with leading pathways.", solution: "Off-center framing creates natural visual movement and far stronger depth." },
+          { month: "Month 3: Architecture", heading: "Understanding Rani ki Vav & Stepwell Engineering", situation: "Visiting a traditional Indian stepwell built deep into the earth.", solution: "Appreciating how inverted temple architecture harvested monsoon water while cooling air temperatures naturally." },
+          { month: "Month 4: Cinema Craft", heading: "Watching a Film Scene With Sound Muted", situation: "Analyzing how a director builds tension before a plot twist.", solution: "Noticing tight close-ups, low camera angles, and shadow framing reveals visual storytelling." },
+          { month: "Month 5: Living Crafts", heading: "Recognizing Handloom Block-Printing Geometry", situation: "Examining a traditional Ajrakh or Bagru hand-printed textile.", solution: "Appreciating the natural mineral dyes and precision wooden block alignment passed across generations." },
+          { month: "Month 6: Creative Fluency", heading: "Designing Visually Balanced Presentation Slides", situation: "Building slides for a competition pitch.", solution: "Using clean negative space, color contrast, and visual hierarchy makes ideas memorable." }
+        ],
+        monthlyQuizzes: [
+          { monthTitle: "Month 1 Quiz: Visual Observation", questions: [
+            { q: "1. How do warm colors (reds, oranges) behave visually compared to cool colors (blues, greens)?", options: ["Warm colors pull energy and attention forward; cool colors create depth or calm", "Colors have zero visual effect", "Cool colors are always brighter", "They look identical"], answer: 0, explanation: "Color temperature guides viewer focus and mood." },
+            { q: "2. Why do artists use strong light-and-shadow contrast?", options: ["To highlight the focal point and create emotional drama", "Because they ran out of paint", "To hide the canvas", "By mistake"], answer: 0, explanation: "Contrast directs the human eye immediately." },
+            { q: "3. Appreciating art begins with:", options: ["Slowing down to observe composition, light, and cultural context", "Walking past in 1 second", "Touching paintings", "Ignoring history"], answer: 0, explanation: "Deliberate observation reveals hidden craft." }
+          ]},
+          { monthTitle: "Month 2 Quiz: Composition & Framing", questions: [
+            { q: "1. What does the 'Rule of Thirds' recommend?", options: ["Placing key subjects along off-center grid intersections for natural balance", "Putting everything in the exact dead center", "Using only 3 colors", "Cropping out subjects"], answer: 0, explanation: "Off-center placement creates dynamic visual flow." },
+            { q: "2. What are 'leading lines' in photography and painting?", options: ["Roads, rivers, or architectural lines that guide the viewer's eye toward the subject", "Pencil eraser marks", "Frame borders", "Random scribbles"], answer: 0, explanation: "Leading lines pull attention through the image." },
+            { q: "3. Empty 'negative space' around a subject often conveys:", options: ["Calm, scale, or focus on the subject", "An unfinished image", "A mistake", "Clutter"], answer: 0, explanation: "Negative space prevents visual overcrowding." }
+          ]},
+          { monthTitle: "Month 3 Quiz: Architecture & Design", questions: [
+            { q: "1. What does 'Form follows Function' mean in architecture?", options: ["A building's design should be shaped by its practical purpose and climate", "Beauty never matters", "All buildings look identical", "Engineering is optional"], answer: 0, explanation: "Great architecture unites practical function with aesthetic harmony." },
+            { q: "2. Traditional stepwells and courtyards were designed to:", options: ["Harvest water and naturally cool living spaces in warm climates", "Waste stone", "Block sunlight completely", "Serve no purpose"], answer: 0, explanation: "Historical architecture solved environmental challenges ingeniously." },
+            { q: "3. Noticing symmetry, materials, and sunlight on local buildings builds:", options: ["Spatial and cultural awareness", "Nothing", "Confusion", "Fatigue"], answer: 0, explanation: "Built environments reflect human history and engineering." }
+          ]},
+          { monthTitle: "Month 4 Quiz: Cinema & Storytelling", questions: [
+            { q: "1. Shooting a character from a 'low angle' (looking upward) makes them look:", options: ["Powerful, heroic, or imposing", "Tiny and helpless", "Invisible", "Blurry"], answer: 0, explanation: "Low camera angles convey strength and authority." },
+            { q: "2. How does a film's background score affect viewers?", options: ["Tempo and harmony subtly shape suspense, joy, or tension", "It has no effect", "It replaces actors", "It only fills silence"], answer: 0, explanation: "Music guides emotional pacing subconsciously." },
+            { q: "3. Watching a movie scene with the sound muted helps you notice:", options: ["Camera framing, lighting, and visual acting", "Dialogue", "Sound effects", "Nothing"], answer: 0, explanation: "Muting isolates visual storytelling choices." }
+          ]},
+          { monthTitle: "Month 5 Quiz: Cultural Heritage & Crafts", questions: [
+            { q: "1. Traditional handloom textiles and pottery preserve:", options: ["Generations of regional mathematics, ecology, and cultural storytelling", "Plastic waste", "Machine errors", "Nothing"], answer: 0, explanation: "Living crafts embody centuries of heritage and skill." },
+            { q: "2. Natural dyes in traditional textiles are derived from:", options: ["Plants, minerals, and organic ingredients like indigo and madder", "Synthetic motor oil", "Plastic", "Neon paint"], answer: 0, explanation: "Natural dye chemistry connects craft to local ecology." },
+            { q: "3. Supporting local artisans helps:", options: ["Keep endangered cultural skills and sustainable livelihoods alive", "Erase history", "Reduce creativity", "Standardize everything"], answer: 0, explanation: "Cultural patronage sustains living traditions." }
+          ]},
+          { monthTitle: "Month 6 Quiz: SkillCraft Mastery Capstone", questions: [
+            { q: "1. How does SkillCraft improve everyday work like presentations or photography?", options: ["You apply contrast, alignment, hierarchy, and clean negative space", "You add 20 clashing fonts", "You crowd every corner", "It doesn't"], answer: 0, explanation: "Visual principles elevate communication in every field." },
+            { q: "2. True cultural appreciation requires:", options: ["Curiosity, historical context, and careful observation", "Rushing through landmarks", "Judging without understanding", "Ignoring craft"], answer: 0, explanation: "Context turns objects into meaningful human stories." },
+            { q: "3. Great art and design succeed when:", options: ["Craft, emotion, and human purpose work together", "They are expensive only", "They copy trends blindly", "They ignore the viewer"], answer: 0, explanation: "Intentional craft creates lasting impact." }
+          ]}
         ]
       }
     };
 
-    let activeQuizKey = null;
+    let activeTopicKey = null;
+    let activeMonthIdx = 0;
     let qIndex = 0;
     let score = 0;
+
+    function getUnlockedMonth(topicKey) {
+      return parseInt(localStorage.getItem(`skillbridge_unlocked_${topicKey}`) || "0", 10);
+    }
+
+    function unlockNextMonth(topicKey, completedMonthIdx) {
+      const currentUnlocked = getUnlockedMonth(topicKey);
+      if (completedMonthIdx + 1 > currentUnlocked && completedMonthIdx + 1 < 6) {
+        localStorage.setItem(`skillbridge_unlocked_${topicKey}`, String(completedMonthIdx + 1));
+      }
+    }
+
+    function updateHeaderPlanBadge() {
+      const isPremium = localStorage.getItem("skillbridge_premium") === "true";
+      const pill = document.getElementById("plan-status-pill");
+      if (isPremium) {
+        pill.innerText = "★ Premium Active";
+        pill.classList.add("premium");
+      } else {
+        const today = new Date().toDateString();
+        const savedDate = localStorage.getItem("skillbridge_date");
+        const count = savedDate === today ? parseInt(localStorage.getItem("skillbridge_daily_count") || "0", 10) : 0;
+        const left = Math.max(0, 5 - count);
+        pill.innerText = `Free (${left}/5 left today)`;
+      }
+    }
 
     function buildHubLists() {
       const exList = document.getElementById("examples-list");
@@ -440,88 +533,124 @@
 
       Object.keys(topicsData).forEach(key => {
         const item = topicsData[key];
+        const unlocked = getUnlockedMonth(key) + 1;
 
-        // Example Button
         const exBtn = document.createElement("button");
         exBtn.className = "list-item-btn";
-        exBtn.onclick = () => openExample(key);
+        exBtn.onclick = () => openExamples(key);
         exBtn.innerHTML = `
           <div class="list-item-left">
             <span class="list-item-icon">${item.icon}</span>
             <span class="list-item-title">${item.title}</span>
           </div>
-          <span class="list-item-arrow">Read Example →</span>
+          <span class="list-item-arrow">6 Examples →</span>
         `;
         exList.appendChild(exBtn);
 
-        // Quiz Button
         const qzBtn = document.createElement("button");
         qzBtn.className = "list-item-btn";
-        qzBtn.onclick = () => startQuiz(key);
+        qzBtn.onclick = () => openMonthQuizSelector(key);
         qzBtn.innerHTML = `
           <div class="list-item-left">
             <span class="list-item-icon">${item.icon}</span>
             <span class="list-item-title">${item.title}</span>
           </div>
-          <span class="list-item-arrow">Start Quiz →</span>
+          <span class="list-item-arrow">Month ${unlocked}/6 →</span>
         `;
         qzList.appendChild(qzBtn);
       });
     }
 
-    function openExample(key) {
+    function openExamples(key) {
       const data = topicsData[key];
       document.getElementById("hub-view").style.display = "none";
       document.getElementById("interactive-panel").style.display = "block";
 
+      let cardsHTML = data.examples.map(ex => `
+        <div class="month-ex-card">
+          <span class="section-tag tag-blue">${ex.month}</span>
+          <h3>${ex.heading}</h3>
+          <p><strong>Situation:</strong> ${ex.situation}</p>
+          <div class="ex-solution"><strong>✅ SkillBridge Action:</strong> ${ex.solution}</div>
+        </div>
+      `).join("");
+
       document.getElementById("panel-content").innerHTML = `
-        <span class="section-tag tag-blue">${data.icon} ${data.title} • Real-Life Example</span>
-        <h2 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin: 10px 0 18px;">${data.example.heading}</h2>
-        <div class="scenario-box">
-          <h4>📌 Real-World Situation</h4>
-          <p>${data.example.situation}</p>
-        </div>
-        <div class="takeaway-box">
-          <strong>✅ Smart SkillBridge Action:</strong><br/>
-          ${data.example.solution}
-        </div>
-        <button class="btn-primary" onclick="startQuiz('${key}')">Practice This Topic's Quiz →</button>
+        <span class="section-tag tag-blue">${data.icon} ${data.title} • Complete 6-Month Case Studies</span>
+        <h2 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin: 10px 0 6px;">6 Monthly Real-Life Examples</h2>
+        <p style="color: #475569; margin-bottom: 16px;">Study how each month's concept applies in real-life scenarios before taking the sequential quizzes.</p>
+        <div class="monthly-examples-stack">${cardsHTML}</div>
+        <button class="btn-primary" onclick="openMonthQuizSelector('${key}')">Start Month 1–6 Quizzes →</button>
       `;
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function startQuiz(key) {
-      activeQuizKey = key;
-      qIndex = 0;
-      score = 0;
+    function openMonthQuizSelector(key) {
+      activeTopicKey = key;
+      const data = topicsData[key];
+      const unlockedIdx = getUnlockedMonth(key);
+
       document.getElementById("hub-view").style.display = "none";
       document.getElementById("interactive-panel").style.display = "block";
+
+      let gridHTML = data.monthlyQuizzes.map((mq, idx) => {
+        const isUnlocked = idx <= unlockedIdx;
+        const isCompleted = idx < unlockedIdx;
+        const statusClass = isCompleted ? "completed" : (isUnlocked ? "unlocked" : "locked");
+        const badgeText = isCompleted ? "✅ Passed (100%)" : (isUnlocked ? "🔓 Unlocked" : `🔒 Pass Month ${idx} (100%)`);
+
+        return `
+          <button type="button" class="month-quiz-card ${statusClass}" ${isUnlocked ? `onclick="startMonthlyQuiz('${key}', ${idx})"` : "disabled"}>
+            <div class="mq-top">
+              <span class="section-tag ${isCompleted ? 'tag-green' : 'tag-orange'}">${badgeText}</span>
+            </div>
+            <div class="mq-title">${mq.monthTitle}</div>
+            <div class="mq-sub" style="margin-top:6px;">${mq.questions.length} Mastery Questions • Score 100% to unlock next</div>
+          </button>
+        `;
+      }).join("");
+
+      document.getElementById("panel-content").innerHTML = `
+        <span class="section-tag tag-orange">${data.icon} ${data.title}</span>
+        <h2 style="font-size: 1.85rem; font-weight: 800; color: #0f172a; margin: 10px 0 8px;">Select Monthly Quiz</h2>
+        <p style="color: #475569;">Get <strong>all questions correct (100%)</strong> in Month 1 to unlock Month 2, and progress sequentially through Month 6.</p>
+        <div class="month-quiz-grid">${gridHTML}</div>
+      `;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function startMonthlyQuiz(key, monthIdx) {
+      activeTopicKey = key;
+      activeMonthIdx = monthIdx;
+      qIndex = 0;
+      score = 0;
       renderQuestion();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function renderQuestion() {
-      const data = topicsData[activeQuizKey];
-      const qObj = data.questions[qIndex];
-      const total = data.questions.length;
+      const data = topicsData[activeTopicKey];
+      const mq = data.monthlyQuizzes[activeMonthIdx];
+      const qObj = mq.questions[qIndex];
+      const total = mq.questions.length;
 
       let optionsHTML = qObj.options.map((opt, idx) => `
         <button class="option-btn" id="opt-${idx}" onclick="selectOption(${idx})">${opt}</button>
       `).join("");
 
       document.getElementById("panel-content").innerHTML = `
-        <div class="quiz-progress">${data.icon} ${data.title} • Question ${qIndex + 1} of ${total}</div>
+        <div class="quiz-progress">${data.icon} ${mq.monthTitle} • Question ${qIndex + 1} of ${total}</div>
         <h2 class="quiz-question">${qObj.q}</h2>
         <div class="options-grid">${optionsHTML}</div>
         <div class="feedback-banner" id="feedback-box"></div>
         <button class="btn-primary" id="next-q-btn" style="display:none;" onclick="nextQuestion()">
-          ${qIndex === total - 1 ? "See Final Score →" : "Next Question →"}
+          ${qIndex === total - 1 ? "See Quiz Result →" : "Next Question →"}
         </button>
       `;
     }
 
     function selectOption(selectedIdx) {
-      const qObj = topicsData[activeQuizKey].questions[qIndex];
+      const qObj = topicsData[activeTopicKey].monthlyQuizzes[activeMonthIdx].questions[qIndex];
       const buttons = document.querySelectorAll(".option-btn");
       buttons.forEach(btn => btn.disabled = true);
 
@@ -535,46 +664,60 @@
         document.getElementById(`opt-${selectedIdx}`).classList.add("wrong");
         document.getElementById(`opt-${qObj.answer}`).classList.add("correct");
         feedback.className = "feedback-banner show feedback-wrong";
-        feedback.innerHTML = `<strong>Not quite.</strong> ${qObj.explanation}`;
+        feedback.innerHTML = `<strong>Incorrect.</strong> ${qObj.explanation}`;
       }
-
       document.getElementById("next-q-btn").style.display = "inline-block";
     }
 
     function nextQuestion() {
-      const total = topicsData[activeQuizKey].questions.length;
+      const mq = topicsData[activeTopicKey].monthlyQuizzes[activeMonthIdx];
+      const total = mq.questions.length;
       qIndex++;
+
       if (qIndex < total) {
         renderQuestion();
       } else {
-        const data = topicsData[activeQuizKey];
+        const passedAll = score === total;
+        if (passedAll) {
+          unlockNextMonth(activeTopicKey, activeMonthIdx);
+        }
+
+        const hasNextMonth = activeMonthIdx + 1 < 6;
         document.getElementById("panel-content").innerHTML = `
-          <span class="section-tag tag-orange">Quiz Completed!</span>
-          <h2 style="font-size: 2rem; font-weight: 800; color: #0f172a; margin: 12px 0;">
-            You scored ${score} out of ${total} in ${data.title}!
+          <span class="section-tag ${passedAll ? 'tag-green' : 'tag-orange'}">
+            ${passedAll ? "🎉 100% Perfect Score!" : "🔒 Next Month Still Locked"}
+          </span>
+          <h2 style="font-size: 1.9rem; font-weight: 800; color: #0f172a; margin: 12px 0;">
+            You scored ${score} out of ${total} on ${mq.monthTitle}!
           </h2>
-          <p style="font-size: 1.08rem; color: #475569; line-height: 1.6; margin-bottom: 24px;">
-            ${score >= 4 ? "Outstanding mastery! You're ready to apply these real-world decisions confidently." : "Great effort! Review the real-life example or lesson chapter to sharpen your score."}
+          <p style="font-size: 1.05rem; color: #475569; line-height: 1.6; margin-bottom: 24px;">
+            ${passedAll
+              ? (hasNextMonth ? `Awesome! You answered every question correctly and unlocked <strong>Month ${activeMonthIdx + 2} Quiz</strong>!` : "Incredible! You have conquered all 6 months of quizzes in this topic!")
+              : `You must get <strong>all ${total} answers correct (100%)</strong> to unlock Month ${activeMonthIdx + 2}. Review the monthly example and try again!`}
           </p>
-          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-            <button class="btn-primary" onclick="startQuiz('${activeQuizKey}')">Retake Quiz</button>
-            <button class="btn-primary" style="background:#0b162c;" onclick="resetHub()">Try Another Topic</button>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            ${passedAll && hasNextMonth
+              ? `<button class="btn-primary" onclick="startMonthlyQuiz('${activeTopicKey}', ${activeMonthIdx + 1})">Start Month ${activeMonthIdx + 2} Quiz →</button>`
+              : `<button class="btn-primary" onclick="startMonthlyQuiz('${activeTopicKey}', ${activeMonthIdx})">Retake ${mq.monthTitle}</button>`}
+            <button class="btn-primary" style="background:#0b162c;" onclick="openMonthQuizSelector('${activeTopicKey}')">View All 6 Months</button>
           </div>
         `;
       }
     }
 
     function resetHub() {
+      buildHubLists();
       document.getElementById("interactive-panel").style.display = "none";
       document.getElementById("hub-view").style.display = "grid";
       window.history.replaceState({}, document.title, "quizzes.html");
     }
 
+    updateHeaderPlanBadge();
     buildHubLists();
     const params = new URLSearchParams(window.location.search);
     const quizParam = params.get("quiz");
     if (quizParam && topicsData[quizParam]) {
-      startQuiz(quizParam);
+      openMonthQuizSelector(quizParam);
     }
   </script>
 </body>
